@@ -14,6 +14,13 @@ const fonts = [
   { family: "Inter", file: "Inter-600.woff2", weight: "600" },
   { family: "Inter", file: "Inter-800.woff2", weight: "800" },
   { family: "Bebas Neue", file: "BebasNeue-400.woff2", weight: "400" },
+  // Arabic. Single weight, registered for the full range so bold styles
+  // use the real letterforms instead of a synthetic bold.
+  {
+    family: "Hayyakum Allah",
+    file: "HayyakumAllah-Taweel-Medium.ttf",
+    weight: "100 900",
+  },
 ];
 
 for (const font of fonts) {
@@ -29,4 +36,5 @@ export const fontFamilies = [
   "Poppins",
   "Inter",
   "Bebas Neue",
+  "Hayyakum Allah",
 ] as const;
