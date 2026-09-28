@@ -1,0 +1,149 @@
+[
+  {
+    "text": "This",
+    "startMs": 100,
+    "endMs": 443,
+    "timestampMs": 272,
+    "confidence": null
+  },
+  {
+    "text": " is",
+    "startMs": 443,
+    "endMs": 786,
+    "timestampMs": 615,
+    "confidence": null
+  },
+  {
+    "text": " sample",
+    "startMs": 786,
+    "endMs": 1129,
+    "timestampMs": 958,
+    "confidence": null
+  },
+  {
+    "text": " footage",
+    "startMs": 1129,
+    "endMs": 1471,
+    "timestampMs": 1300,
+    "confidence": null
+  },
+  {
+    "text": " for",
+    "startMs": 1471,
+    "endMs": 1814,
+    "timestampMs": 1643,
+    "confidence": null
+  },
+  {
+    "text": " your",
+    "startMs": 1814,
+    "endMs": 2157,
+    "timestampMs": 1986,
+    "confidence": null
+  },
+  {
+    "text": " edit",
+    "startMs": 2157,
+    "endMs": 2500,
+    "timestampMs": 2329,
+    "confidence": null
+  },
+  {
+    "text": " Drop",
+    "startMs": 4050,
+    "endMs": 4363,
+    "timestampMs": 4207,
+    "confidence": null
+  },
+  {
+    "text": " your",
+    "startMs": 4363,
+    "endMs": 4675,
+    "timestampMs": 4519,
+    "confidence": null
+  },
+  {
+    "text": " own",
+    "startMs": 4675,
+    "endMs": 4988,
+    "timestampMs": 4832,
+    "confidence": null
+  },
+  {
+    "text": " clips",
+    "startMs": 4988,
+    "endMs": 5300,
+    "timestampMs": 5144,
+    "confidence": null
+  },
+  {
+    "text": " in",
+    "startMs": 5300,
+    "endMs": 5613,
+    "timestampMs": 5457,
+    "confidence": null
+  },
+  {
+    "text": " the",
+    "startMs": 5613,
+    "endMs": 5925,
+    "timestampMs": 5769,
+    "confidence": null
+  },
+  {
+    "text": " footage",
+    "startMs": 5925,
+    "endMs": 6238,
+    "timestampMs": 6082,
+    "confidence": null
+  },
+  {
+    "text": " folder",
+    "startMs": 6238,
+    "endMs": 6550,
+    "timestampMs": 6394,
+    "confidence": null
+  },
+  {
+    "text": " and",
+    "startMs": 8050,
+    "endMs": 8467,
+    "timestampMs": 8259,
+    "confidence": null
+  },
+  {
+    "text": " every",
+    "startMs": 8467,
+    "endMs": 8883,
+    "timestampMs": 8675,
+    "confidence": null
+  },
+  {
+    "text": " caption",
+    "startMs": 8883,
+    "endMs": 9300,
+    "timestampMs": 9092,
+    "confidence": null
+  },
+  {
+    "text": " stays",
+    "startMs": 9300,
+    "endMs": 9717,
+    "timestampMs": 9509,
+    "confidence": null
+  },
+  {
+    "text": " fully",
+    "startMs": 9717,
+    "endMs": 10133,
+    "timestampMs": 9925,
+    "confidence": null
+  },
+  {
+    "text": " editable",
+    "startMs": 10133,
+    "endMs": 10550,
+    "timestampMs": 10342,
+    "confidence": null
+  }
+]

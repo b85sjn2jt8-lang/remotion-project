@@ -1,0 +1,57 @@
+{
+  "source": "public/footage/sample.mp4",
+  "footage": "footage/sample.mp4",
+  "captions": "captions/sample.json",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "hdr": false,
+  "durationInSeconds": 12,
+  "durationInFrames": 360,
+  "loudness": {
+    "integrated": -16.53,
+    "threshold": -26.7
+  },
+  "silenceSettings": {
+    "minSilence": 0.35,
+    "pad": 0.08
+  },
+  "silences": [
+    {
+      "start": 2.599917,
+      "end": 4.007688
+    },
+    {
+      "start": 6.599917,
+      "end": 8.007667
+    },
+    {
+      "start": 10.599917,
+      "end": 12.010667
+    }
+  ],
+  "clips": [
+    {
+      "name": "Clip 1",
+      "startSec": 0,
+      "endSec": 2.68,
+      "trimBefore": 0,
+      "durationInFrames": 80
+    },
+    {
+      "name": "Clip 2",
+      "startSec": 3.928,
+      "endSec": 6.68,
+      "trimBefore": 118,
+      "durationInFrames": 83
+    },
+    {
+      "name": "Clip 3",
+      "startSec": 7.928,
+      "endSec": 10.68,
+      "trimBefore": 238,
+      "durationInFrames": 83
+    }
+  ],
+  "keptFrames": 246
+}
