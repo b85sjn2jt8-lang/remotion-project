@@ -1,6 +1,8 @@
 import { Composition, Folder } from "remotion";
 import "./fonts";
 import { socialVideoSchema } from "./schema";
+import { CaseWeightVideo } from "./videos/CaseWeight/CaseWeightVideo";
+import { WeightBadge } from "./videos/CaseWeight/WeightBadge";
 import { ExampleVideo } from "./videos/Example/ExampleVideo";
 import { Hook as ExampleHook } from "./videos/Example/Hook";
 import { Outro as ExampleOutro } from "./videos/Example/Outro";
@@ -29,6 +31,43 @@ export const RemotionRoot: React.FC = () => {
           durationInFrames={75}
         />
       </Folder>
+      <Folder name="CaseWeight-Scenes">
+        <Composition
+          id="CaseWeight-Badge"
+          component={WeightBadge}
+          width={1080}
+          height={1920}
+          fps={30}
+          durationInFrames={59}
+        />
+      </Folder>
+      <Composition
+        id="CaseWeight"
+        component={CaseWeightVideo}
+        schema={socialVideoSchema}
+        width={1080}
+        height={1920}
+        fps={30}
+        durationInFrames={59}
+        defaultProps={{
+          accentColor: "#FFFFFF",
+          showProgressBar: false,
+          showSafeZones: false,
+          captions: {
+            enabled: false,
+            fontFamily: "Montserrat",
+            fontSize: 84,
+            textColor: "#FFFFFF",
+            highlightColor: "#FFD23F",
+            highlightStyle: "text",
+            strokeColor: "#000000",
+            strokeWidth: 12,
+            uppercase: true,
+            distanceFromBottom: 560,
+            combineWordsWithinMs: 900,
+          },
+        }}
+      />
       <Composition
         id="Example"
         component={ExampleVideo}

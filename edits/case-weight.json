@@ -1,0 +1,27 @@
+{
+  "source": "footage/case-weight.mp4",
+  "footage": "footage/case-weight.mp4",
+  "captions": "captions/case-weight.json",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "hdr": false,
+  "durationInSeconds": 1.95,
+  "durationInFrames": 59,
+  "loudness": {
+    "integrated": null,
+    "threshold": -70
+  },
+  "silenceSettings": {
+    "minSilence": 0.35,
+    "pad": 0.08
+  },
+  "silences": [
+    {
+      "start": 0,
+      "end": 1.950476
+    }
+  ],
+  "clips": [],
+  "keptFrames": 0
+}
