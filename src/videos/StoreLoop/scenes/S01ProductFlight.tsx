@@ -1,156 +1,118 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-import { Bokeh, Dust } from "../fx/Atmosphere";
-import { FloorShadow, Product } from "../fx/Product";
+import { Bokeh, Droplet, Dust } from "../fx/Atmosphere";
+import { Glass, ModelPlate } from "../fx/Layers";
+import { Product } from "../fx/Product";
 
-// SCENE 1 — PRODUCT FLIGHT HOOK (00:00.00–00:04.00, 120 f).
-// Camera already flying forward through a white studio; products arrive from different depths;
-// the Dr.Althea tube crosses the lens into the white TubeWipe (main timeline).
+// SCENE 1 — OPENING (00:00.00–00:04.00, 120 f) — V2.
+// 0–1 s  the Anua jar passes extremely close to the lens (LoopBridge, main timeline) and clears.
+// 1–2 s  a Korean-inspired model is revealed behind it, focus pulling onto her as she looks to camera.
+// 2–3 s  the real Hikari pouch enters large from the opposite (left) side in the foreground.
+// 3–4 s  the camera pushes between the pouch and the model; the Dr.Althea tube crosses the lens.
 export const S01ProductFlight: React.FC = () => {
   const frame = useCurrentFrame();
 
   return (
-    <AbsoluteFill style={{ backgroundColor: "#f3f1ef", overflow: "hidden" }}>
-      {/* Studio: forward dolly = slow scale-up from the vanishing point */}
-      <AbsoluteFill
-        style={{
-          scale: interpolate(frame, [0, 120], [1, 1.12]),
-          transformOrigin: "50% 58%",
-          background:
-            "radial-gradient(ellipse at 22% 8%, #ffffff 0%, #fbfaf9 30%, #efecea 70%, #e6e2df 100%)",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            left: -200,
-            right: -200,
-            top: 690,
-            bottom: -200,
-            background: "linear-gradient(to bottom, #ebe7e4 0%, #f6f4f2 22%, #fbfaf9 60%, #f1eeec 100%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: -200,
-            right: -200,
-            top: 640,
-            height: 120,
-            background: "linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.85), rgba(255,255,255,0))",
-            filter: "blur(20px)",
-          }}
-        />
-      </AbsoluteFill>
-
+    <AbsoluteFill
+      style={{
+        background: "radial-gradient(ellipse at 70% 30%, #fbe6e3 0%, #f4cfcd 45%, #e9b3b4 100%)",
+        overflow: "hidden",
+      }}
+    >
       <Bokeh
-        seed="s1"
-        count={14}
-        colors={["rgba(250,200,210,0.9)", "rgba(240,215,170,0.9)", "rgba(255,255,255,0.9)"]}
-        minSize={80}
-        maxSize={220}
+        seed="v2s1"
+        count={12}
+        colors={["rgba(255,236,232,0.9)", "rgba(246,180,176,0.9)"]}
+        minSize={140}
+        maxSize={340}
         zoom={0.004}
-        opacity={0.45}
-        blur={14}
-      />
-      <Dust seed="s1d" count={30} color="255,250,245" vy={-0.3} vx={0.2} opacity={0.6} />
-
-      {/* Floor shadows (follow their products) */}
-      <FloorShadow
-        x={interpolate(frame, [0, 35, 75], [520, 520, -420], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        y={interpolate(frame, [0, 75], [740, 860], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        width={interpolate(frame, [0, 75], [220, 560], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        opacity={0.18}
-      />
-      <FloorShadow
-        x={interpolate(frame, [36, 66, 119], [960, 960, 960], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        y={interpolate(frame, [36, 119], [770, 800], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        width={interpolate(frame, [36, 66, 119], [0, 540, 660], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        opacity={0.22}
+        opacity={0.55}
+        blur={18}
       />
 
-      {/* Hikari — far upper-left, descending, then passing out of frame left as we fly by */}
+      {/* Model — revealed behind the jar pass; push-in toward her eyes, rack focus */}
+      <ModelPlate
+        name="Model A · cheek touch"
+        id="cheekTall"
+        x={interpolate(frame, [0, 120], [1330, 1250], { easing: Easing.bezier(0.3, 0, 0.6, 1) })}
+        y={540}
+        height={1200}
+        zoom={interpolate(frame, [0, 70, 120], [1.0, 1.08, 1.24], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+          easing: Easing.bezier(0.4, 0, 0.6, 1),
+          output: "perceptual-scale",
+        })}
+        originX="45%"
+        originY="32%"
+        blur={interpolate(frame, [0, 12, 34, 44, 66, 84, 104], [14, 12, 0, 0, 5, 5, 0], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+        })}
+        feather={[22, 14, 0, 0]}
+      />
+
+      {/* Midground serum droplets between model and camera */}
+      <Droplet x={interpolate(frame, [0, 120], [860, 760])} y={interpolate(frame, [0, 120], [300, 270])} size={54} blur={1} />
+      <Droplet x={interpolate(frame, [0, 120], [960, 900])} y={interpolate(frame, [0, 120], [760, 800])} size={30} blur={2} />
+
+      {/* Hikari — enters big from the left foreground, settles, then the camera pushes past it */}
       <Product
-        name="Hikari · flight"
+        name="Hikari · foreground entrance"
         id="hikari"
-        x={interpolate(frame, [0, 35, 80], [560, 520, -420], {
+        x={interpolate(frame, [30, 62, 84, 118], [-520, 470, 430, -700], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
-          easing: Easing.bezier(0.45, 0, 0.7, 1),
+          easing: Easing.bezier(0.2, 0.75, 0.35, 1),
         })}
-        y={interpolate(frame, [0, 35, 80], [280, 360, 430], {
+        y={interpolate(frame, [30, 62, 84, 118], [640, 560, 552, 600], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
-          easing: Easing.bezier(0.2, 0.8, 0.3, 1),
         })}
-        width={interpolate(frame, [0, 35, 80], [280, 360, 720], {
+        width={interpolate(frame, [30, 62, 84, 118], [900, 580, 600, 1300], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
-          easing: Easing.bezier(0.5, 0, 0.8, 1),
+          easing: Easing.bezier(0.5, 0, 0.7, 1),
         })}
-        rotateY={interpolate(frame, [0, 35], [6, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        blur={interpolate(frame, [0, 45, 80], [1.5, 0, 7], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        rotateY={interpolate(frame, [30, 62, 118], [12, 4, -6], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        rotateZ={interpolate(frame, [30, 62], [-6, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        blur={interpolate(frame, [30, 56, 84, 112], [26, 0, 0, 22], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        sweep={interpolate(frame, [58, 84], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        opacity={interpolate(frame, [30, 33], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
       />
 
-      {/* Dr.Althea box — slides in from the right at mid depth, then exits right */}
-      <Product
-        name="Dr.Althea box · flight"
-        id="altheaBox"
-        x={interpolate(frame, [0, 35, 85], [2200, 1500, 2450], {
-          extrapolateLeft: "clamp",
-          extrapolateRight: "clamp",
-          easing: Easing.bezier(0.25, 0.9, 0.35, 1),
-        })}
-        y={interpolate(frame, [0, 35, 85], [560, 540, 620], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        width={interpolate(frame, [0, 35, 85], [210, 245, 520], {
-          extrapolateLeft: "clamp",
-          extrapolateRight: "clamp",
-          easing: Easing.bezier(0.5, 0, 0.8, 1),
-        })}
-        rotateY={interpolate(frame, [0, 35, 85], [-6, -2, -5], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        blur={interpolate(frame, [40, 85], [0, 6], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+      {/* Foreground glass slab (depth, slides opposite to the push) */}
+      <Glass
+        x={interpolate(frame, [0, 120], [1700, 2100])}
+        y={interpolate(frame, [0, 120], [930, 980])}
+        w={700}
+        h={260}
+        rot={-14}
+        tint="250,170,180"
+        blur={14}
+        opacity={0.7}
       />
 
-      {/* Brilliant Rejuv Set — rises from below into the far centre and becomes the hero */}
-      <Product
-        name="Brilliant · flight"
-        id="brilliant"
-        x={960}
-        y={interpolate(frame, [36, 66, 119], [1500, 470, 455], {
-          extrapolateLeft: "clamp",
-          extrapolateRight: "clamp",
-          easing: Easing.bezier(0.16, 1, 0.3, 1),
-        })}
-        width={interpolate(frame, [36, 66, 119], [460, 560, 640], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        rotateY={interpolate(frame, [36, 119], [4, -1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        sweep={interpolate(frame, [70, 104], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        reflectionGap={interpolate(frame, [36, 66, 119], [0, 60, 50], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        reflectionOpacity={0.12}
-      />
-
-      {/* Dr.Althea tube — foreground, rises diagonally then crosses the lens right → left */}
+      {/* Dr.Althea tube — crosses the lens right → left into the white TubeWipe */}
       <Product
         name="Dr.Althea tube · lens pass"
         id="altheaTube"
-        x={interpolate(frame, [66, 96, 119], [1980, 1500, -500], {
+        x={interpolate(frame, [92, 119], [2150, -300], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
-          easing: Easing.bezier(0.55, 0, 0.9, 0.6),
+          easing: Easing.bezier(0.5, 0, 0.9, 0.7),
         })}
-        y={interpolate(frame, [66, 96, 119], [1200, 690, 560], {
+        y={interpolate(frame, [92, 119], [700, 540], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        width={interpolate(frame, [92, 119], [380, 1100], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
-          easing: Easing.bezier(0.2, 0.7, 0.4, 1),
+          easing: Easing.bezier(0.6, 0, 1, 1),
         })}
-        width={interpolate(frame, [66, 96, 119], [190, 205, 1100], {
-          extrapolateLeft: "clamp",
-          extrapolateRight: "clamp",
-          easing: Easing.bezier(0.7, 0, 1, 1),
-        })}
-        rotateZ={interpolate(frame, [66, 96], [-4, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        blur={interpolate(frame, [96, 116], [0, 40], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-        opacity={interpolate(frame, [64, 68], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        rotateZ={-8}
+        blur={interpolate(frame, [92, 112], [10, 40], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        opacity={interpolate(frame, [91, 94], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
       />
+      <Dust seed="v2s1d" count={30} color="255,245,240" vy={-0.4} opacity={0.6} />
     </AbsoluteFill>
   );
 };

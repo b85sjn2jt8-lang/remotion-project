@@ -8,7 +8,7 @@ import type { ProductId } from "../products";
 // Camera flies forward through a white space past exact product plates placed in 3D.
 // Only plates with complete silhouettes fly free here (Dr.Althea box + tube, Hikari, Brilliant);
 // Anua and Manee plates are cropped in their references, so they are not used as free floaters.
-const FOCAL = 1500;
+const FOCAL = 1700;
 
 // Camera z over the shot: accelerating forward flight (scene units).
 const camZ = (f: number) =>
@@ -37,7 +37,7 @@ const TunnelItem: React.FC<{ name: string; id: ProductId; X: number; Y: number; 
       y={540 + (Y + bob) * k}
       width={size * k}
       rotateY={yaw + Math.sin(frame / 30 + X) * 2}
-      blur={Math.min(28, Math.abs(dz - 4) * 0.6 + (dz < 2 ? (2 - dz) * 14 : 0))}
+      blur={Math.min(30, Math.abs(dz - 3.5) * 0.45 + (dz < 1.8 ? (1.8 - dz) * 18 : 0))}
       opacity={interpolate(dz, [18, 24], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
     />
   );
@@ -75,14 +75,14 @@ export const S11ProductTunnel: React.FC = () => {
       />
 
       {/* Furthest first so nearer plates draw on top */}
-      <TunnelItem name="Tunnel · Brilliant 2" id="brilliant" X={0.6} Y={-0.15} Z={28} size={1.9} yaw={-3} />
-      <TunnelItem name="Tunnel · Hikari 2" id="hikari" X={-1.0} Y={-0.6} Z={24} size={1.14} yaw={6} />
-      <TunnelItem name="Tunnel · Dr.Althea box 2" id="altheaBox" X={1.4} Y={0.1} Z={21} size={0.68} yaw={-5} />
-      <TunnelItem name="Tunnel · Dr.Althea tube 2" id="altheaTube" X={-1.5} Y={0.25} Z={18} size={0.46} yaw={4} />
-      <TunnelItem name="Tunnel · Brilliant 1" id="brilliant" X={1.7} Y={0.55} Z={15} size={1.9} yaw={-4} />
-      <TunnelItem name="Tunnel · Hikari 1" id="hikari" X={-1.8} Y={-0.55} Z={12} size={1.14} yaw={6} />
-      <TunnelItem name="Tunnel · Dr.Althea tube 1" id="altheaTube" X={1.6} Y={-0.5} Z={9} size={0.46} yaw={-4} />
-      <TunnelItem name="Tunnel · Dr.Althea box 1" id="altheaBox" X={-1.5} Y={0.35} Z={6.5} size={0.68} yaw={5} />
+      <TunnelItem name="Tunnel · Brilliant 2" id="brilliant" X={0.37} Y={-0.1} Z={28} size={2.47} yaw={-3} />
+      <TunnelItem name="Tunnel · Hikari 2" id="hikari" X={-0.62} Y={-0.42} Z={24} size={1.48} yaw={6} />
+      <TunnelItem name="Tunnel · Dr.Althea box 2" id="altheaBox" X={0.87} Y={0.07} Z={21} size={0.88} yaw={-5} />
+      <TunnelItem name="Tunnel · Dr.Althea tube 2" id="altheaTube" X={-0.93} Y={0.17} Z={18} size={0.6} yaw={4} />
+      <TunnelItem name="Tunnel · Brilliant 1" id="brilliant" X={1.05} Y={0.39} Z={15} size={2.47} yaw={-4} />
+      <TunnelItem name="Tunnel · Hikari 1" id="hikari" X={-1.12} Y={-0.39} Z={12} size={1.48} yaw={6} />
+      <TunnelItem name="Tunnel · Dr.Althea tube 1" id="altheaTube" X={0.99} Y={-0.35} Z={9} size={0.6} yaw={-4} />
+      <TunnelItem name="Tunnel · Dr.Althea box 1" id="altheaBox" X={-0.93} Y={0.24} Z={6.5} size={0.88} yaw={5} />
 
       {/* Final lens pass: Brilliant box crosses R→L, then a magenta cover for the hard cut */}
       <Product

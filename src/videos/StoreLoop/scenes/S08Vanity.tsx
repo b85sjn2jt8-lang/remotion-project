@@ -1,118 +1,104 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
-import { DirectionalBlur, Dust } from "../fx/Atmosphere";
+import { Dust } from "../fx/Atmosphere";
+import { HairStrands, ModelPlate } from "../fx/Layers";
 import { FloorShadow, Product } from "../fx/Product";
 
-// SCENE 8 (00:32.00–00:37.00, 150 f).
-// Production-plan slot: Japanese-inspired hair-beauty model with the Dr.Althea tube on her
-// vanity. No generated talent in this build → product-only vanity shot with the same camera
-// language: lateral truck L→R with window light and a sheer curtain, then a whip pan right.
+// SCENE 8 — HAIR / HUMAN MOTION (00:32.00–00:37.00, 150 f) — V2.
+// Full-bleed hair-and-face plate with a lateral track; dark hair strands sweep through the
+// foreground as natural wipes (in at the start, out at the end into Scene 9). The real Dr.Althea
+// box + tube stand large on a vanity in the right foreground (no haircare product was uploaded,
+// so no hair claim is made). Placeholder plate: replace with a real hair-motion clip when available.
 export const S08Vanity: React.FC = () => {
   const frame = useCurrentFrame();
-  const whip = interpolate(frame, [134, 149], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.bezier(0.7, 0, 1, 1),
-  });
 
   return (
-    <AbsoluteFill style={{ backgroundColor: "#efe5d9", overflow: "hidden" }}>
-      <DirectionalBlur id="s8-whip" amount={whip * 90}>
-        <AbsoluteFill style={{ translate: `${-whip * 900}px 0px` }}>
-          {/* Wall: warm plaster with soft window light shape */}
-          <AbsoluteFill
-            style={{
-              background: "linear-gradient(100deg, #f8f1e8 0%, #efe4d6 50%, #e5d6c4 100%)",
-              translate: interpolate(frame, [0, 150], ["0px 0px", "-80px 0px"]),
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                left: 120,
-                top: -100,
-                width: 900,
-                height: 1100,
-                background: "linear-gradient(100deg, rgba(255,252,245,0.95), rgba(255,250,240,0.2))",
-                clipPath: "polygon(10% 0%, 60% 0%, 100% 100%, 40% 100%)",
-                filter: "blur(30px)",
-              }}
-            />
-            {/* curtain-fold shadows moving gently inside the light */}
-            <div
-              style={{
-                position: "absolute",
-                left: 140,
-                top: -100,
-                width: 900,
-                height: 1100,
-                background:
-                  "repeating-linear-gradient(100deg, rgba(150,120,90,0) 0px, rgba(150,120,90,0.10) 40px, rgba(150,120,90,0) 90px)",
-                backgroundPositionX: `${Math.sin(frame / 25) * 30}px`,
-                clipPath: "polygon(10% 0%, 60% 0%, 100% 100%, 40% 100%)",
-                filter: "blur(12px)",
-              }}
-            />
-          </AbsoluteFill>
+    <AbsoluteFill style={{ backgroundColor: "#2a1c16", overflow: "hidden" }}>
+      <ModelPlate
+        name="Model A · hair"
+        id="hairWide"
+        x={interpolate(frame, [0, 150], [1060, 860], { easing: Easing.bezier(0.4, 0, 0.6, 1) })}
+        y={560}
+        height={1220}
+        zoom={interpolate(frame, [0, 150], [1.0, 1.08], { output: "perceptual-scale" })}
+        originX="55%"
+        originY="40%"
+        blur={interpolate(frame, [0, 14, 100, 125], [6, 0, 0, 5], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        filter="saturate(0.9) sepia(0.08)"
+      />
+      {/* Warm window light rolling across her */}
+      <AbsoluteFill
+        style={{
+          background: "linear-gradient(100deg, rgba(255,240,215,0) 20%, rgba(255,240,215,0.35) 40%, rgba(255,240,215,0) 60%)",
+          backgroundSize: "300% 100%",
+          backgroundPosition: `${interpolate(frame, [0, 150], [100, 0])}% 0%`,
+          mixBlendMode: "screen",
+        }}
+      />
 
-          {/* Sheer linen curtain at right edge */}
-          <div
-            style={{
-              position: "absolute",
-              left: interpolate(frame, [0, 150], [1500, 1380]),
-              top: -40,
-              width: 600,
-              height: 1160,
-              background:
-                "repeating-linear-gradient(90deg, rgba(255,255,255,0.75) 0px, rgba(246,238,228,0.55) 40px, rgba(255,255,255,0.8) 90px, rgba(238,228,214,0.5) 140px)",
-              filter: "blur(4px)",
-              transform: `skewX(${Math.sin(frame / 20) * 1.2}deg)`,
-            }}
-          />
+      {/* Vanity ledge + real products, right foreground (fastest layer) */}
+      <AbsoluteFill style={{ translate: interpolate(frame, [0, 150], ["120px 0px", "-150px 0px"]) }}>
+        <div
+          style={{
+            position: "absolute",
+            left: 1100,
+            top: 930,
+            width: 1100,
+            height: 300,
+            background: "linear-gradient(to bottom, #f6ecdf 0%, #e3d0b6 12%, #cdb491 100%)",
+            boxShadow: "0 -6px 30px rgba(0,0,0,0.25)",
+          }}
+        />
+        <FloorShadow x={1420} y={936} width={380} opacity={0.4} color="70,45,25" />
+        <Product
+          name="Dr.Althea box · vanity"
+          id="altheaBox"
+          x={1420}
+          y={936 - 330}
+          width={340}
+          rotateY={interpolate(frame, [0, 150], [-4, 3])}
+          blur={interpolate(frame, [0, 14, 100, 125], [0, 4, 4, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        />
+        <FloorShadow x={1720} y={940} width={300} opacity={0.4} color="70,45,25" />
+        <Product
+          name="Dr.Althea tube · vanity"
+          id="altheaTube"
+          x={1720}
+          y={940 - 305}
+          width={200}
+          rotateY={interpolate(frame, [0, 150], [5, -3])}
+          blur={interpolate(frame, [0, 14, 100, 125], [0, 4, 4, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+          sweep={interpolate(frame, [104, 134], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        />
+      </AbsoluteFill>
 
-          {/* Travertine vanity ledge (foreground layer = fastest parallax) */}
-          <div style={{ position: "absolute", inset: 0, translate: interpolate(frame, [0, 150], ["120px 0px", "-160px 0px"]) }}>
-            <div
-              style={{
-                position: "absolute",
-                left: -200,
-                top: 800,
-                width: 1600,
-                height: 400,
-                background:
-                  "linear-gradient(to bottom, #fbf3e8 0%, #eadac4 8%, #e3d0b6 60%, #d4bea1 100%), repeating-linear-gradient(2deg, rgba(150,110,70,0.07) 0px, rgba(150,110,70,0) 12px)",
-                backgroundBlendMode: "multiply",
-              }}
-            />
-            <FloorShadow x={520} y={808} width={300} opacity={0.3} color="110,80,50" />
-            <Product
-              name="Dr.Althea box · vanity"
-              id="altheaBox"
-              x={520}
-              y={808 - 252}
-              width={260}
-              rotateY={interpolate(frame, [0, 150], [4, -2])}
-              blur={interpolate(frame, [0, 30], [6, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-            />
-            <FloorShadow x={780} y={812} width={240} opacity={0.35} color="110,80,50" />
-            <Product
-              name="Dr.Althea tube · vanity"
-              id="altheaTube"
-              x={780}
-              y={812 - 274}
-              width={180}
-              blur={interpolate(frame, [0, 30], [6, 0], {
-                extrapolateLeft: "clamp",
-                extrapolateRight: "clamp",
-                easing: Easing.bezier(0.4, 0, 0.2, 1),
-              })}
-              rotateY={interpolate(frame, [0, 150], [-4, 4])}
-              sweep={interpolate(frame, [55, 95], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-            />
-          </div>
-          <Dust seed="s8" count={34} color="255,248,235" vy={-0.2} vx={0.25} area={[100, 0, 1000, 900]} opacity={0.7} />
-        </AbsoluteFill>
-      </DirectionalBlur>
+      {/* Foreground hair strands: wipe-in at the start, drifting strands, wipe-out at the end */}
+      <HairStrands
+        seed="v2s8-in"
+        progress={interpolate(frame, [0, 22], [0.42, 1.05], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.bezier(0.3, 0, 0.6, 1) })}
+        count={140}
+        thickness={9}
+        blur={4}
+        spread={1500}
+      />
+      <HairStrands
+        seed="v2s8-drift"
+        progress={interpolate(frame, [20, 130], [0.08, 0.62])}
+        count={14}
+        thickness={3}
+        blur={6}
+        opacity={0.5}
+        spread={700}
+      />
+      <HairStrands
+        seed="v2s8-out"
+        progress={interpolate(frame, [124, 150], [0.0, 0.62], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.bezier(0.5, 0, 0.8, 1) })}
+        count={160}
+        thickness={10}
+        blur={4}
+        spread={1500}
+      />
+      <Dust seed="v2s8" count={28} color="255,240,220" vy={-0.2} vx={0.3} opacity={0.6} />
     </AbsoluteFill>
   );
 };

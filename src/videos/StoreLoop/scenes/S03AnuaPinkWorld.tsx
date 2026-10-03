@@ -1,6 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Easing, Interactive, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { Droplet, Dust } from "../fx/Atmosphere";
+import { Glass } from "../fx/Layers";
 import { Product } from "../fx/Product";
 
 // SCENE 3 — ANUA PINK WORLD (00:08.00–00:13.00, 150 f).
@@ -112,7 +113,7 @@ export const S03AnuaPinkWorld: React.FC = () => {
         anchor="bottom-right"
         x={1932}
         y={interpolate(frame, [0, 45, 90, 150], [1090, 1086, 1094, 1090])}
-        width={interpolate(frame, [0, 150], [690, 745], { easing: Easing.bezier(0.45, 0, 0.55, 1) })}
+        width={interpolate(frame, [0, 150], [700, 820], { easing: Easing.bezier(0.45, 0, 0.55, 1) })}
         rotateY={interpolate(frame, [0, 60, 150], [4, 1, -2], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
         sweep={interpolate(frame, [30, 70], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
       />
@@ -135,6 +136,25 @@ export const S03AnuaPinkWorld: React.FC = () => {
         stretch={interpolate(frame, [30, 75], [1, 1.25], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
       />
       <Dust seed="s3" count={26} color="255,240,242" vy={-0.4} opacity={0.6} />
+
+      {/* V2 foreground depth: glass slab + big defocused droplet passing fast */}
+      <Glass
+        x={interpolate(frame, [0, 150], [1250, 900])}
+        y={interpolate(frame, [0, 150], [1010, 1040])}
+        w={900}
+        h={300}
+        rot={-8}
+        tint="250,175,185"
+        blur={20}
+        opacity={0.7}
+      />
+      <Droplet
+        x={interpolate(frame, [0, 90], [1500, -300], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.bezier(0.4, 0, 0.6, 1) })}
+        y={interpolate(frame, [0, 90], [140, 260], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        size={380}
+        blur={14}
+        opacity={0.75}
+      />
 
       {/* Copy (client sign-off required — see production plan 2.3) */}
       <Interactive.Div

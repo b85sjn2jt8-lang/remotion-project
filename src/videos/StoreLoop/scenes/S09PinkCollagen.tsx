@@ -1,6 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import { DirectionalBlur, Dust } from "../fx/Atmosphere";
+import { HairStrands, ModelPlate } from "../fx/Layers";
 import { Product } from "../fx/Product";
 
 // SCENE 9 — PINK COLLAGEN (00:37.00–00:42.00, 150 f). A Bonne slot, interim Manee Gluta
@@ -43,7 +44,7 @@ const Wave: React.FC<{ base: number; amp: number; phase: number; colorTop: strin
 
 export const S09PinkCollagen: React.FC = () => {
   const frame = useCurrentFrame();
-  const resolve = interpolate(frame, [0, 6], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const resolve = 0; // V2: Scene 8 now exits with a hair-strand wipe (continued below)
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#e3277d", overflow: "hidden" }}>
@@ -80,6 +81,20 @@ export const S09PinkCollagen: React.FC = () => {
             }}
           />
 
+          {/* V2: model appears briefly, soft, behind the product */}
+          <ModelPlate
+            name="Model B · behind (brief)"
+            id="wetFace"
+            x={interpolate(frame, [20, 120], [1380, 1300])}
+            y={420}
+            height={900}
+            zoom={interpolate(frame, [20, 120], [1.0, 1.08], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+            blur={7}
+            feather={[30, 30, 20, 30]}
+            filter="saturate(1.1)"
+            opacity={interpolate(frame, [20, 40, 95, 120], [0, 0.75, 0.75, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+          />
+
           {/* Back liquid crest, building behind the pouch */}
           <Wave
             id="s9-back"
@@ -99,19 +114,19 @@ export const S09PinkCollagen: React.FC = () => {
             name="Manee · rise"
             id="maneeUpper"
             x={960}
-            y={interpolate(frame, [4, 21, 34, 45, 90, 150], [1350, 544, 537, 542, 540, 541], {
+            y={interpolate(frame, [4, 21, 34, 45, 90, 150], [1400, 512, 503, 509, 506, 508], {
               extrapolateLeft: "clamp",
               extrapolateRight: "clamp",
               easing: Easing.bezier(0.2, 0.9, 0.3, 1),
             })}
-            width={400}
+            width={520}
             rotateZ={interpolate(frame, [21, 30, 40, 52], [0, -2.5, 1.5, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
             rotateY={interpolate(frame, [45, 150], [0, 4], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
             blur={interpolate(frame, [4, 15, 24], [8, 6, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
-            sweep={interpolate(frame, [60, 100], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+            sweep={interpolate(frame, [40, 70, 100, 130], [0, 1, 0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
           />
 
-          {/* Front liquid surface — always covers the pouch plate's bottom cut (plate bottom ≥ y 645) */}
+          {/* Front liquid surface — always covers the pouch plate's bottom cut (plate bottom ≥ y 643) */}
           <Wave
             id="s9-front"
             base={638}
@@ -121,6 +136,15 @@ export const S09PinkCollagen: React.FC = () => {
             colorBottom="#b80d5c"
           />
           <Dust seed="s9" count={28} color="255,220,240" vy={-0.6} opacity={0.6} />
+          {/* light sweep across the pack + continuation of Scene 8's hair-strand wipe */}
+          <HairStrands
+            seed="v2s8-out"
+            progress={interpolate(frame, [0, 14], [0.62, 1.1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.bezier(0.2, 0, 0.5, 1) })}
+            count={160}
+            thickness={10}
+            blur={4}
+            spread={1500}
+          />
         </AbsoluteFill>
       </DirectionalBlur>
     </AbsoluteFill>
