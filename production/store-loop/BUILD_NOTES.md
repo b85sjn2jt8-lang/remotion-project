@@ -1,3 +1,35 @@
+# VERSION 3 (current) — summary
+
+- **Final master: 1920×1080, 30 fps, H.264, 60 s seamless loop. 4K is disabled** (render with scale 1).
+  `npx remotion render StoreLoop out/store-loop-v3-1080p.mp4 --codec=h264 --crf=16`
+- **Timeline (frames):**
+
+  | Scenes | Frames |
+  |---|---|
+  | A Opening | 0–150 |
+  | B Pink K-beauty | 150–300 |
+  | C dropper macro | 300–345 |
+  | D Beach | 345–510 |
+  | E Water hero | 510–600 |
+  | F Green | 600–750 |
+  | G cream macro | 750–780 |
+  | H Night | 780–930 |
+  | I skin macro | 930–960 |
+  | J Hair | 960–1110 |
+  | K Filipina morning | 1110–1260 |
+  | L Pink collagen | 1260–1380 |
+  | M Manee brand photo | 1380–1425 |
+  | N Product flight | 1425–1590 |
+  | O flower macro | 1590–1650 |
+  | P Final hero | 1650–1800 |
+
+- **Human, macro and environment plates** are cropped from the user's V3 reference board, with every AI-drawn product, headline and panel label cropped out. They are enlarged 4× with EDSR super-resolution (`scripts/store-loop/plates_v3.py`), and person cut-outs are made with rembg `u2net_human_seg` for the text-behind-model shots (beach, night). Replace any file in `public/store-loop/v3/` with a real high-res plate at the same aspect to upgrade it.
+- **EDSR is never applied to products.** Product plates remain the 1:1 cut-outs from the uploaded references.
+- **Loop:** the real Anua jar (blurred, motion-blurred, cropped edges feathered) crosses the lens at 150 px/frame. It is one element split across 1799 → 0, covering the full frame from f1797 to f0.
+- **Typography:** Playfair Display (SIL OFL, from @fontsource), animated with `fx/Type.tsx` (masked line reveals, camera drift, layered behind products and model cut-outs).
+
+---
+
 # In-Store Beauty Loop — Build Notes (v1)
 
 This is the 60 s, 16:9, 3840×2160, 30 fps seamless loop, built from `PRODUCTION_PLAN.md`.

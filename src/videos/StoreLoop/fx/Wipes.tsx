@@ -1,6 +1,6 @@
 import React from "react";
-import { interpolate, useCurrentFrame } from "remotion";
-import { ANUA_PINK } from "../products";
+import { Img, interpolate, random, staticFile, useCurrentFrame } from "remotion";
+import { PRODUCTS, type ProductId } from "../products";
 
 // Every transition is ONE element that spans the cut (placed in the main timeline across both
 // scenes), so speed, blur and colour are continuous through the edit by construction.
@@ -51,7 +51,9 @@ export const TubeWipe: React.FC = () => (
 );
 
 /** Scene 3 → 4: a huge serum droplet crossing the lens, tinted pink → fresh mint. */
-export const DropletWipe: React.FC = () => {
+export const DropletWipe: React.FC<{ gradient?: string }> = ({
+  gradient = "radial-gradient(circle at 42% 44%, rgba(255,255,255,0.98) 0%, rgba(250,236,238,0.98) 22%, rgba(236,246,238,1) 52%, rgba(214,236,222,1) 82%, rgba(255,214,220,1) 96%, rgba(255,255,255,0.6) 100%)",
+}) => {
   const frame = useCurrentFrame();
   const cx = interpolate(frame, [0, 24], [3200, -1300]);
   return (
@@ -63,8 +65,7 @@ export const DropletWipe: React.FC = () => {
         width: 3600,
         height: 3600,
         borderRadius: "50%",
-        background:
-          "radial-gradient(circle at 42% 44%, rgba(255,255,255,0.98) 0%, rgba(250,236,238,0.98) 22%, rgba(236,246,238,1) 52%, rgba(214,236,222,1) 82%, rgba(255,214,220,1) 96%, rgba(255,255,255,0.6) 100%)",
+        background: gradient,
         boxShadow: "inset 0 0 260px rgba(255,255,255,0.9)",
         filter: "blur(4px)",
       }}
@@ -233,43 +234,115 @@ export const CurtainWipe: React.FC = () => (
 );
 
 /**
- * LOOP BRIDGE (production plan 2.4) — one 29-frame element split across the loop point.
- * t = 0..18 → main frames 1781..1799, t = 19..28 → main frames 0..9.
- * The Anua jar's plain upper body, built from colours sampled from the reference, approaches the
- * lens; its left edge sweeps right→left reaching x=0 at t=16 at 240 px/frame (480 px at UHD),
- * then the 2880 px blob slides purely leftwards; its trailing edge enters at t=20 and exits at t=28.
+ * A REAL product plate passing extremely close to the lens: huge, defocused, with horizontal
+ * motion blur, at constant velocity (so it can span a cut). Cropped plates (Anua) get their cut
+ * right/bottom edges feathered so no hard crop line is ever visible.
  */
-export const LoopBridge: React.FC<{ offset: number }> = ({ offset }) => {
+export const LensPass: React.FC<{
+  id: ProductId;
+  filterId: string;
+  fromX: number;
+  toX: number;
+  frames: number;
+  y: number;
+  width: number;
+  rotate?: number;
+  blur?: number;
+  motionBlur?: number;
+  offset?: number;
+}> = ({ id, filterId, fromX, toX, frames, y, width, rotate = 0, blur = 14, motionBlur = 40, offset = 0 }) => {
   const t = useCurrentFrame() + offset;
-  const left = t <= 16 ? 1100 * (1 - Math.pow(t / 16, 3.5)) : -240 * (t - 16);
-  const width = t <= 16 ? 2880 + (1 - t / 16) * 1000 : 2880;
+  const p = PRODUCTS[id];
+  const h = width * p.aspect;
+  const x = interpolate(t, [0, frames], [fromX, toX]);
+  const cropped = id === "anua";
+  const mask = cropped
+    ? "linear-gradient(to right, black 0%, black 62%, transparent 100%), linear-gradient(to bottom, black 0%, black 70%, transparent 100%)"
+    : undefined;
   return (
-    <div
-      style={{
-        position: "absolute",
-        top: -80,
-        bottom: -80,
-        left,
-        width,
-        background: `linear-gradient(to bottom, ${ANUA_PINK.rim} 0%, ${ANUA_PINK.lidBand} 26%, ${ANUA_PINK.bodyLit} 31%, ${ANUA_PINK.body} 58%, ${ANUA_PINK.bodyMid} 100%)`,
-        filter: "blur(10px)",
-        maskImage: "linear-gradient(to right, transparent 0px, black 150px, black calc(100% - 150px), transparent 100%)",
-        WebkitMaskImage:
-          "linear-gradient(to right, transparent 0px, black 150px, black calc(100% - 150px), transparent 100%)",
-      }}
-    >
-      {/* soft specular streak riding with the jar surface */}
-      <div
+    <div style={{ position: "absolute", inset: 0, filter: `url(#${filterId})` }}>
+      <svg width={0} height={0} style={{ position: "absolute" }}>
+        <filter id={filterId} x="-20%" y="-5%" width="140%" height="110%">
+          <feGaussianBlur stdDeviation={`${motionBlur} 2`} />
+        </filter>
+      </svg>
+      <Img
+        src={staticFile(p.src)}
         style={{
           position: "absolute",
-          top: 0,
-          bottom: 0,
-          left: 1100,
-          width: 360,
-          background: "linear-gradient(to right, rgba(255,255,255,0), rgba(255,245,246,0.55), rgba(255,255,255,0))",
-          filter: "blur(30px)",
+          left: x - width / 2,
+          top: y - h / 2,
+          width,
+          height: h,
+          rotate: `${rotate}deg`,
+          filter: `blur(${blur}px)`,
+          maskImage: mask,
+          WebkitMaskImage: mask,
+          maskComposite: "intersect",
+          WebkitMaskComposite: "source-in",
         }}
       />
     </div>
   );
 };
+
+/** Water splash crossing the lens: a bright water sheet + droplets, right → left. */
+export const SplashWipe: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <div style={{ position: "absolute", inset: 0 }}>
+      <BandWipe
+        startX={2100}
+        speed={260}
+        width={3000}
+        feather={420}
+        blur={8}
+        background="linear-gradient(100deg, rgba(200,236,250,0.96) 0%, rgba(255,255,255,0.98) 30%, rgba(214,240,252,0.98) 60%, rgba(255,226,236,0.96) 100%)"
+      />
+      {new Array(34).fill(0).map((_, i) => {
+        const r = (k: string) => random(`splash-${i}-${k}`);
+        const size = 30 + r("s") * 220;
+        const x = 2200 + r("x") * 900 - frame * (240 + r("v") * 140);
+        const y = r("y") * 1180 - 50 + Math.sin(frame / 4 + i) * 10;
+        return (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: x - size / 2,
+              top: y - size / 2,
+              width: size,
+              height: size * (0.8 + r("e") * 0.4),
+              borderRadius: "50%",
+              background: "radial-gradient(circle at 35% 30%, rgba(255,255,255,0.95), rgba(190,230,250,0.35) 45%, rgba(120,190,230,0.55) 90%)",
+              boxShadow: "inset 0 -6px 14px rgba(255,255,255,0.6)",
+              filter: `blur(${r("b") * 6}px)`,
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+/**
+ * LOOP BRIDGE — the REAL Anua jar crossing extremely close to the lens, one 40-frame element
+ * split across the loop point: t = 0..18 → main frames 1781..1799, t = 19..39 → frames 0..20.
+ * Constant velocity (150 px/frame right → left), same blur, same scale, same rotation on both
+ * sides of the loop; it covers the whole frame from f1797 to f0, and clears frame by f21.
+ */
+export const LoopBridge: React.FC<{ offset: number }> = ({ offset }) => (
+  <LensPass
+    id="anua"
+    filterId={`loop-mb-${offset}`}
+    fromX={1100 + 150 * 19}
+    toX={1100 - 150 * 21}
+    frames={40}
+    y={560}
+    width={3200}
+    rotate={-10}
+    blur={12}
+    motionBlur={34}
+    offset={offset}
+  />
+);

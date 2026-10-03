@@ -14,6 +14,8 @@ const fonts = [
   { family: "Inter", file: "Inter-600.woff2", weight: "600" },
   { family: "Inter", file: "Inter-800.woff2", weight: "800" },
   { family: "Bebas Neue", file: "BebasNeue-400.woff2", weight: "400" },
+  { family: "Playfair Display", file: "PlayfairDisplay-500.woff2", weight: "500" },
+  { family: "Playfair Display", file: "PlayfairDisplay-600.woff2", weight: "600" },
 ];
 
 for (const font of fonts) {
@@ -29,4 +31,5 @@ export const fontFamilies = [
   "Poppins",
   "Inter",
   "Bebas Neue",
+  "Playfair Display",
 ] as const;
