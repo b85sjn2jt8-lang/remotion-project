@@ -1,65 +1,77 @@
 import React from "react";
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Easing, interpolate, Sequence, useCurrentFrame } from "remotion";
 import { Bokeh, Droplet, Dust } from "../fx/Atmosphere";
 import { Glass, ModelPlate } from "../fx/Layers";
 import { Product } from "../fx/Product";
 import { Headline } from "../fx/Type";
+import { GlassWipe } from "../fx/Wipes";
 
 const c = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
-// B · PINK K-BEAUTY WORLD (0:05–0:10, 150 f).
-// Wet-look Korean-inspired model touching her cheek (mirrored so her face stays clear of the
-// product); the real Anua jar large at the right (cropped corner off-frame); HYDRATE / GLOW / CARE
-// sits behind the jar; translucent pink glass + droplets in front. Lateral dolly + push, rack focus.
-export const B02PinkWorld: React.FC = () => {
+// B1 · the model alone: wet-look skin, fingertip on her cheek. Camera: slow push only.
+const ModelBeat: React.FC = () => {
   const frame = useCurrentFrame();
   return (
-    <AbsoluteFill style={{ background: "radial-gradient(ellipse at 40% 40%, #fde3e4 0%, #f3bcc4 55%, #e397a6 100%)", overflow: "hidden" }}>
+    <AbsoluteFill style={{ background: "radial-gradient(ellipse at 35% 45%, #fbe4e6 0%, #f0c3cb 55%, #dc9aaa 100%)", overflow: "hidden" }}>
       <ModelPlate
         name="Model · cheek touch (wet look)"
         id="cheekWet"
-        x={interpolate(frame, [0, 150], [800, 700], { easing: Easing.bezier(0.4, 0, 0.6, 1) })}
+        x={interpolate(frame, [0, 96], [720, 700])}
         y={560}
         height={1120}
-        zoom={interpolate(frame, [0, 150], [1.0, 1.1], { output: "perceptual-scale" })}
-        originX="55%"
+        zoom={interpolate(frame, [0, 96], [1.0, 1.05], { output: "perceptual-scale" })}
+        originX="52%"
         originY="40%"
         flip
-        blur={interpolate(frame, [0, 70, 96, 130, 150], [0, 0, 5, 5, 2], c)}
-        feather={[0, 14, 0, 4]}
+        feather={[0, 22, 0, 6]}
       />
-      <Bokeh seed="b02" count={8} colors={["rgba(255,240,242,0.9)", "rgba(248,170,185,0.9)"]} minSize={120} maxSize={300} driftX={-1} opacity={0.45} blur={16} />
-
-      <Headline tier="h2"
-        name="HYDRATE GLOW CARE"
-        lines={["HYDRATE", "GLOW", "CARE"]}
-        x={1500}
-        y={14} 
-        align="right"
-        inAt={24}
-        outAt={132}
-        color="#ffffff"
-        driftX={-50}
-        shadow="0 8px 36px rgba(160,40,80,0.35)"
-      />
-
-      <Product
-        name="Anua · beside model"
-        id="anua"
-        anchor="bottom-right"
-        x={1932}
-        y={1094}
-        width={interpolate(frame, [0, 150], [690, 760], { easing: Easing.bezier(0.45, 0, 0.55, 1) })}
-        blur={interpolate(frame, [0, 70, 96], [7, 7, 0], { ...c, easing: Easing.bezier(0.4, 0, 0.2, 1) })}
-        sweep={interpolate(frame, [100, 140], [0, 1], c)}
-        wrap="255,195,210"
-        cast="120,30,60"
-      />
-
-      <Glass x={interpolate(frame, [0, 150], [260, -40])} y={interpolate(frame, [0, 150], [900, 930])} w={820} h={420} rot={18} tint="248,160,175" blur={20} opacity={0.72} />
-      <Droplet x={interpolate(frame, [0, 150], [1220, 1080])} y={interpolate(frame, [0, 150], [430, 400])} size={260} blur={11} opacity={0.75} />
-      <Droplet x={interpolate(frame, [0, 150], [1120, 1070])} y={interpolate(frame, [0, 150], [700, 760])} size={50} blur={0.5} />
-      <Dust seed="b02d" count={24} color="255,240,242" vy={-0.4} opacity={0.6} />
+      <Headline tier="h2" name="HYDRATE GLOW CARE" lines={["HYDRATE", "GLOW", "CARE"]} x={1820} y={330} align="right" inAt={12} outAt={70} driftX={-24} shadow="0 6px 30px rgba(160,40,80,0.30)" />
+      <Bokeh seed="b02p" count={6} colors={["rgba(255,242,244,0.9)", "rgba(246,182,198,0.9)"]} minSize={160} maxSize={320} driftX={-0.3} opacity={0.35} blur={20} />
     </AbsoluteFill>
   );
 };
+
+// B2 · the product, alone and important: the real Anua jar in a layered pink-glass set.
+// The jar is still; the camera pushes in slowly; a highlight travels; glass drifts in front.
+const ProductBeat: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{ background: "linear-gradient(160deg, #fdeef0 0%, #f6d2d9 40%, #eab0be 75%, #d98ea2 100%)", overflow: "hidden" }}>
+      {/* layered translucent pink planes (depth through materials, not flat colour) */}
+      <div style={{ position: "absolute", left: 120, top: -160, width: 640, height: 1400, borderRadius: 80, rotate: "14deg", background: "linear-gradient(170deg, rgba(255,255,255,0.55), rgba(255,200,212,0.12))", boxShadow: "inset 0 0 90px rgba(255,255,255,0.45)", translate: interpolate(frame, [0, 75], ["0px 0px", "-18px 0px"]) }} />
+      <div style={{ position: "absolute", left: 760, top: -260, width: 520, height: 1500, borderRadius: 300, background: "linear-gradient(200deg, rgba(255,255,255,0.42), rgba(240,150,175,0.10))", filter: "blur(4px)", translate: interpolate(frame, [0, 75], ["0px 0px", "-30px 0px"]) }} />
+      <Bokeh seed="b02h" count={8} colors={["rgba(255,255,255,0.9)", "rgba(244,170,190,0.9)"]} minSize={120} maxSize={300} driftX={-0.2} opacity={0.4} blur={18} />
+      <AbsoluteFill style={{ scale: interpolate(frame, [0, 75], [1.0, 1.05], { easing: Easing.bezier(0.4, 0, 0.6, 1) }), transformOrigin: "1920px 1080px" }}>
+        <Product
+          name="Anua · hero"
+          id="anua"
+          anchor="bottom-right"
+          x={1934}
+          y={1094}
+          width={760}
+          sweep={interpolate(frame, [10, 70], [0, 1], { ...c, easing: Easing.bezier(0.45, 0, 0.55, 1) })}
+          wrap="255,205,218"
+          cast="130,40,70"
+        />
+        <Droplet x={1120} y={540} size={44} blur={0.5} />
+      </AbsoluteFill>
+      <Glass x={interpolate(frame, [0, 75], [520, 440])} y={980} w={1000} h={320} rot={-8} tint="248,170,190" blur={24} opacity={0.6} />
+      <Dust seed="b02hd" count={16} color="255,244,246" vy={-0.2} opacity={0.5} />
+    </AbsoluteFill>
+  );
+};
+
+// B · PINK WORLD (0:05–0:10, 150 f): model alone (B1) → slow glass refraction → Anua hero (B2).
+export const B02PinkWorld: React.FC = () => (
+  <AbsoluteFill>
+    <Sequence name="B1 model only" durationInFrames={80}>
+      <ModelBeat />
+    </Sequence>
+    <Sequence name="B2 Anua hero" from={75} durationInFrames={75}>
+      <ProductBeat />
+    </Sequence>
+    <Sequence name="B · glass refraction between the beats" from={58} durationInFrames={34}>
+      <GlassWipe tint="250,175,195" frames={34} />
+    </Sequence>
+  </AbsoluteFill>
+);

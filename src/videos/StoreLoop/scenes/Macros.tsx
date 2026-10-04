@@ -17,9 +17,9 @@ export const C03Dropper: React.FC = () => {
         name="Macro · dropper"
         id="macroDropper"
         x={960}
-        y={interpolate(frame, [0, 45], [620, 420], { easing: Easing.bezier(0.4, 0, 0.6, 1) })}
+        y={interpolate(frame, [0, 45], [580, 500], { easing: Easing.bezier(0.4, 0, 0.6, 1) })}
         height={2320}
-        zoom={interpolate(frame, [0, 45], [1.0, 1.08], { output: "perceptual-scale" })}
+        zoom={interpolate(frame, [0, 45], [1.0, 1.04], { output: "perceptual-scale" })}
         originY="45%"
       />
       <Droplet

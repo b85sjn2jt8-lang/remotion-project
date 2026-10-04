@@ -41,7 +41,7 @@ const HairWipe: React.FC<{ seed: string }> = ({ seed }) => {
 
 /**
  * VERSION 3 — 60 s in-store beauty loop. 1920x1080 @ 30 fps is the FINAL master (no 4K).
- * Scene ranges (frames): A 0–150 · B 150–300 · C 300–345 · D 345–510 · E 510–600 · F 600–750 ·
+ * Scene ranges (frames): A 0–150 · B 150–300 · C 300–345 · D 345–475 · E 475–600 · F 600–750 ·
  * G 750–780 · H 780–930 · I 930–960 · J 960–1110 · K 1110–1260 · L 1260–1380 · M 1380–1425 ·
  * N 1425–1590 · O 1590–1650 · P 1650–1800.
  * Every transition is ONE element placed ACROSS its cut; the LoopBridge (real Anua jar lens pass)
@@ -59,10 +59,10 @@ export const StoreLoop: React.FC = () => {
       <Sequence name="C Macro · dropper" from={300} durationInFrames={45} premountFor={30}>
         <C03Dropper />
       </Sequence>
-      <Sequence name="D Beach / sunscreen" from={345} durationInFrames={165} premountFor={30}>
+      <Sequence name="D Beach (model → sunlit skin)" from={345} durationInFrames={130} premountFor={30}>
         <D04Beach />
       </Sequence>
-      <Sequence name="E Water product hero" from={510} durationInFrames={90} premountFor={30}>
+      <Sequence name="E Hikari hero over water" from={475} durationInFrames={125} premountFor={30}>
         <E05PoolHero />
       </Sequence>
       <Sequence name="F Green botanical (AXIS-Y slot)" from={600} durationInFrames={150} premountFor={30}>
@@ -100,8 +100,8 @@ export const StoreLoop: React.FC = () => {
       </Sequence>
 
       {/* ---- transitions across the cuts ---- */}
-      <Sequence name="A→B Dr.Althea box lens pass" from={136} durationInFrames={26}>
-        <LensPass id="altheaBox" filterId="t-ab" fromX={3000} toX={-1100} frames={26} y={560} width={1500} rotate={8} blur={10} motionBlur={36} />
+      <Sequence name="A→B pink glass refraction" from={134} durationInFrames={32}>
+        <GlassWipe tint="248,175,192" frames={32} />
       </Sequence>
       <Sequence name="B→C serum glass refraction" from={290} durationInFrames={24}>
         <GlassWipe tint="250,170,195" />
@@ -109,7 +109,7 @@ export const StoreLoop: React.FC = () => {
       <Sequence name="C→D sun bloom" from={333} durationInFrames={25}>
         <GoldenBloom />
       </Sequence>
-      <Sequence name="D→E reflective water rises" from={490} durationInFrames={34}>
+      <Sequence name="D→E reflective water rises" from={455} durationInFrames={34}>
         <LiquidWipe id="liq-water" coverAt={20} drainEnd={34} colors={["#bfe9fb", "#5cb8e0", "#1f86bd"]} ripples peak={360} bodyOpacity={0.78} />
       </Sequence>
       <Sequence name="E→F water splash" from={588} durationInFrames={26}>
