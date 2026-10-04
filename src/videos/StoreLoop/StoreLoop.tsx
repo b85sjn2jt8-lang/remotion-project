@@ -5,7 +5,6 @@ import {
   GlassWipe,
   GoldenBloom,
   LeafWipe,
-  LensPass,
   LiquidWipe,
   LoopBridge,
   SplashWipe,
@@ -89,7 +88,7 @@ export const StoreLoop: React.FC = () => {
       <Sequence name="M Manee brand photo" from={1380} durationInFrames={45} premountFor={30}>
         <M13BrandPhoto />
       </Sequence>
-      <Sequence name="N Product flight" from={1425} durationInFrames={165} premountFor={30}>
+      <Sequence name="N Cinematic beauty montage" from={1425} durationInFrames={165} premountFor={30}>
         <N14Flight />
       </Sequence>
       <Sequence name="O Macro · flower drop" from={1590} durationInFrames={60} premountFor={30}>
@@ -118,8 +117,8 @@ export const StoreLoop: React.FC = () => {
       <Sequence name="F→G leaf" from={742} durationInFrames={24}>
         <LeafWipe />
       </Sequence>
-      <Sequence name="G→H Brilliant lens pass (no white frame)" from={764} durationInFrames={26}>
-        <LensPass id="brilliant" filterId="t-gh" fromX={3400} toX={-1500} frames={26} y={540} width={2600} rotate={6} blur={12} motionBlur={34} />
+      <Sequence name="G→H magenta glass refraction" from={764} durationInFrames={30}>
+        <GlassWipe tint="255,120,190" frames={30} />
       </Sequence>
       <Sequence name="H→I magenta glass refraction" from={918} durationInFrames={24}>
         <GlassWipe tint="255,90,170" />
@@ -136,11 +135,11 @@ export const StoreLoop: React.FC = () => {
       <Sequence name="L→M glass refraction" from={1368} durationInFrames={24}>
         <GlassWipe tint="255,140,190" />
       </Sequence>
-      <Sequence name="M→N Dr.Althea tube lens pass" from={1413} durationInFrames={24}>
-        <LensPass id="altheaTube" filterId="t-mn" fromX={2700} toX={-800} frames={24} y={540} width={900} rotate={-12} blur={10} motionBlur={30} />
+      <Sequence name="M→N pink glass refraction" from={1410} durationInFrames={30}>
+        <GlassWipe tint="250,175,195" frames={30} />
       </Sequence>
-      <Sequence name="N→O Brilliant lens pass" from={1578} durationInFrames={24}>
-        <LensPass id="brilliant" filterId="t-no" fromX={3600} toX={-1700} frames={24} y={540} width={3000} rotate={-6} blur={12} motionBlur={36} />
+      <Sequence name="N→O pink glass refraction" from={1575} durationInFrames={30}>
+        <GlassWipe tint="250,170,195" frames={30} />
       </Sequence>
       <Sequence name="O→P glass refraction" from={1638} durationInFrames={24}>
         <GlassWipe tint="250,180,200" />

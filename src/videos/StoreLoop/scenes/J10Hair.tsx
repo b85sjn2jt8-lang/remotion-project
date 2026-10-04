@@ -2,7 +2,6 @@ import React from "react";
 import { AbsoluteFill, Easing, interpolate, Sequence, useCurrentFrame } from "remotion";
 import { Dust } from "../fx/Atmosphere";
 import { HairStrands, ModelPlate } from "../fx/Layers";
-import { FloorShadow, Product } from "../fx/Product";
 
 const c = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
@@ -14,10 +13,10 @@ const HairPortrait: React.FC<{ from: number }> = ({ from }) => {
       <ModelPlate
         name="Model · hair (Japanese-inspired)"
         id="hair"
-        x={interpolate(t, [0, 150], [1120, 860], { easing: Easing.bezier(0.4, 0, 0.6, 1) })}
+        x={interpolate(t, [0, 150], [1020, 940], { easing: Easing.bezier(0.4, 0, 0.6, 1) })}
         y={560}
         height={1230}
-        zoom={interpolate(t, [0, 150], [1.0, 1.1], { output: "perceptual-scale" })}
+        zoom={interpolate(t, [0, 150], [1.0, 1.05], { output: "perceptual-scale" })}
         originX="58%"
         originY="40%"
         feather={[14, 0, 0, 0]}
@@ -33,16 +32,9 @@ const HairPortrait: React.FC<{ from: number }> = ({ from }) => {
       />
       {/* warm-pink rim light */}
       <AbsoluteFill style={{ background: "linear-gradient(90deg, rgba(255,150,180,0.28) 0%, rgba(255,150,180,0) 25%, rgba(255,150,180,0) 75%, rgba(255,150,180,0.3) 100%)", mixBlendMode: "screen" }} />
-      {/* real product in depth, lower-left on a ledge — never over her face */}
-      <div style={{ position: "absolute", inset: 0, translate: interpolate(t, [0, 150], ["-40px 0px", "-160px 0px"]) }}>
-        <div style={{ position: "absolute", left: -100, top: 980, width: 760, height: 200, background: "linear-gradient(to bottom, #f5eadf, #d9c3a9)" }} />
-        <FloorShadow x={300} y={984} width={260} opacity={0.4} color="80,50,30" />
-        <Product name="Dr.Althea tube · hair scene" id="altheaTube" x={300} y={984 - 316} width={208} blur={2.5} wrap="255,200,190" cast="70,40,25" ground={2} />
-      </div>
       <HairStrands seed="j10-drift" progress={interpolate(t, [0, 150], [0.12, 0.6])} count={16} thickness={3} blur={6} opacity={0.5} spread={700} />
       {/* a loose lock sweeping through the foreground every ~1.2 s */}
-      <HairStrands seed="j10-lock-a" progress={interpolate(t, [20, 44], [0.15, 0.95], c)} count={34} thickness={7} blur={5} opacity={0.75} spread={420} />
-      <HairStrands seed="j10-lock-b" progress={interpolate(t, [104, 128], [0.15, 0.95], c)} count={34} thickness={7} blur={5} opacity={0.75} spread={420} />
+      <HairStrands seed="j10-lock-a" progress={interpolate(t, [18, 58], [0.15, 0.95], c)} count={34} thickness={7} blur={5} opacity={0.75} spread={420} />
       <Dust seed="j10" count={26} color="255,240,225" vy={-0.2} vx={0.3} opacity={0.55} />
     </AbsoluteFill>
   );
@@ -52,7 +44,7 @@ const HairMacro: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{ backgroundColor: "#2a1a1a", overflow: "hidden" }}>
-      <ModelPlate name="Macro · hair" id="macroHair" x={interpolate(frame, [0, 26], [1060, 860])} y={540} height={2300} zoom={1.05} />
+      <ModelPlate name="Macro · hair" id="macroHair" x={interpolate(frame, [0, 26], [990, 930])} y={540} height={2300} zoom={1.05} />
     </AbsoluteFill>
   );
 };

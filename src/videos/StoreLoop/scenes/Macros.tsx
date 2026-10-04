@@ -38,14 +38,14 @@ export const G07Cream: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{ backgroundColor: "#fbf6f4", overflow: "hidden" }}>
-      <AbsoluteFill style={{ rotate: `${interpolate(frame, [0, 30], [0, 8])}deg` }}>
+      <AbsoluteFill>
         <ModelPlate
           name="Macro · cream swirl"
           id="macroCream"
           x={960}
           y={540}
           height={2100}
-          zoom={interpolate(frame, [0, 30], [1.0, 1.25], { output: "perceptual-scale" })}
+          zoom={interpolate(frame, [0, 30], [1.0, 1.06], { output: "perceptual-scale" })}
         />
       </AbsoluteFill>
     </AbsoluteFill>
@@ -94,8 +94,7 @@ export const M13BrandPhoto: React.FC = () => {
           height: 1100,
           overflow: "hidden",
           boxShadow: "0 30px 90px rgba(120,30,60,0.35)",
-          rotate: `${interpolate(frame, [0, 45], [-2, 0])}deg`,
-          translate: interpolate(frame, [0, 45], ["40px 0px", "-20px 0px"]),
+          translate: interpolate(frame, [0, 45], ["10px 0px", "-10px 0px"]),
         }}
       >
         <Img
@@ -105,7 +104,7 @@ export const M13BrandPhoto: React.FC = () => {
             height: "100%",
             objectFit: "cover",
             transformOrigin: "62% 66%",
-            scale: interpolate(frame, [0, 45], [1.0, 1.12], { output: "perceptual-scale" }),
+            scale: interpolate(frame, [0, 45], [1.0, 1.05], { output: "perceptual-scale" }),
           }}
         />
       </div>
