@@ -71,6 +71,8 @@ export const E05PoolHero: React.FC = () => {
         rotateY={interpolate(frame, [0, 90], [6, -6])}
         rotateZ={interpolate(frame, [0, 45, 90], [-2, 1, -1])}
         sweep={interpolate(frame, [20, 70], [0, 1], { ...c, easing: Easing.bezier(0.4, 0, 0.6, 1) })}
+        wrap="255,215,232"
+        cast="20,60,90"
       />
       <Dust seed="e05" count={30} color="255,255,255" vy={-0.3} vx={-0.5} area={[0, 560, 1920, 520]} opacity={0.9} maxSize={3.5} />
     </AbsoluteFill>

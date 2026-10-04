@@ -20,7 +20,7 @@ export const K11Morning: React.FC = () => {
   return (
     <AbsoluteFill style={{ background: "linear-gradient(95deg, #fffaf3 0%, #f7ebe0 50%, #eedbcb 100%)", overflow: "hidden" }}>
       <ModelPlate name="Model · morning (Filipina)" id="morning" x={x} y={560 + hy} height={1200} zoom={zoom} originX="58%" originY="38%" feather={[12, 0, 0, 0]} />
-      <Headline name="FRESH START." lines={["FRESH", "START."]} x={90} y={230} size={122} color="#c2416b" inAt={18} outAt={128} driftX={-50} shadow="0 6px 30px rgba(255,255,255,0.7)" />
+      <Headline tier="h1" name="FRESH START." lines={["FRESH", "START."]} x={90} y={230}  color="#c2416b" inAt={18} outAt={128} driftX={-50} shadow="0 6px 30px rgba(255,255,255,0.7)" />
       {/* sun rays from the window */}
       <AbsoluteFill
         style={{
@@ -41,6 +41,8 @@ export const K11Morning: React.FC = () => {
           y={1094}
           width={600}
           sweep={interpolate(frame, [60, 100], [0, 1], c)}
+          wrap="255,238,215"
+          cast="110,70,40"
         />
       </div>
       <Glass x={interpolate(frame, [0, 150], [260, 120])} y={1000} w={600} h={260} rot={-6} tint="250,180,200" blur={16} opacity={0.6} />

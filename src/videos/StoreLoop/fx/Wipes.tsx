@@ -146,22 +146,36 @@ export const WhiteBloom: React.FC<{ peakAt: number; hold: number; fadeOut: numbe
   );
 };
 
-/** Scene 6 → 7: warm sunlight floods the cream from the upper right, then reveals the sun world. */
+/** Sun flare across a cut: warm bloom peaks at 65% so the image always stays visible. */
 export const GoldenBloom: React.FC = () => {
   const frame = useCurrentFrame();
+  const k = interpolate(frame, [0, 12, 15, 25], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        background:
-          "radial-gradient(circle at 85% 10%, rgba(255,250,235,1) 0%, rgba(255,214,140,1) 35%, rgba(255,186,110,0.95) 70%, rgba(255,200,150,0.9) 100%)",
-        opacity: interpolate(frame, [0, 12, 15, 25], [0, 1, 1, 0], {
-          extrapolateLeft: "clamp",
-          extrapolateRight: "clamp",
-        }),
-      }}
-    />
+    <div style={{ position: "absolute", inset: 0, mixBlendMode: "screen" }}>
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "radial-gradient(circle at 82% 12%, rgba(255,252,236,1) 0%, rgba(255,214,150,0.85) 22%, rgba(255,190,120,0.35) 55%, rgba(255,190,140,0) 85%)",
+          opacity: k * 0.85,
+        }}
+      />
+      {[0.25, 0.45, 0.62, 0.8].map((t, i) => (
+        <div
+          key={t}
+          style={{
+            position: "absolute",
+            left: 1570 - t * 1400 - frame * 6,
+            top: 130 + t * 760,
+            width: 90 + i * 70,
+            height: 90 + i * 70,
+            borderRadius: "50%",
+            background: `radial-gradient(circle, rgba(255,${150 + i * 20},${190 - i * 10},0.5) 0%, rgba(255,150,190,0) 70%)`,
+            opacity: k,
+          }}
+        />
+      ))}
+    </div>
   );
 };
 
@@ -189,34 +203,52 @@ export const FrondWipe: React.FC = () => {
   );
 };
 
-/** Scene 9 → 10: glossy pink liquid surges over the lens, then drains down off it. */
-export const LiquidWipe: React.FC<{ coverAt: number; drainEnd: number }> = ({ coverAt, drainEnd }) => {
+/**
+ * Liquid surging over the lens and draining off it. Never a flat colour: the liquid body is
+ * filled with real liquid texture (`texture` image) or animated ripples, plus a glossy crest.
+ */
+export const LiquidWipe: React.FC<{
+  coverAt: number;
+  drainEnd: number;
+  colors?: [string, string, string];
+  id?: string;
+  texture?: string;
+  ripples?: boolean;
+  /** highest point the surface reaches (y px); -260 = covers the whole frame */
+  peak?: number;
+  bodyOpacity?: number;
+}> = ({ coverAt, drainEnd, colors = ["#ff7fb6", "#f0438e", "#c8156a"], id = "liq-g", texture, ripples = false, peak = -260, bodyOpacity = 1 }) => {
   const frame = useCurrentFrame();
-  const top = interpolate(frame, [0, coverAt, coverAt + 8, drainEnd], [1200, -260, -260, 1300], {
+  const top = interpolate(frame, [0, coverAt, coverAt + 6, drainEnd], [1200, peak, peak, 1300], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
   const w = Math.sin(frame / 3) * 60;
+  const body = `M -200 ${top + 120 + w} C 300 ${top - 120}, 700 ${top + 220 - w}, 1100 ${top + 60} S 1700 ${top - 140 + w}, 2120 ${top + 80} L 2120 2600 L -200 2600 Z`;
+  const crest = `M -200 ${top + 150 + w} C 300 ${top - 90}, 700 ${top + 250 - w}, 1100 ${top + 90} S 1700 ${top - 110 + w}, 2120 ${top + 110}`;
   return (
     <svg width={1920} height={1080} style={{ position: "absolute", inset: 0, overflow: "visible" }}>
       <defs>
-        <linearGradient id="liq-g" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#ff7fb6" />
-          <stop offset="0.12" stopColor="#f0438e" />
-          <stop offset="1" stopColor="#c8156a" />
+        <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={colors[0]} />
+          <stop offset="0.12" stopColor={colors[1]} />
+          <stop offset="1" stopColor={colors[2]} />
         </linearGradient>
+        <clipPath id={`${id}-clip`}>
+          <path d={body} />
+        </clipPath>
+        <pattern id={`${id}-rip`} width="240" height="60" patternUnits="userSpaceOnUse" patternTransform={`translate(${frame * 9} ${frame * 3}) scale(1 0.6)`}>
+          <ellipse cx="120" cy="30" rx="110" ry="14" fill="none" stroke="rgba(255,255,255,0.22)" strokeWidth="2.5" />
+        </pattern>
       </defs>
-      <path
-        d={`M -200 ${top + 120 + w} C 300 ${top - 120}, 700 ${top + 220 - w}, 1100 ${top + 60} S 1700 ${top - 140 + w}, 2120 ${top + 80} L 2120 2600 L -200 2600 Z`}
-        fill="url(#liq-g)"
-      />
-      <path
-        d={`M -200 ${top + 150 + w} C 300 ${top - 90}, 700 ${top + 250 - w}, 1100 ${top + 90} S 1700 ${top - 110 + w}, 2120 ${top + 110}`}
-        stroke="rgba(255,235,245,0.75)"
-        strokeWidth={14}
-        fill="none"
-        style={{ filter: "blur(4px)" }}
-      />
+      <path d={body} fill={`url(#${id})`} opacity={bodyOpacity} />
+      {texture ? (
+        <g clipPath={`url(#${id}-clip)`}>
+          <image href={texture} x={-200 - frame * 6} y={-120} width={2400} height={1790} preserveAspectRatio="xMidYMid slice" opacity={0.85} />
+        </g>
+      ) : null}
+      {ripples ? <path d={body} fill={`url(#${id}-rip)`} /> : null}
+      <path d={crest} stroke="rgba(255,240,248,0.85)" strokeWidth={14} fill="none" style={{ filter: "blur(4px)" }} />
     </svg>
   );
 };
@@ -297,7 +329,7 @@ export const SplashWipe: React.FC = () => {
         width={3000}
         feather={420}
         blur={8}
-        background="linear-gradient(100deg, rgba(200,236,250,0.96) 0%, rgba(255,255,255,0.98) 30%, rgba(214,240,252,0.98) 60%, rgba(255,226,236,0.96) 100%)"
+        background="linear-gradient(100deg, rgba(200,236,250,0.55) 0%, rgba(255,255,255,0.7) 30%, rgba(214,240,252,0.6) 60%, rgba(255,226,236,0.55) 100%)"
       />
       {new Array(34).fill(0).map((_, i) => {
         const r = (k: string) => random(`splash-${i}-${k}`);
@@ -346,3 +378,41 @@ export const LoopBridge: React.FC<{ offset: number }> = ({ offset }) => (
     offset={offset}
   />
 );
+
+/**
+ * Glass-refraction lens crossing the cut right → left: the scenes stay visible THROUGH it
+ * (backdrop blur + saturation + a bright glass rim), so the screen is never empty.
+ */
+export const GlassWipe: React.FC<{ tint?: string; frames?: number }> = ({ tint = "255,190,210", frames = 24 }) => {
+  const frame = useCurrentFrame();
+  const cx = interpolate(frame, [0, frames], [3300, -1400]);
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: cx - 1600,
+        top: 540 - 1600,
+        width: 3200,
+        height: 3200,
+        borderRadius: "50%",
+        backdropFilter: "blur(14px) saturate(1.35) brightness(1.06)",
+        WebkitBackdropFilter: "blur(14px) saturate(1.35) brightness(1.06)",
+        background: `radial-gradient(circle at 40% 40%, rgba(255,255,255,0.18) 0%, rgba(${tint},0.12) 55%, rgba(${tint},0.35) 92%, rgba(255,255,255,0.75) 99%, rgba(255,255,255,0) 100%)`,
+        boxShadow: `inset 0 0 120px rgba(255,255,255,0.55), inset 0 0 18px rgba(255,255,255,0.9)`,
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          left: "20%",
+          top: "16%",
+          width: "26%",
+          height: "10%",
+          borderRadius: "50%",
+          background: "radial-gradient(closest-side, rgba(255,255,255,0.85), rgba(255,255,255,0))",
+          rotate: "-28deg",
+        }}
+      />
+    </div>
+  );
+};

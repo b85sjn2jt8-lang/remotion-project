@@ -14,7 +14,7 @@ const HairPortrait: React.FC<{ from: number }> = ({ from }) => {
       <ModelPlate
         name="Model · hair (Japanese-inspired)"
         id="hair"
-        x={interpolate(t, [0, 150], [1080, 900], { easing: Easing.bezier(0.4, 0, 0.6, 1) })}
+        x={interpolate(t, [0, 150], [1120, 860], { easing: Easing.bezier(0.4, 0, 0.6, 1) })}
         y={560}
         height={1230}
         zoom={interpolate(t, [0, 150], [1.0, 1.1], { output: "perceptual-scale" })}
@@ -22,15 +22,27 @@ const HairPortrait: React.FC<{ from: number }> = ({ from }) => {
         originY="40%"
         feather={[14, 0, 0, 0]}
       />
+      {/* light travelling across the hair strands */}
+      <AbsoluteFill
+        style={{
+          background: "linear-gradient(105deg, rgba(255,230,210,0) 38%, rgba(255,226,214,0.42) 48%, rgba(255,190,210,0.25) 52%, rgba(255,230,210,0) 62%)",
+          backgroundSize: "300% 100%",
+          backgroundPosition: `${interpolate(t, [0, 150], [100, -10])}% 0%`,
+          mixBlendMode: "screen",
+        }}
+      />
       {/* warm-pink rim light */}
       <AbsoluteFill style={{ background: "linear-gradient(90deg, rgba(255,150,180,0.28) 0%, rgba(255,150,180,0) 25%, rgba(255,150,180,0) 75%, rgba(255,150,180,0.3) 100%)", mixBlendMode: "screen" }} />
       {/* real product in depth, lower-left on a ledge — never over her face */}
       <div style={{ position: "absolute", inset: 0, translate: interpolate(t, [0, 150], ["-40px 0px", "-160px 0px"]) }}>
         <div style={{ position: "absolute", left: -100, top: 980, width: 760, height: 200, background: "linear-gradient(to bottom, #f5eadf, #d9c3a9)" }} />
         <FloorShadow x={300} y={984} width={260} opacity={0.4} color="80,50,30" />
-        <Product name="Dr.Althea tube · hair scene" id="altheaTube" x={300} y={984 - 316} width={208} blur={2.5} />
+        <Product name="Dr.Althea tube · hair scene" id="altheaTube" x={300} y={984 - 316} width={208} blur={2.5} wrap="255,200,190" cast="70,40,25" ground={2} />
       </div>
       <HairStrands seed="j10-drift" progress={interpolate(t, [0, 150], [0.12, 0.6])} count={16} thickness={3} blur={6} opacity={0.5} spread={700} />
+      {/* a loose lock sweeping through the foreground every ~1.2 s */}
+      <HairStrands seed="j10-lock-a" progress={interpolate(t, [20, 44], [0.15, 0.95], c)} count={34} thickness={7} blur={5} opacity={0.75} spread={420} />
+      <HairStrands seed="j10-lock-b" progress={interpolate(t, [104, 128], [0.15, 0.95], c)} count={34} thickness={7} blur={5} opacity={0.75} spread={420} />
       <Dust seed="j10" count={26} color="255,240,225" vy={-0.2} vx={0.3} opacity={0.55} />
     </AbsoluteFill>
   );

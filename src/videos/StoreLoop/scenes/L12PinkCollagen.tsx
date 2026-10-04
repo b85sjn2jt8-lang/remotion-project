@@ -33,7 +33,7 @@ export const L12PinkCollagen: React.FC = () => {
       <ModelPlate name="Macro · pink liquid world" id="macroPinkLiquid" x={interpolate(frame, [0, 120], [1000, 900])} y={520} height={1440} zoom={interpolate(frame, [0, 120], [1.0, 1.1])} blur={4} />
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 45%, rgba(255,120,180,0) 30%, rgba(200,20,100,0.45) 100%)" }} />
       <Wave id="l12-back" base={interpolate(frame, [0, 60, 120], [980, 760, 700], c)} amp={interpolate(frame, [0, 120], [30, 70])} phase={frame / 12} top="#ff7fb6" bottom="#c3105f" />
-      <Headline name="GLOW MODE." lines={["GLOW MODE."]} x={120} y={110} size={112} inAt={34} outAt={108} driftX={-40} shadow="0 6px 30px rgba(120,0,60,0.35)" />
+      <Headline tier="h2" name="GLOW MODE." lines={["GLOW MODE."]} x={120} y={110}  inAt={34} outAt={108} driftX={-40} shadow="0 6px 30px rgba(120,0,60,0.35)" />
       <Product
         name="Manee · rise"
         id="maneeUpper"
@@ -44,6 +44,8 @@ export const L12PinkCollagen: React.FC = () => {
         rotateY={interpolate(frame, [40, 120], [0, 5], c)}
         blur={interpolate(frame, [0, 12, 20], [8, 6, 0], c)}
         sweep={interpolate(frame, [30, 60, 80, 110], [0, 1, 0, 1], c)}
+        wrap="255,170,210"
+        cast="120,10,60"
       />
       {/* front liquid surface: plate bottom ≥ y 674 at its highest; surface stays ≤ y 671 */}
       <Wave id="l12-front" base={668} amp={1.2} phase={frame / 10 + 1} top="#ff86bd" bottom="#b80d5c" />

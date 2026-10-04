@@ -39,12 +39,11 @@ export const A01Opening: React.FC = () => {
       />
       <Droplet x={interpolate(frame, [0, 150], [930, 850])} y={interpolate(frame, [0, 150], [250, 220])} size={58} blur={1} />
 
-      <Headline
+      <Headline tier="h1"
         name="GLOW DIFFERENT"
         lines={["GLOW", "DIFFERENT"]}
         x={150}
-        y={600}
-        size={124}
+        y={600} 
         inAt={84}
         outAt={136}
         driftX={-70}
@@ -62,6 +61,8 @@ export const A01Opening: React.FC = () => {
         rotateZ={interpolate(frame, [36, 66], [-7, 0], c)}
         blur={interpolate(frame, [36, 60, 96, 132], [26, 0, 0, 22], c)}
         sweep={interpolate(frame, [62, 92], [0, 1], c)}
+        wrap="255,190,205"
+        cast="120,30,60"
         opacity={interpolate(frame, [36, 39], [0, 1], c)}
       />
       <Glass

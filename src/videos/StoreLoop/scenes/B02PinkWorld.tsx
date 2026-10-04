@@ -30,12 +30,11 @@ export const B02PinkWorld: React.FC = () => {
       />
       <Bokeh seed="b02" count={8} colors={["rgba(255,240,242,0.9)", "rgba(248,170,185,0.9)"]} minSize={120} maxSize={300} driftX={-1} opacity={0.45} blur={16} />
 
-      <Headline
+      <Headline tier="h2"
         name="HYDRATE GLOW CARE"
         lines={["HYDRATE", "GLOW", "CARE"]}
         x={1500}
-        y={14}
-        size={90}
+        y={14} 
         align="right"
         inAt={24}
         outAt={132}
@@ -53,6 +52,8 @@ export const B02PinkWorld: React.FC = () => {
         width={interpolate(frame, [0, 150], [690, 760], { easing: Easing.bezier(0.45, 0, 0.55, 1) })}
         blur={interpolate(frame, [0, 70, 96], [7, 7, 0], { ...c, easing: Easing.bezier(0.4, 0, 0.2, 1) })}
         sweep={interpolate(frame, [100, 140], [0, 1], c)}
+        wrap="255,195,210"
+        cast="120,30,60"
       />
 
       <Glass x={interpolate(frame, [0, 150], [260, -40])} y={interpolate(frame, [0, 150], [900, 930])} w={820} h={420} rot={18} tint="248,160,175" blur={20} opacity={0.72} />

@@ -23,6 +23,16 @@ export const Product: React.FC<{
   /** Anchor the plate by its bottom-right corner instead of its center (cropped plates). */
   anchor?: "center" | "bottom-right";
   zIndex?: number;
+  /**
+   * V3.1 integration (all drawn AROUND the plate, never over its pixels):
+   * `wrap`  — scene light colour "r,g,b" bleeding just outside the silhouette (light wrap)
+   * `cast`  — colour "r,g,b" of the soft cast shadow (default warm neutral)
+   * `ground`— gap in px between plate bottom and its surface → two-layer contact shadow
+   */
+  wrap?: string;
+  cast?: string;
+  ground?: number;
+  groundOpacity?: number;
 }> = ({
   name,
   id,
@@ -38,6 +48,10 @@ export const Product: React.FC<{
   reflectionOpacity = 0.14,
   anchor = "center",
   zIndex,
+  wrap,
+  cast = "40,20,30",
+  ground,
+  groundOpacity = 0.45,
 }) => {
   const p = PRODUCTS[id];
   const height = width * p.aspect;
@@ -76,7 +90,7 @@ export const Product: React.FC<{
               inset: 0,
               width: "100%",
               height: "100%",
-              filter: "drop-shadow(0px 18px 28px rgba(40, 20, 30, 0.22))",
+              filter: `${wrap ? `drop-shadow(0px 0px 3px rgba(${wrap},0.75)) drop-shadow(0px 0px 14px rgba(${wrap},0.35)) ` : ""}drop-shadow(0px 18px 28px rgba(${cast},0.26))`,
             }}
           />
           {sweep >= 0 ? (
@@ -99,6 +113,36 @@ export const Product: React.FC<{
           ) : null}
         </div>
       </div>
+      {ground !== undefined ? (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              left: width * 0.04,
+              top: height + ground - width * 0.07,
+              width: width * 0.92,
+              height: width * 0.14,
+              borderRadius: "50%",
+              background: `radial-gradient(closest-side, rgba(${cast},${groundOpacity * 0.6}), rgba(${cast},0))`,
+              filter: "blur(14px)",
+              opacity: Math.max(0, 1 - ground / 160),
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              left: width * 0.14,
+              top: height + ground - width * 0.025,
+              width: width * 0.72,
+              height: width * 0.05,
+              borderRadius: "50%",
+              background: `radial-gradient(closest-side, rgba(${cast},${groundOpacity}), rgba(${cast},0))`,
+              filter: "blur(4px)",
+              opacity: Math.max(0, 1 - ground / 60),
+            }}
+          />
+        </>
+      ) : null}
       {reflectionGap !== undefined ? (
         <Img
           src={src}

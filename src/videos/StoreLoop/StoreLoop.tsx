@@ -2,17 +2,13 @@ import React from "react";
 import { AbsoluteFill, Sequence } from "remotion";
 import { Grain } from "./fx/Atmosphere";
 import {
-  BandWipe,
-  CurtainWipe,
-  DropletWipe,
-  FrondWipe,
+  GlassWipe,
   GoldenBloom,
   LeafWipe,
   LensPass,
   LiquidWipe,
   LoopBridge,
   SplashWipe,
-  WhiteBloom,
 } from "./fx/Wipes";
 import { HairStrands } from "./fx/Layers";
 import { A01Opening } from "./scenes/A01Opening";
@@ -27,7 +23,7 @@ import { L12PinkCollagen } from "./scenes/L12PinkCollagen";
 import { C03Dropper, G07Cream, I09EyeTexture, M13BrandPhoto, O15FlowerDrop } from "./scenes/Macros";
 import { N14Flight } from "./scenes/N14Flight";
 import { P16FinalHero } from "./scenes/P16FinalHero";
-import { interpolate, useCurrentFrame } from "remotion";
+import { interpolate, staticFile, useCurrentFrame } from "remotion";
 
 const HairWipe: React.FC<{ seed: string }> = ({ seed }) => {
   const frame = useCurrentFrame();
@@ -107,14 +103,14 @@ export const StoreLoop: React.FC = () => {
       <Sequence name="A→B Dr.Althea box lens pass" from={136} durationInFrames={26}>
         <LensPass id="altheaBox" filterId="t-ab" fromX={3000} toX={-1100} frames={26} y={560} width={1500} rotate={8} blur={10} motionBlur={36} />
       </Sequence>
-      <Sequence name="B→C serum droplet" from={290} durationInFrames={24}>
-        <DropletWipe gradient="radial-gradient(circle at 42% 44%, rgba(255,255,255,0.98) 0%, rgba(255,226,232,0.98) 30%, rgba(246,182,198,1) 70%, rgba(236,150,172,1) 92%, rgba(255,255,255,0.6) 100%)" />
+      <Sequence name="B→C serum glass refraction" from={290} durationInFrames={24}>
+        <GlassWipe tint="250,170,195" />
       </Sequence>
       <Sequence name="C→D sun bloom" from={333} durationInFrames={25}>
         <GoldenBloom />
       </Sequence>
-      <Sequence name="D→E palm frond" from={502} durationInFrames={24}>
-        <FrondWipe />
+      <Sequence name="D→E reflective water rises" from={490} durationInFrames={34}>
+        <LiquidWipe id="liq-water" coverAt={20} drainEnd={34} colors={["#bfe9fb", "#5cb8e0", "#1f86bd"]} ripples peak={360} bodyOpacity={0.78} />
       </Sequence>
       <Sequence name="E→F water splash" from={588} durationInFrames={26}>
         <SplashWipe />
@@ -122,11 +118,11 @@ export const StoreLoop: React.FC = () => {
       <Sequence name="F→G leaf" from={742} durationInFrames={24}>
         <LeafWipe />
       </Sequence>
-      <Sequence name="G→H cream white-out" from={770} durationInFrames={20}>
-        <WhiteBloom peakAt={10} hold={1} fadeOut={8} rampIn={6} />
+      <Sequence name="G→H Brilliant lens pass (no white frame)" from={764} durationInFrames={26}>
+        <LensPass id="brilliant" filterId="t-gh" fromX={3400} toX={-1500} frames={26} y={540} width={2600} rotate={6} blur={12} motionBlur={34} />
       </Sequence>
-      <Sequence name="H→I magenta light sweep" from={922} durationInFrames={18}>
-        <BandWipe startX={1920} speed={300} width={2600} feather={320} blur={8} background="linear-gradient(90deg, #ff6fb0 0%, #ffd1e4 40%, #ffffff 55%, #ff9cc8 100%)" />
+      <Sequence name="H→I magenta glass refraction" from={918} durationInFrames={24}>
+        <GlassWipe tint="255,90,170" />
       </Sequence>
       <Sequence name="I→J hair across lens" from={948} durationInFrames={24}>
         <HairWipe seed="t-ij" />
@@ -134,11 +130,11 @@ export const StoreLoop: React.FC = () => {
       <Sequence name="J→K hair across lens" from={1098} durationInFrames={24}>
         <HairWipe seed="t-jk" />
       </Sequence>
-      <Sequence name="K→L sheer curtain" from={1248} durationInFrames={30}>
-        <CurtainWipe />
+      <Sequence name="K→L pink liquid rises" from={1238} durationInFrames={36}>
+        <LiquidWipe id="liq-pink" coverAt={22} drainEnd={36} texture={staticFile("store-loop/v3/m_pink_liquid.jpg")} />
       </Sequence>
-      <Sequence name="L→M liquid surge" from={1350} durationInFrames={45}>
-        <LiquidWipe coverAt={22} drainEnd={45} />
+      <Sequence name="L→M glass refraction" from={1368} durationInFrames={24}>
+        <GlassWipe tint="255,140,190" />
       </Sequence>
       <Sequence name="M→N Dr.Althea tube lens pass" from={1413} durationInFrames={24}>
         <LensPass id="altheaTube" filterId="t-mn" fromX={2700} toX={-800} frames={24} y={540} width={900} rotate={-12} blur={10} motionBlur={30} />
@@ -146,8 +142,8 @@ export const StoreLoop: React.FC = () => {
       <Sequence name="N→O Brilliant lens pass" from={1578} durationInFrames={24}>
         <LensPass id="brilliant" filterId="t-no" fromX={3600} toX={-1700} frames={24} y={540} width={3000} rotate={-6} blur={12} motionBlur={36} />
       </Sequence>
-      <Sequence name="O→P droplet" from={1638} durationInFrames={24}>
-        <DropletWipe gradient="radial-gradient(circle at 42% 44%, rgba(255,255,255,0.98) 0%, rgba(255,232,238,0.98) 30%, rgba(248,196,210,1) 70%, rgba(238,160,182,1) 92%, rgba(255,255,255,0.6) 100%)" />
+      <Sequence name="O→P glass refraction" from={1638} durationInFrames={24}>
+        <GlassWipe tint="250,180,200" />
       </Sequence>
 
       {/* ---- loop bridge: ONE real-product lens pass split across 1799 → 0 ---- */}

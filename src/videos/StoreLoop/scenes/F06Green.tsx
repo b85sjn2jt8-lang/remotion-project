@@ -45,15 +45,15 @@ export const F06Green: React.FC = () => {
       />
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at 80% 15%, rgba(255,255,255,0.6), rgba(255,255,255,0) 40%)", translate: interpolate(frame, [0, 150], ["40px 0px", "-60px 10px"]) }} />
 
-      <Headline name="SKIN FIRST." lines={["SKIN", "FIRST."]} x={1880} y={34} size={100} align="right" color="#1f4a2a" inAt={30} outAt={130} driftX={-40} shadow="0 6px 30px rgba(255,255,255,0.6)" />
+      <Headline tier="h2" name="SKIN FIRST." lines={["SKIN", "FIRST."]} x={1880} y={34}  align="right" color="#1f4a2a" inAt={30} outAt={130} driftX={-40} shadow="0 6px 30px rgba(255,255,255,0.6)" />
 
       {/* white glass plinth + real products (right, mid-ground) */}
       <div style={{ position: "absolute", inset: 0, translate: interpolate(frame, [0, 150], ["30px 0px", "-50px 0px"]) }}>
         <div style={{ position: "absolute", left: 1160, top: 930, width: 820, height: 200, background: "linear-gradient(to bottom, #ffffff, #e6efe2)", boxShadow: "0 -2px 0 rgba(255,255,255,0.9), 0 30px 70px rgba(30,70,30,0.25)" }} />
         <FloorShadow x={1400} y={934} width={420} opacity={0.35} color="30,60,30" />
         <FloorShadow x={1710} y={934} width={300} opacity={0.35} color="30,60,30" />
-        <Product name="Dr.Althea box · green" id="altheaBox" x={1400} y={934 - 340} width={350} rotateY={interpolate(frame, [0, 150], [-5, 2])} sweep={interpolate(frame, [70, 110], [0, 1], c)} />
-        <Product name="Dr.Althea tube · green" id="altheaTube" x={1710} y={934 - 330} width={216} rotateY={interpolate(frame, [0, 150], [6, -2])} />
+        <Product name="Dr.Althea box · green" id="altheaBox" x={1400} y={934 - 340} width={350} rotateY={interpolate(frame, [0, 150], [-5, 2])} sweep={interpolate(frame, [70, 110], [0, 1], c)} wrap="236,250,236" cast="30,60,30" ground={4} />
+        <Product name="Dr.Althea tube · green" id="altheaTube" x={1710} y={934 - 330} width={216} rotateY={interpolate(frame, [0, 150], [6, -2])} wrap="236,250,236" cast="30,60,30" ground={4} />
         <Droplet x={1250} y={924} size={34} tint="215,236,222" stretch={0.82} />
       </div>
 
