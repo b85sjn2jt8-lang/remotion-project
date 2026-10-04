@@ -5,6 +5,13 @@ import { ExampleVideo } from "./videos/Example/ExampleVideo";
 import { Hook as ExampleHook } from "./videos/Example/Hook";
 import { Outro as ExampleOutro } from "./videos/Example/Outro";
 import { AnuaAd } from "./videos/Anua/AnuaAd";
+import { M1NightWrap } from "./videos/Medicube/M1NightWrap";
+import { M2Hero } from "./videos/Medicube/M2Hero";
+import { M3GelToFilm } from "./videos/Medicube/M3GelToFilm";
+import { M4ElasticFilm } from "./videos/Medicube/M4ElasticFilm";
+import { M5NightToMorning } from "./videos/Medicube/M5NightToMorning";
+import { M6FinalHero } from "./videos/Medicube/M6FinalHero";
+import { MedicubeAd } from "./videos/Medicube/MedicubeAd";
 import { H1PoreHook } from "./videos/Heartleaf/H1PoreHook";
 import { H2ProductReveal } from "./videos/Heartleaf/H2ProductReveal";
 import { H3RichFoam } from "./videos/Heartleaf/H3RichFoam";
@@ -41,12 +48,71 @@ import { S5Halfmoon } from "./videos/Anua/S5Halfmoon";
 import { S6Liquid } from "./videos/Anua/S6Liquid";
 import { S7FinalHero } from "./videos/Anua/S7FinalHero";
 
-// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf — are 1920x1080). Each video gets:
+// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE — are 1920x1080). Each video gets:
 //  - a main <Composition> with its global props (captions, colors) editable in the Props panel
 //  - a <Folder> of its scenes so each can be opened and edited on its own timeline
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* MEDICUBE Collagen Night Wrapping Mask — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
+      <Folder name="MedicubeAd-Shots">
+        <Composition
+          id="Medicube-M1-NightWrap"
+          component={M1NightWrap}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={86}
+        />
+        <Composition
+          id="Medicube-M2-Hero"
+          component={M2Hero}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Medicube-M3-GelToFilm"
+          component={M3GelToFilm}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Medicube-M4-ElasticFilm"
+          component={M4ElasticFilm}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={90}
+        />
+        <Composition
+          id="Medicube-M5-NightToMorning"
+          component={M5NightToMorning}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={80}
+        />
+        <Composition
+          id="Medicube-M6-FinalHero"
+          component={M6FinalHero}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+      </Folder>
+      <Composition
+        id="MedicubeAd"
+        component={MedicubeAd}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={450}
+      />
       {/* ANUA Heartleaf cleansing foam — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
       <Folder name="HeartleafAd-Shots">
         <Composition

@@ -24,6 +24,8 @@ const fonts = [
   { family: "Sora", file: "Sora-Variable.woff2", weight: "100 800" },
   // Variable font (300–900) used by the ANUA Heartleaf commercial.
   { family: "Figtree", file: "Figtree-Variable.woff2", weight: "300 900" },
+  // Variable font (100–900) used by the MEDICUBE commercial.
+  { family: "Jost", file: "Jost-Variable.woff2", weight: "100 900" },
 ];
 
 for (const font of fonts) {
@@ -44,4 +46,5 @@ export const fontFamilies = [
   "Outfit",
   "Sora",
   "Figtree",
+  "Jost",
 ] as const;
