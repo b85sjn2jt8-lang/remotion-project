@@ -33,7 +33,7 @@ export const H1PoreHook: React.FC = () => {
         }}
       >
         <PoreSurface
-          clean={interpolate(frame, [54, 57], [0, 1], {
+          clean={interpolate(frame, [40, 43], [0, 1], {
             extrapolateLeft: "clamp",
             extrapolateRight: "clamp",
           })}
@@ -52,7 +52,7 @@ export const H1PoreHook: React.FC = () => {
           lineHeight: 1,
           letterSpacing: -4,
           color: "#2E4A35",
-          opacity: interpolate(frame, [55, 56], [0, 1], {
+          opacity: interpolate(frame, [41, 42], [0, 1], {
             extrapolateLeft: "clamp",
             extrapolateRight: "clamp",
           }),
@@ -72,7 +72,7 @@ export const H1PoreHook: React.FC = () => {
           lineHeight: 1,
           letterSpacing: 10,
           color: "#3F6248",
-          opacity: interpolate(frame, [55, 56], [0, 1], {
+          opacity: interpolate(frame, [41, 42], [0, 1], {
             extrapolateLeft: "clamp",
             extrapolateRight: "clamp",
           }),
@@ -89,7 +89,7 @@ export const H1PoreHook: React.FC = () => {
           top: -110,
           width: 2400,
           height: 1300,
-          translate: interpolate(frame, [30, 56, 84], ["1960px 0px", "-420px 0px", "1180px 0px"], {
+          translate: interpolate(frame, [18, 42, 64], ["1960px 0px", "-420px 0px", "1180px 0px"], {
             easing: [Easing.bezier(0.4, 0, 0.3, 1), Easing.bezier(0.5, 0, 0.3, 1)],
             extrapolateLeft: "clamp",
             extrapolateRight: "clamp",
