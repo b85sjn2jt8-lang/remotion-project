@@ -227,11 +227,11 @@ export const M6FinalHero: React.FC = () => {
       <AbsoluteFill
         name="Membrane sweeping over the lens (loop seam)"
         style={{
-          clipPath: `polygon(-1100px -100px, ${interpolate(frame, [63, 87], [-1100, 2400], {
+          clipPath: `polygon(-1100px -100px, ${interpolate(frame, [63, 87], [-1100, 3000], {
             easing: Easing.bezier(0.45, 0, 0.7, 1),
             extrapolateLeft: "clamp",
             extrapolateRight: "clamp",
-          })}px -100px, ${interpolate(frame, [63, 87], [-1700, 1800], {
+          })}px -100px, ${interpolate(frame, [63, 87], [-1700, 2400], {
             easing: Easing.bezier(0.45, 0, 0.7, 1),
             extrapolateLeft: "clamp",
             extrapolateRight: "clamp",
@@ -252,7 +252,7 @@ export const M6FinalHero: React.FC = () => {
           background:
             "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,236,226,0.95) 50%, rgba(255,255,255,0) 100%)",
           filter: "blur(4px)",
-          translate: interpolate(frame, [63, 87], ["-1400px 0px", "2100px 0px"], {
+          translate: interpolate(frame, [63, 87], ["-1400px 0px", "2700px 0px"], {
             easing: Easing.bezier(0.45, 0, 0.7, 1),
             extrapolateLeft: "clamp",
             extrapolateRight: "clamp",

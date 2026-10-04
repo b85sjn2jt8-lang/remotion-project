@@ -19,7 +19,7 @@ const FilmPeel: React.FC<Props> = ({ children, presentationDirection, presentati
   if (presentationDirection === "exiting") {
     return <AbsoluteFill>{children}</AbsoluteFill>;
   }
-  const x = interpolate(p, [0, 1], [-900, 2600], {
+  const x = interpolate(p, [0, 1], [-900, 3500], {
     ...clamp,
     easing: Easing.bezier(0.45, 0.05, 0.5, 1),
   });
