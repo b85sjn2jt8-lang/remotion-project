@@ -5,6 +5,13 @@ import { ExampleVideo } from "./videos/Example/ExampleVideo";
 import { Hook as ExampleHook } from "./videos/Example/Hook";
 import { Outro as ExampleOutro } from "./videos/Example/Outro";
 import { AnuaAd } from "./videos/Anua/AnuaAd";
+import { H1PoreHook } from "./videos/Heartleaf/H1PoreHook";
+import { H2ProductReveal } from "./videos/Heartleaf/H2ProductReveal";
+import { H3RichFoam } from "./videos/Heartleaf/H3RichFoam";
+import { H4PoreReset } from "./videos/Heartleaf/H4PoreReset";
+import { H5Calm } from "./videos/Heartleaf/H5Calm";
+import { H6FinalHero as HeartleafH6FinalHero } from "./videos/Heartleaf/H6FinalHero";
+import { HeartleafAd } from "./videos/Heartleaf/HeartleafAd";
 import { E1Flood } from "./videos/Eqqualberry/E1Flood";
 import { E2Hero } from "./videos/Eqqualberry/E2Hero";
 import { E3Glacier } from "./videos/Eqqualberry/E3Glacier";
@@ -34,12 +41,71 @@ import { S5Halfmoon } from "./videos/Anua/S5Halfmoon";
 import { S6Liquid } from "./videos/Anua/S6Liquid";
 import { S7FinalHero } from "./videos/Anua/S7FinalHero";
 
-// Social videos are 1080x1920 @ 30fps (the ANUA, A BONNE, HIKARI and EQQUALBERRY spots are 1920x1080 exceptions). Each video gets:
+// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf — are 1920x1080). Each video gets:
 //  - a main <Composition> with its global props (captions, colors) editable in the Props panel
 //  - a <Folder> of its scenes so each can be opened and edited on its own timeline
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* ANUA Heartleaf cleansing foam — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
+      <Folder name="HeartleafAd-Shots">
+        <Composition
+          id="Heartleaf-H1-PoreHook"
+          component={H1PoreHook}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Heartleaf-H2-ProductReveal"
+          component={H2ProductReveal}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={90}
+        />
+        <Composition
+          id="Heartleaf-H3-RichFoam"
+          component={H3RichFoam}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Heartleaf-H4-PoreReset"
+          component={H4PoreReset}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={92}
+        />
+        <Composition
+          id="Heartleaf-H5-Calm"
+          component={H5Calm}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={78}
+        />
+        <Composition
+          id="Heartleaf-H6-FinalHero"
+          component={HeartleafH6FinalHero}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+      </Folder>
+      <Composition
+        id="HeartleafAd"
+        component={HeartleafAd}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={450}
+      />
       {/* EQQUALBERRY Blue Blow serum — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
       <Folder name="EqqualberryAd-Shots">
         <Composition

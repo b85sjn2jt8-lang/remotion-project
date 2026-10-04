@@ -22,6 +22,8 @@ const fonts = [
   { family: "Outfit", file: "Outfit-Variable.woff2", weight: "100 900" },
   // Variable font (100–800) used by the EQQUALBERRY commercial.
   { family: "Sora", file: "Sora-Variable.woff2", weight: "100 800" },
+  // Variable font (300–900) used by the ANUA Heartleaf commercial.
+  { family: "Figtree", file: "Figtree-Variable.woff2", weight: "300 900" },
 ];
 
 for (const font of fonts) {
@@ -41,4 +43,5 @@ export const fontFamilies = [
   "Plus Jakarta Sans",
   "Outfit",
   "Sora",
+  "Figtree",
 ] as const;
