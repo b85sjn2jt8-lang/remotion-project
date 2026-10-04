@@ -16,6 +16,8 @@ const fonts = [
   { family: "Bebas Neue", file: "BebasNeue-400.woff2", weight: "400" },
   // Variable font (200–800) used by the ANUA commercial.
   { family: "Manrope", file: "Manrope-Variable.woff2", weight: "200 800" },
+  // Variable font (200–800) used by the A BONNE commercial.
+  { family: "Plus Jakarta Sans", file: "PlusJakartaSans-Variable.woff2", weight: "200 800" },
 ];
 
 for (const font of fonts) {
@@ -32,4 +34,5 @@ export const fontFamilies = [
   "Inter",
   "Bebas Neue",
   "Manrope",
+  "Plus Jakarta Sans",
 ] as const;
