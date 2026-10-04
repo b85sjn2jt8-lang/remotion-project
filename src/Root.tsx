@@ -5,6 +5,13 @@ import { ExampleVideo } from "./videos/Example/ExampleVideo";
 import { Hook as ExampleHook } from "./videos/Example/Hook";
 import { Outro as ExampleOutro } from "./videos/Example/Outro";
 import { AnuaAd } from "./videos/Anua/AnuaAd";
+import { E1Flood } from "./videos/Eqqualberry/E1Flood";
+import { E2Hero } from "./videos/Eqqualberry/E2Hero";
+import { E3Glacier } from "./videos/Eqqualberry/E3Glacier";
+import { E4Layers } from "./videos/Eqqualberry/E4Layers";
+import { E5Ceramides } from "./videos/Eqqualberry/E5Ceramides";
+import { E6FinalHero } from "./videos/Eqqualberry/E6FinalHero";
+import { EqqualberryAd } from "./videos/Eqqualberry/EqqualberryAd";
 import { H1SunlightHook } from "./videos/Hikari/H1SunlightHook";
 import { H2HeroReveal } from "./videos/Hikari/H2HeroReveal";
 import { H3LightFilter } from "./videos/Hikari/H3LightFilter";
@@ -27,12 +34,71 @@ import { S5Halfmoon } from "./videos/Anua/S5Halfmoon";
 import { S6Liquid } from "./videos/Anua/S6Liquid";
 import { S7FinalHero } from "./videos/Anua/S7FinalHero";
 
-// Social videos are 1080x1920 @ 30fps (the ANUA, A BONNE and HIKARI spots are 1920x1080 exceptions). Each video gets:
+// Social videos are 1080x1920 @ 30fps (the ANUA, A BONNE, HIKARI and EQQUALBERRY spots are 1920x1080 exceptions). Each video gets:
 //  - a main <Composition> with its global props (captions, colors) editable in the Props panel
 //  - a <Folder> of its scenes so each can be opened and edited on its own timeline
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* EQQUALBERRY Blue Blow serum — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
+      <Folder name="EqqualberryAd-Shots">
+        <Composition
+          id="Eqqualberry-E1-Flood"
+          component={E1Flood}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={85}
+        />
+        <Composition
+          id="Eqqualberry-E2-Hero"
+          component={E2Hero}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Eqqualberry-E3-Glacier"
+          component={E3Glacier}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={90}
+        />
+        <Composition
+          id="Eqqualberry-E4-Layers"
+          component={E4Layers}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Eqqualberry-E5-Ceramides"
+          component={E5Ceramides}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={76}
+        />
+        <Composition
+          id="Eqqualberry-E6-FinalHero"
+          component={E6FinalHero}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={95}
+        />
+      </Folder>
+      <Composition
+        id="EqqualberryAd"
+        component={EqqualberryAd}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={450}
+      />
       {/* HIKARI UltraFresh Sunscreen — horizontal 1920x1080 store-display spot (15s loop). */}
       <Folder name="HikariAd-Scenes">
         <Composition

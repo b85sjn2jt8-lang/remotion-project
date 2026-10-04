@@ -20,6 +20,8 @@ const fonts = [
   { family: "Plus Jakarta Sans", file: "PlusJakartaSans-Variable.woff2", weight: "200 800" },
   // Variable font (100–900) used by the HIKARI commercial.
   { family: "Outfit", file: "Outfit-Variable.woff2", weight: "100 900" },
+  // Variable font (100–800) used by the EQQUALBERRY commercial.
+  { family: "Sora", file: "Sora-Variable.woff2", weight: "100 800" },
 ];
 
 for (const font of fonts) {
@@ -38,4 +40,5 @@ export const fontFamilies = [
   "Manrope",
   "Plus Jakarta Sans",
   "Outfit",
+  "Sora",
 ] as const;
