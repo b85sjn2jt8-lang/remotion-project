@@ -51,9 +51,9 @@ Follow the Remotion skills in `.claude/skills/` (especially `remotion-markup`,
   `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`;
   import `.srt` captions instead of transcribing if whisper can't download.
 
-## Horizontal store-display spots (ANUA, A BONNE)
+## Horizontal store-display spots (ANUA, A BONNE, HIKARI)
 
-- `src/videos/Anua/` and `src/videos/ABonne/` are 1920×1080 @ 30fps looping product commercials
+- `src/videos/Anua/`, `src/videos/ABonne/` and `src/videos/Hikari/` are 1920×1080 @ 30fps looping product commercials
   built from a cut-out master product image in `public/<brand>/`. Never redraw, recolor, warp or
   non-uniformly scale the product; set only `width` on its `<Img>`.
 - Previews and masters are always rendered at exactly 1920×1080 (never 720p, 1440p or 4K) with

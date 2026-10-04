@@ -5,6 +5,13 @@ import { ExampleVideo } from "./videos/Example/ExampleVideo";
 import { Hook as ExampleHook } from "./videos/Example/Hook";
 import { Outro as ExampleOutro } from "./videos/Example/Outro";
 import { AnuaAd } from "./videos/Anua/AnuaAd";
+import { H1SunlightHook } from "./videos/Hikari/H1SunlightHook";
+import { H2HeroReveal } from "./videos/Hikari/H2HeroReveal";
+import { H3LightFilter } from "./videos/Hikari/H3LightFilter";
+import { H4WaterFresh } from "./videos/Hikari/H4WaterFresh";
+import { H5GelMacro } from "./videos/Hikari/H5GelMacro";
+import { H6FinalHero } from "./videos/Hikari/H6FinalHero";
+import { HikariAd } from "./videos/Hikari/HikariAd";
 import { ABonneAd } from "./videos/ABonne/ABonneAd";
 import { B1MilkReveal } from "./videos/ABonne/B1MilkReveal";
 import { B2CollagenHero } from "./videos/ABonne/B2CollagenHero";
@@ -20,12 +27,71 @@ import { S5Halfmoon } from "./videos/Anua/S5Halfmoon";
 import { S6Liquid } from "./videos/Anua/S6Liquid";
 import { S7FinalHero } from "./videos/Anua/S7FinalHero";
 
-// Social videos are 1080x1920 @ 30fps (the ANUA and A BONNE spots are 1920x1080 exceptions). Each video gets:
+// Social videos are 1080x1920 @ 30fps (the ANUA, A BONNE and HIKARI spots are 1920x1080 exceptions). Each video gets:
 //  - a main <Composition> with its global props (captions, colors) editable in the Props panel
 //  - a <Folder> of its scenes so each can be opened and edited on its own timeline
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* HIKARI UltraFresh Sunscreen — horizontal 1920x1080 store-display spot (15s loop). */}
+      <Folder name="HikariAd-Scenes">
+        <Composition
+          id="Hikari-H1-SunlightHook"
+          component={H1SunlightHook}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={76}
+        />
+        <Composition
+          id="Hikari-H2-HeroReveal"
+          component={H2HeroReveal}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={82}
+        />
+        <Composition
+          id="Hikari-H3-LightFilter"
+          component={H3LightFilter}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={80}
+        />
+        <Composition
+          id="Hikari-H4-WaterFresh"
+          component={H4WaterFresh}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={82}
+        />
+        <Composition
+          id="Hikari-H5-GelMacro"
+          component={H5GelMacro}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={82}
+        />
+        <Composition
+          id="Hikari-H6-FinalHero"
+          component={H6FinalHero}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={110}
+        />
+      </Folder>
+      <Composition
+        id="HikariAd"
+        component={HikariAd}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={450}
+      />
       {/* A BONNE Milk Lotion — horizontal 1920x1080 store-display spot (15s loop). */}
       <Folder name="ABonneAd-Scenes">
         <Composition

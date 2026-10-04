@@ -18,6 +18,8 @@ const fonts = [
   { family: "Manrope", file: "Manrope-Variable.woff2", weight: "200 800" },
   // Variable font (200–800) used by the A BONNE commercial.
   { family: "Plus Jakarta Sans", file: "PlusJakartaSans-Variable.woff2", weight: "200 800" },
+  // Variable font (100–900) used by the HIKARI commercial.
+  { family: "Outfit", file: "Outfit-Variable.woff2", weight: "100 900" },
 ];
 
 for (const font of fonts) {
@@ -35,4 +37,5 @@ export const fontFamilies = [
   "Bebas Neue",
   "Manrope",
   "Plus Jakarta Sans",
+  "Outfit",
 ] as const;
