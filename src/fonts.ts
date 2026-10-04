@@ -14,6 +14,8 @@ const fonts = [
   { family: "Inter", file: "Inter-600.woff2", weight: "600" },
   { family: "Inter", file: "Inter-800.woff2", weight: "800" },
   { family: "Bebas Neue", file: "BebasNeue-400.woff2", weight: "400" },
+  // Variable font (200–800) used by the ANUA commercial.
+  { family: "Manrope", file: "Manrope-Variable.woff2", weight: "200 800" },
 ];
 
 for (const font of fonts) {
@@ -29,4 +31,5 @@ export const fontFamilies = [
   "Poppins",
   "Inter",
   "Bebas Neue",
+  "Manrope",
 ] as const;
