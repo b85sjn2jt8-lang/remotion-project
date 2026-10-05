@@ -5,6 +5,13 @@ import { ExampleVideo } from "./videos/Example/ExampleVideo";
 import { Hook as ExampleHook } from "./videos/Example/Hook";
 import { Outro as ExampleOutro } from "./videos/Example/Outro";
 import { AnuaAd } from "./videos/Anua/AnuaAd";
+import { P1PlumReset } from "./videos/GreenPlum/P1PlumReset";
+import { P2ProductReveal } from "./videos/GreenPlum/P2ProductReveal";
+import { P3GreenPlum } from "./videos/GreenPlum/P3GreenPlum";
+import { P4AhaBha } from "./videos/GreenPlum/P4AhaBha";
+import { P5Refreshing } from "./videos/GreenPlum/P5Refreshing";
+import { P6FinalHero } from "./videos/GreenPlum/P6FinalHero";
+import { GreenPlumAd } from "./videos/GreenPlum/GreenPlumAd";
 import { K1Origin } from "./videos/Skin1004/K1Origin";
 import { K2AmberReveal } from "./videos/Skin1004/K2AmberReveal";
 import { K3Centella } from "./videos/Skin1004/K3Centella";
@@ -69,12 +76,71 @@ import { S5Halfmoon } from "./videos/Anua/S5Halfmoon";
 import { S6Liquid } from "./videos/Anua/S6Liquid";
 import { S7FinalHero } from "./videos/Anua/S7FinalHero";
 
-// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE, SEVEN GREEN, ANUA Birch 70, SKIN1004 — are 1920x1080). Each video gets:
+// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE, SEVEN GREEN, ANUA Birch 70, SKIN1004, BEAUTY OF JOSEON — are 1920x1080). Each video gets:
 //  - a main <Composition> with its global props (captions, colors) editable in the Props panel
 //  - a <Folder> of its scenes so each can be opened and edited on its own timeline
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* BEAUTY OF JOSEON Green Plum Refreshing Toner — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
+      <Folder name="GreenPlumAd-Shots">
+        <Composition
+          id="GreenPlum-P1-PlumReset"
+          component={P1PlumReset}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={86}
+        />
+        <Composition
+          id="GreenPlum-P2-ProductReveal"
+          component={P2ProductReveal}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={90}
+        />
+        <Composition
+          id="GreenPlum-P3-GreenPlum"
+          component={P3GreenPlum}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="GreenPlum-P4-AhaBha"
+          component={P4AhaBha}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="GreenPlum-P5-Refreshing"
+          component={P5Refreshing}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={82}
+        />
+        <Composition
+          id="GreenPlum-P6-FinalHero"
+          component={P6FinalHero}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+      </Folder>
+      <Composition
+        id="GreenPlumAd"
+        component={GreenPlumAd}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={450}
+      />
       {/* SKIN1004 Madagascar Centella — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
       <Folder name="Skin1004Ad-Shots">
         <Composition

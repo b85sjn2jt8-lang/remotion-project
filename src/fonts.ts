@@ -32,6 +32,8 @@ const fonts = [
   { family: "Urbanist", file: "Urbanist-Variable.woff2", weight: "100 900" },
   // Variable font (100–900) used by the SKIN1004 Centella commercial.
   { family: "Albert Sans", file: "AlbertSans-Variable.woff2", weight: "100 900" },
+  // Variable font (100–900) used by the BEAUTY OF JOSEON Green Plum commercial.
+  { family: "Hanken Grotesk", file: "HankenGrotesk-Variable.woff2", weight: "100 900" },
 ];
 
 for (const font of fonts) {
@@ -56,4 +58,5 @@ export const fontFamilies = [
   "Josefin Sans",
   "Urbanist",
   "Albert Sans",
+  "Hanken Grotesk",
 ] as const;
