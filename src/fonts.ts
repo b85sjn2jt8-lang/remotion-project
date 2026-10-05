@@ -30,6 +30,8 @@ const fonts = [
   { family: "Josefin Sans", file: "JosefinSans-Variable.woff2", weight: "100 700" },
   // Variable font (100–900) used by the ANUA Birch 70 commercial.
   { family: "Urbanist", file: "Urbanist-Variable.woff2", weight: "100 900" },
+  // Variable font (100–900) used by the SKIN1004 Centella commercial.
+  { family: "Albert Sans", file: "AlbertSans-Variable.woff2", weight: "100 900" },
 ];
 
 for (const font of fonts) {
@@ -53,4 +55,5 @@ export const fontFamilies = [
   "Jost",
   "Josefin Sans",
   "Urbanist",
+  "Albert Sans",
 ] as const;

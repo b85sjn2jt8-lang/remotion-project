@@ -5,6 +5,13 @@ import { ExampleVideo } from "./videos/Example/ExampleVideo";
 import { Hook as ExampleHook } from "./videos/Example/Hook";
 import { Outro as ExampleOutro } from "./videos/Example/Outro";
 import { AnuaAd } from "./videos/Anua/AnuaAd";
+import { K1Origin } from "./videos/Skin1004/K1Origin";
+import { K2AmberReveal } from "./videos/Skin1004/K2AmberReveal";
+import { K3Centella } from "./videos/Skin1004/K3Centella";
+import { K4WateryEssence } from "./videos/Skin1004/K4WateryEssence";
+import { K5SootheHydrate } from "./videos/Skin1004/K5SootheHydrate";
+import { K6FinalHero } from "./videos/Skin1004/K6FinalHero";
+import { Skin1004Ad } from "./videos/Skin1004/Skin1004Ad";
 import { B1SeventyHook } from "./videos/Birch70/B1SeventyHook";
 import { B2ProductReveal } from "./videos/Birch70/B2ProductReveal";
 import { B3BirchDew } from "./videos/Birch70/B3BirchDew";
@@ -62,12 +69,71 @@ import { S5Halfmoon } from "./videos/Anua/S5Halfmoon";
 import { S6Liquid } from "./videos/Anua/S6Liquid";
 import { S7FinalHero } from "./videos/Anua/S7FinalHero";
 
-// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE, SEVEN GREEN, ANUA Birch 70 — are 1920x1080). Each video gets:
+// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE, SEVEN GREEN, ANUA Birch 70, SKIN1004 — are 1920x1080). Each video gets:
 //  - a main <Composition> with its global props (captions, colors) editable in the Props panel
 //  - a <Folder> of its scenes so each can be opened and edited on its own timeline
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* SKIN1004 Madagascar Centella — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
+      <Folder name="Skin1004Ad-Shots">
+        <Composition
+          id="Skin1004-K1-Origin"
+          component={K1Origin}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={86}
+        />
+        <Composition
+          id="Skin1004-K2-AmberReveal"
+          component={K2AmberReveal}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={90}
+        />
+        <Composition
+          id="Skin1004-K3-Centella"
+          component={K3Centella}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Skin1004-K4-WateryEssence"
+          component={K4WateryEssence}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Skin1004-K5-SootheHydrate"
+          component={K5SootheHydrate}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={82}
+        />
+        <Composition
+          id="Skin1004-K6-FinalHero"
+          component={K6FinalHero}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+      </Folder>
+      <Composition
+        id="Skin1004Ad"
+        component={Skin1004Ad}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={450}
+      />
       {/* ANUA Birch 70 Moisture Boosting Serum — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
       <Folder name="Birch70Ad-Shots">
         <Composition
