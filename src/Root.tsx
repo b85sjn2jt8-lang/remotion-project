@@ -5,6 +5,13 @@ import { ExampleVideo } from "./videos/Example/ExampleVideo";
 import { Hook as ExampleHook } from "./videos/Example/Hook";
 import { Outro as ExampleOutro } from "./videos/Example/Outro";
 import { AnuaAd } from "./videos/Anua/AnuaAd";
+import { G1ForestHook } from "./videos/SevenGreen/G1ForestHook";
+import { G2TriangleReveal } from "./videos/SevenGreen/G2TriangleReveal";
+import { G3BotanicalWorld } from "./videos/SevenGreen/G3BotanicalWorld";
+import { G4FoamCleanse } from "./videos/SevenGreen/G4FoamCleanse";
+import { G5TriangleLanguage } from "./videos/SevenGreen/G5TriangleLanguage";
+import { G6FinalHero as SevenGreenG6FinalHero } from "./videos/SevenGreen/G6FinalHero";
+import { SevenGreenAd } from "./videos/SevenGreen/SevenGreenAd";
 import { M1NightWrap } from "./videos/Medicube/M1NightWrap";
 import { M2Hero } from "./videos/Medicube/M2Hero";
 import { M3GelToFilm } from "./videos/Medicube/M3GelToFilm";
@@ -48,12 +55,71 @@ import { S5Halfmoon } from "./videos/Anua/S5Halfmoon";
 import { S6Liquid } from "./videos/Anua/S6Liquid";
 import { S7FinalHero } from "./videos/Anua/S7FinalHero";
 
-// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE — are 1920x1080). Each video gets:
+// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE, SEVEN GREEN — are 1920x1080). Each video gets:
 //  - a main <Composition> with its global props (captions, colors) editable in the Props panel
 //  - a <Folder> of its scenes so each can be opened and edited on its own timeline
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* NATURE SEVEN GREEN shampoo bar — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
+      <Folder name="SevenGreenAd-Shots">
+        <Composition
+          id="SevenGreen-G1-ForestHook"
+          component={G1ForestHook}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={86}
+        />
+        <Composition
+          id="SevenGreen-G2-TriangleReveal"
+          component={G2TriangleReveal}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={90}
+        />
+        <Composition
+          id="SevenGreen-G3-BotanicalWorld"
+          component={G3BotanicalWorld}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="SevenGreen-G4-FoamCleanse"
+          component={G4FoamCleanse}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="SevenGreen-G5-TriangleLanguage"
+          component={G5TriangleLanguage}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={82}
+        />
+        <Composition
+          id="SevenGreen-G6-FinalHero"
+          component={SevenGreenG6FinalHero}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+      </Folder>
+      <Composition
+        id="SevenGreenAd"
+        component={SevenGreenAd}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={450}
+      />
       {/* MEDICUBE Collagen Night Wrapping Mask — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
       <Folder name="MedicubeAd-Shots">
         <Composition

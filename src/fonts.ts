@@ -26,6 +26,8 @@ const fonts = [
   { family: "Figtree", file: "Figtree-Variable.woff2", weight: "300 900" },
   // Variable font (100–900) used by the MEDICUBE commercial.
   { family: "Jost", file: "Jost-Variable.woff2", weight: "100 900" },
+  // Variable font (100–700) used by the NATURE SEVEN GREEN commercial.
+  { family: "Josefin Sans", file: "JosefinSans-Variable.woff2", weight: "100 700" },
 ];
 
 for (const font of fonts) {
@@ -47,4 +49,5 @@ export const fontFamilies = [
   "Sora",
   "Figtree",
   "Jost",
+  "Josefin Sans",
 ] as const;
