@@ -5,6 +5,13 @@ import { ExampleVideo } from "./videos/Example/ExampleVideo";
 import { Hook as ExampleHook } from "./videos/Example/Hook";
 import { Outro as ExampleOutro } from "./videos/Example/Outro";
 import { AnuaAd } from "./videos/Anua/AnuaAd";
+import { B1SeventyHook } from "./videos/Birch70/B1SeventyHook";
+import { B2ProductReveal } from "./videos/Birch70/B2ProductReveal";
+import { B3BirchDew } from "./videos/Birch70/B3BirchDew";
+import { B4MoistureLayer } from "./videos/Birch70/B4MoistureLayer";
+import { B5DewAtmosphere } from "./videos/Birch70/B5DewAtmosphere";
+import { B6FinalHero as Birch70B6FinalHero } from "./videos/Birch70/B6FinalHero";
+import { Birch70Ad } from "./videos/Birch70/Birch70Ad";
 import { G1ForestHook } from "./videos/SevenGreen/G1ForestHook";
 import { G2TriangleReveal } from "./videos/SevenGreen/G2TriangleReveal";
 import { G3BotanicalWorld } from "./videos/SevenGreen/G3BotanicalWorld";
@@ -55,12 +62,71 @@ import { S5Halfmoon } from "./videos/Anua/S5Halfmoon";
 import { S6Liquid } from "./videos/Anua/S6Liquid";
 import { S7FinalHero } from "./videos/Anua/S7FinalHero";
 
-// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE, SEVEN GREEN — are 1920x1080). Each video gets:
+// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE, SEVEN GREEN, ANUA Birch 70 — are 1920x1080). Each video gets:
 //  - a main <Composition> with its global props (captions, colors) editable in the Props panel
 //  - a <Folder> of its scenes so each can be opened and edited on its own timeline
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* ANUA Birch 70 Moisture Boosting Serum — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
+      <Folder name="Birch70Ad-Shots">
+        <Composition
+          id="Birch70-B1-SeventyHook"
+          component={B1SeventyHook}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={86}
+        />
+        <Composition
+          id="Birch70-B2-ProductReveal"
+          component={B2ProductReveal}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={90}
+        />
+        <Composition
+          id="Birch70-B3-BirchDew"
+          component={B3BirchDew}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Birch70-B4-MoistureLayer"
+          component={B4MoistureLayer}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Birch70-B5-DewAtmosphere"
+          component={B5DewAtmosphere}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={82}
+        />
+        <Composition
+          id="Birch70-B6-FinalHero"
+          component={Birch70B6FinalHero}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+      </Folder>
+      <Composition
+        id="Birch70Ad"
+        component={Birch70Ad}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={450}
+      />
       {/* NATURE SEVEN GREEN shampoo bar — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
       <Folder name="SevenGreenAd-Shots">
         <Composition
