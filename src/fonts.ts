@@ -34,6 +34,8 @@ const fonts = [
   { family: "Albert Sans", file: "AlbertSans-Variable.woff2", weight: "100 900" },
   // Variable font (100–900) used by the BEAUTY OF JOSEON Green Plum commercial.
   { family: "Hanken Grotesk", file: "HankenGrotesk-Variable.woff2", weight: "100 900" },
+  // Variable font (100–900) used by the ARENCIA TXA Booster Shot commercial.
+  { family: "Archivo", file: "Archivo-Variable.woff2", weight: "100 900" },
 ];
 
 for (const font of fonts) {
@@ -59,4 +61,5 @@ export const fontFamilies = [
   "Urbanist",
   "Albert Sans",
   "Hanken Grotesk",
+  "Archivo",
 ] as const;

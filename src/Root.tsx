@@ -5,6 +5,13 @@ import { ExampleVideo } from "./videos/Example/ExampleVideo";
 import { Hook as ExampleHook } from "./videos/Example/Hook";
 import { Outro as ExampleOutro } from "./videos/Example/Outro";
 import { AnuaAd } from "./videos/Anua/AnuaAd";
+import { A1TargetLock } from "./videos/Arencia/A1TargetLock";
+import { A2ProductReveal } from "./videos/Arencia/A2ProductReveal";
+import { A3Concentrated } from "./videos/Arencia/A3Concentrated";
+import { A4ToneBalance } from "./videos/Arencia/A4ToneBalance";
+import { A5Ingredients } from "./videos/Arencia/A5Ingredients";
+import { A6FinalHero } from "./videos/Arencia/A6FinalHero";
+import { ArenciaAd } from "./videos/Arencia/ArenciaAd";
 import { P1PlumReset } from "./videos/GreenPlum/P1PlumReset";
 import { P2ProductReveal } from "./videos/GreenPlum/P2ProductReveal";
 import { P3GreenPlum } from "./videos/GreenPlum/P3GreenPlum";
@@ -76,12 +83,71 @@ import { S5Halfmoon } from "./videos/Anua/S5Halfmoon";
 import { S6Liquid } from "./videos/Anua/S6Liquid";
 import { S7FinalHero } from "./videos/Anua/S7FinalHero";
 
-// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE, SEVEN GREEN, ANUA Birch 70, SKIN1004, BEAUTY OF JOSEON — are 1920x1080). Each video gets:
+// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE, SEVEN GREEN, ANUA Birch 70, SKIN1004, BEAUTY OF JOSEON, ARENCIA — are 1920x1080). Each video gets:
 //  - a main <Composition> with its global props (captions, colors) editable in the Props panel
 //  - a <Folder> of its scenes so each can be opened and edited on its own timeline
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* ARENCIA TXA Booster Shot — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
+      <Folder name="ArenciaAd-Shots">
+        <Composition
+          id="Arencia-A1-TargetLock"
+          component={A1TargetLock}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={86}
+        />
+        <Composition
+          id="Arencia-A2-ProductReveal"
+          component={A2ProductReveal}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={90}
+        />
+        <Composition
+          id="Arencia-A3-Concentrated"
+          component={A3Concentrated}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Arencia-A4-ToneBalance"
+          component={A4ToneBalance}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Arencia-A5-Ingredients"
+          component={A5Ingredients}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={82}
+        />
+        <Composition
+          id="Arencia-A6-FinalHero"
+          component={A6FinalHero}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+      </Folder>
+      <Composition
+        id="ArenciaAd"
+        component={ArenciaAd}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={450}
+      />
       {/* BEAUTY OF JOSEON Green Plum Refreshing Toner — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
       <Folder name="GreenPlumAd-Shots">
         <Composition
