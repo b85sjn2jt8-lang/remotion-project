@@ -36,6 +36,8 @@ const fonts = [
   { family: "Hanken Grotesk", file: "HankenGrotesk-Variable.woff2", weight: "100 900" },
   // Variable font (100–900) used by the ARENCIA TXA Booster Shot commercial.
   { family: "Archivo", file: "Archivo-Variable.woff2", weight: "100 900" },
+  // Variable font (100–1000) used by the BIODANCE Caviar PDRN commercial.
+  { family: "DM Sans", file: "DMSans-Variable.woff2", weight: "100 1000" },
 ];
 
 for (const font of fonts) {
@@ -62,4 +64,5 @@ export const fontFamilies = [
   "Albert Sans",
   "Hanken Grotesk",
   "Archivo",
+  "DM Sans",
 ] as const;

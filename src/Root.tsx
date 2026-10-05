@@ -5,6 +5,13 @@ import { ExampleVideo } from "./videos/Example/ExampleVideo";
 import { Hook as ExampleHook } from "./videos/Example/Hook";
 import { Outro as ExampleOutro } from "./videos/Example/Outro";
 import { AnuaAd } from "./videos/Anua/AnuaAd";
+import { J1JellyHook } from "./videos/Biodance/J1JellyHook";
+import { J2ProductReveal } from "./videos/Biodance/J2ProductReveal";
+import { J3CaviarPearls } from "./videos/Biodance/J3CaviarPearls";
+import { J4JellyToMist } from "./videos/Biodance/J4JellyToMist";
+import { J5DewyGlow } from "./videos/Biodance/J5DewyGlow";
+import { J6FinalHero } from "./videos/Biodance/J6FinalHero";
+import { BiodanceAd } from "./videos/Biodance/BiodanceAd";
 import { A1TargetLock } from "./videos/Arencia/A1TargetLock";
 import { A2ProductReveal } from "./videos/Arencia/A2ProductReveal";
 import { A3Concentrated } from "./videos/Arencia/A3Concentrated";
@@ -83,12 +90,71 @@ import { S5Halfmoon } from "./videos/Anua/S5Halfmoon";
 import { S6Liquid } from "./videos/Anua/S6Liquid";
 import { S7FinalHero } from "./videos/Anua/S7FinalHero";
 
-// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE, SEVEN GREEN, ANUA Birch 70, SKIN1004, BEAUTY OF JOSEON, ARENCIA — are 1920x1080). Each video gets:
+// Social videos are 1080x1920 @ 30fps (the store-display spots — ANUA, A BONNE, HIKARI, EQQUALBERRY, ANUA Heartleaf, MEDICUBE, SEVEN GREEN, ANUA Birch 70, SKIN1004, BEAUTY OF JOSEON, ARENCIA, BIODANCE — are 1920x1080). Each video gets:
 //  - a main <Composition> with its global props (captions, colors) editable in the Props panel
 //  - a <Folder> of its scenes so each can be opened and edited on its own timeline
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* BIODANCE Caviar PDRN Jelly Serum Mist — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
+      <Folder name="BiodanceAd-Shots">
+        <Composition
+          id="Biodance-J1-JellyHook"
+          component={J1JellyHook}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={86}
+        />
+        <Composition
+          id="Biodance-J2-ProductReveal"
+          component={J2ProductReveal}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={90}
+        />
+        <Composition
+          id="Biodance-J3-CaviarPearls"
+          component={J3CaviarPearls}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Biodance-J4-JellyToMist"
+          component={J4JellyToMist}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+        <Composition
+          id="Biodance-J5-DewyGlow"
+          component={J5DewyGlow}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={82}
+        />
+        <Composition
+          id="Biodance-J6-FinalHero"
+          component={J6FinalHero}
+          width={1920}
+          height={1080}
+          fps={30}
+          durationInFrames={88}
+        />
+      </Folder>
+      <Composition
+        id="BiodanceAd"
+        component={BiodanceAd}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={450}
+      />
       {/* ARENCIA TXA Booster Shot — ONE 15s 1920x1080 store-display spot (450 frames, loops). */}
       <Folder name="ArenciaAd-Shots">
         <Composition
