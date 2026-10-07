@@ -16,3 +16,9 @@ public/footage/*
 
 # whisper.cpp + models (downloaded by `npm run ingest -- <file> --captions`)
 whisper.cpp/
+
+# Editor runtime data
+.cache/
+projects/.history/
+public/media/
+public/proxies/

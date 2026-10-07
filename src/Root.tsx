@@ -1,4 +1,9 @@
+import type { CalculateMetadataFunction } from "remotion";
 import { Composition, Folder } from "remotion";
+import ray391Project from "../projects/ray391.json";
+import type { ProjectCompositionProps } from "./engine/ProjectComposition";
+import { ProjectComposition } from "./engine/ProjectComposition";
+import type { Project } from "./engine/types";
 import "./fonts";
 import { arabicSocialVideoSchema, socialVideoSchema } from "./schema";
 import { ExampleVideo } from "./videos/Example/ExampleVideo";
@@ -13,6 +18,18 @@ import { Ray391Video } from "./videos/Ray391/Ray391Video";
 // Every video is 1080x1920 @ 30fps. Each video gets:
 //  - a main <Composition> with its global props (captions, colors) editable in the Props panel
 //  - a <Folder> of its scenes so each can be opened and edited on its own timeline
+// Editor projects (projects/*.json) render through one generic composition.
+// Size, fps and length come from the project data. Render another project with
+//   npx remotion render EditorProject out/x.mp4 --props=<file with {"project": …}>
+const editorMetadata: CalculateMetadataFunction<ProjectCompositionProps> = ({
+  props,
+}) => ({
+  durationInFrames: props.project.durationInFrames,
+  fps: props.project.fps,
+  width: props.project.width,
+  height: props.project.height,
+});
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
@@ -121,6 +138,16 @@ export const RemotionRoot: React.FC = () => {
             distanceFromBottom: 1200,
           },
         }}
+      />
+      <Composition
+        id="EditorProject"
+        component={ProjectComposition}
+        calculateMetadata={editorMetadata}
+        width={1080}
+        height={1920}
+        fps={30}
+        durationInFrames={916}
+        defaultProps={{ project: ray391Project as Project }}
       />
     </>
   );

@@ -20,11 +20,19 @@
   },
   "devDependencies": {
     "@remotion/eslint-config-flat": "4.0.529",
+    "@remotion/media-utils": "^4.0.529",
+    "@remotion/player": "^4.0.529",
     "@types/react": "19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@types/web": "0.0.166",
+    "@vitejs/plugin-react": "^4.7.0",
     "eslint": "9.19.0",
+    "lucide-react": "^1.52.0",
     "prettier": "3.8.1",
-    "typescript": "5.9.3"
+    "tsx": "^4.23.15",
+    "typescript": "5.9.3",
+    "vite": "^6.4.4",
+    "zustand": "^5.0.15"
   },
   "scripts": {
     "dev": "remotion studio",
@@ -33,6 +41,9 @@
     "lint": "eslint src && tsc",
     "ingest": "node scripts/ingest.mjs",
     "render": "remotion render",
-    "still": "remotion still"
+    "still": "remotion still",
+    "editor": "vite --config editor/vite.config.ts",
+    "editor:check": "tsc -p editor/tsconfig.json",
+    "migrate:ray391": "tsx scripts/migrate-ray391.ts"
   }
 }
