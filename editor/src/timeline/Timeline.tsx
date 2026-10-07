@@ -84,6 +84,20 @@ export const Timeline: React.FC = () => {
     }
   }, []);
 
+  // Keep the playhead in view while playing / seeking.
+  useEffect(
+    () =>
+      usePlayback.subscribe((st, prev) => {
+        const el = scrollRef.current;
+        if (!el || st.frame === prev.frame) return;
+        const x = st.frame * useEditor.getState().pxPerFrame;
+        if (x < el.scrollLeft || x > el.scrollLeft + el.clientWidth - 40) {
+          el.scrollLeft = Math.max(0, x - el.clientWidth * 0.2);
+        }
+      }),
+    [],
+  );
+
   // Ctrl/Cmd + wheel zoom
   useEffect(() => {
     const el = scrollRef.current;
