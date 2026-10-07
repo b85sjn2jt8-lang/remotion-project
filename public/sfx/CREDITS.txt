@@ -1,0 +1,1 @@
+Sound effects from soundcn (https://github.com/kapishdima/soundcn), MIT License, Copyright (c) 2026 KapishDima.

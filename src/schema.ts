@@ -27,3 +27,28 @@ export const socialVideoSchema = z.object({
 
 export type CaptionStyle = z.infer<typeof captionStyleSchema>;
 export type SocialVideoProps = z.infer<typeof socialVideoSchema>;
+
+// Arabic, right-to-left captions with authored emphasis (see src/components/ArabicCaptions.tsx).
+export const arabicCaptionStyleSchema = z.object({
+  enabled: z.boolean(),
+  fontFamily: z.enum(fontFamilies),
+  fontSize: z.number().min(40).max(160).step(2),
+  emphasisFontSize: z.number().min(40).max(220).step(2),
+  textColor: zColor(),
+  highlightColor: zColor(),
+  negativeColor: zColor(),
+  strokeColor: zColor(),
+  strokeWidth: z.number().min(0).max(24).step(1),
+  distanceFromBottom: z.number().min(200).max(1400).step(10),
+});
+
+export const arabicSocialVideoSchema = z.object({
+  accentColor: zColor(),
+  sfxVolume: z.number().min(0).max(1).step(0.05),
+  showProgressBar: z.boolean(),
+  showSafeZones: z.boolean(),
+  captions: arabicCaptionStyleSchema,
+});
+
+export type ArabicCaptionStyle = z.infer<typeof arabicCaptionStyleSchema>;
+export type ArabicSocialVideoProps = z.infer<typeof arabicSocialVideoSchema>;

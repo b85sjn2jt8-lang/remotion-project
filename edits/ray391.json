@@ -1,0 +1,64 @@
+{
+  "source": "footage/ray391.mp4",
+  "footage": "footage/ray391.mp4",
+  "captions": "captions/ray391.json",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "hdr": false,
+  "durationInSeconds": 30.742993,
+  "durationInFrames": 922,
+  "loudness": {
+    "integrated": -21.77,
+    "threshold": -31.91
+  },
+  "silenceSettings": {
+    "minSilence": 0.35,
+    "pad": 0.08
+  },
+  "silences": [
+    {
+      "start": 13.85873,
+      "end": 14.244444
+    },
+    {
+      "start": 16.700522,
+      "end": 17.109002
+    },
+    {
+      "start": 21.074989,
+      "end": 21.549592
+    }
+  ],
+  "clips": [
+    {
+      "name": "Clip 1",
+      "startSec": 0,
+      "endSec": 13.939,
+      "trimBefore": 0,
+      "durationInFrames": 418
+    },
+    {
+      "name": "Clip 2",
+      "startSec": 14.164,
+      "endSec": 16.781,
+      "trimBefore": 425,
+      "durationInFrames": 78
+    },
+    {
+      "name": "Clip 3",
+      "startSec": 17.029,
+      "endSec": 21.155,
+      "trimBefore": 511,
+      "durationInFrames": 124
+    },
+    {
+      "name": "Clip 4",
+      "startSec": 21.47,
+      "endSec": 30.743,
+      "trimBefore": 644,
+      "durationInFrames": 278
+    }
+  ],
+  "keptFrames": 898
+}

@@ -1,0 +1,619 @@
+[
+ {
+  "text": "أنا",
+  "startMs": 0,
+  "endMs": 220,
+  "timestampMs": 110,
+  "confidence": 1
+ },
+ {
+  "text": "قد",
+  "startMs": 220,
+  "endMs": 340,
+  "timestampMs": 280,
+  "confidence": 1
+ },
+ {
+  "text": "تكلّمت",
+  "startMs": 340,
+  "endMs": 620,
+  "timestampMs": 480,
+  "confidence": 1
+ },
+ {
+  "text": "عن",
+  "startMs": 620,
+  "endMs": 800,
+  "timestampMs": 710,
+  "confidence": 1
+ },
+ {
+  "text": "المحلات",
+  "startMs": 800,
+  "endMs": 1120,
+  "timestampMs": 960,
+  "confidence": 1,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "اللي",
+  "startMs": 1120,
+  "endMs": 1240,
+  "timestampMs": 1180,
+  "confidence": 1
+ },
+ {
+  "text": "تسوّي",
+  "startMs": 1240,
+  "endMs": 1460,
+  "timestampMs": 1350,
+  "confidence": 1
+ },
+ {
+  "text": "عروض",
+  "startMs": 1460,
+  "endMs": 1840,
+  "timestampMs": 1650,
+  "confidence": 1,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "على",
+  "startMs": 1840,
+  "endMs": 2020,
+  "timestampMs": 1930,
+  "confidence": 1
+ },
+ {
+  "text": "عطور",
+  "startMs": 2020,
+  "endMs": 2280,
+  "timestampMs": 2150,
+  "confidence": 1
+ },
+ {
+  "text": "عالمية",
+  "startMs": 2280,
+  "endMs": 2840,
+  "timestampMs": 2560,
+  "confidence": 1,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "بـ49",
+  "startMs": 2840,
+  "endMs": 3440,
+  "timestampMs": 3140,
+  "confidence": 1,
+  "emphasis": true
+ },
+ {
+  "text": "ريال",
+  "startMs": 3440,
+  "endMs": 3820,
+  "timestampMs": 3630,
+  "confidence": 1,
+  "pageBreakAfter": true,
+  "emphasis": true
+ },
+ {
+  "text": "و96",
+  "startMs": 3820,
+  "endMs": 4360,
+  "timestampMs": 4090,
+  "confidence": 1,
+  "emphasis": true
+ },
+ {
+  "text": "ريال",
+  "startMs": 4360,
+  "endMs": 4600,
+  "timestampMs": 4480,
+  "confidence": 1,
+  "pageBreakAfter": true,
+  "emphasis": true
+ },
+ {
+  "text": "إنها",
+  "startMs": 4600,
+  "endMs": 5000,
+  "timestampMs": 4800,
+  "confidence": 1
+ },
+ {
+  "text": "كذّابة",
+  "startMs": 5000,
+  "endMs": 5560,
+  "timestampMs": 5280,
+  "confidence": 1,
+  "emphasis": true,
+  "tone": "negative",
+  "pageBreakAfter": true
+ },
+ {
+  "text": "وتخدع",
+  "startMs": 5560,
+  "endMs": 5940,
+  "timestampMs": 5750,
+  "confidence": 1
+ },
+ {
+  "text": "الناس",
+  "startMs": 5940,
+  "endMs": 6280,
+  "timestampMs": 6110,
+  "confidence": 1,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "احنا",
+  "startMs": 6280,
+  "endMs": 6560,
+  "timestampMs": 6420,
+  "confidence": 1
+ },
+ {
+  "text": "مسوّين",
+  "startMs": 6560,
+  "endMs": 6840,
+  "timestampMs": 6700,
+  "confidence": 1
+ },
+ {
+  "text": "لكم",
+  "startMs": 6840,
+  "endMs": 7100,
+  "timestampMs": 6970,
+  "confidence": 1
+ },
+ {
+  "text": "كود",
+  "startMs": 7100,
+  "endMs": 7300,
+  "timestampMs": 7200,
+  "confidence": 1,
+  "emphasis": true
+ },
+ {
+  "text": "خصم",
+  "startMs": 7300,
+  "endMs": 7700,
+  "timestampMs": 7500,
+  "confidence": 1,
+  "emphasis": true,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "يخصم",
+  "startMs": 7700,
+  "endMs": 8100,
+  "timestampMs": 7900,
+  "confidence": 1
+ },
+ {
+  "text": "15%",
+  "startMs": 8100,
+  "endMs": 9080,
+  "timestampMs": 8590,
+  "confidence": 1,
+  "emphasis": true,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "أنا",
+  "startMs": 9080,
+  "endMs": 9280,
+  "timestampMs": 9180,
+  "confidence": 1
+ },
+ {
+  "text": "ما",
+  "startMs": 9280,
+  "endMs": 9400,
+  "timestampMs": 9340,
+  "confidence": 1
+ },
+ {
+  "text": "بقول",
+  "startMs": 9400,
+  "endMs": 9620,
+  "timestampMs": 9510,
+  "confidence": 1
+ },
+ {
+  "text": "لك",
+  "startMs": 9620,
+  "endMs": 9720,
+  "timestampMs": 9670,
+  "confidence": 1,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "إنه",
+  "startMs": 9720,
+  "endMs": 9860,
+  "timestampMs": 9790,
+  "confidence": 1
+ },
+ {
+  "text": "عندنا",
+  "startMs": 9860,
+  "endMs": 10040,
+  "timestampMs": 9950,
+  "confidence": 1
+ },
+ {
+  "text": "أرخص",
+  "startMs": 10040,
+  "endMs": 10300,
+  "timestampMs": 10170,
+  "confidence": 1,
+  "emphasis": true,
+  "tone": "negative"
+ },
+ {
+  "text": "سعر",
+  "startMs": 10300,
+  "endMs": 10620,
+  "timestampMs": 10460,
+  "confidence": 1,
+  "emphasis": true,
+  "tone": "negative",
+  "pageBreakAfter": true
+ },
+ {
+  "text": "لا،",
+  "startMs": 10620,
+  "endMs": 10860,
+  "timestampMs": 10740,
+  "confidence": 1,
+  "tone": "negative"
+ },
+ {
+  "text": "عندنا",
+  "startMs": 10860,
+  "endMs": 11340,
+  "timestampMs": 11100,
+  "confidence": 1
+ },
+ {
+  "text": "الأصلي",
+  "startMs": 11340,
+  "endMs": 11720,
+  "timestampMs": 11530,
+  "confidence": 1,
+  "emphasis": true,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "لكن",
+  "startMs": 11720,
+  "endMs": 11900,
+  "timestampMs": 11810,
+  "confidence": 1
+ },
+ {
+  "text": "بهالكود",
+  "startMs": 11900,
+  "endMs": 12820,
+  "timestampMs": 12360,
+  "confidence": 1
+ },
+ {
+  "text": "طيّرنا",
+  "startMs": 12820,
+  "endMs": 13420,
+  "timestampMs": 13120,
+  "confidence": 1,
+  "emphasis": true
+ },
+ {
+  "text": "المربح",
+  "startMs": 13420,
+  "endMs": 13860,
+  "timestampMs": 13640,
+  "confidence": 1,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "يعني",
+  "startMs": 13900,
+  "endMs": 14420,
+  "timestampMs": 14160,
+  "confidence": 1
+ },
+ {
+  "text": "جان",
+  "startMs": 14420,
+  "endMs": 14620,
+  "timestampMs": 14520,
+  "confidence": 1
+ },
+ {
+  "text": "بول",
+  "startMs": 14620,
+  "endMs": 14840,
+  "timestampMs": 14730,
+  "confidence": 1
+ },
+ {
+  "text": "اللي",
+  "startMs": 14840,
+  "endMs": 15000,
+  "timestampMs": 14920,
+  "confidence": 1
+ },
+ {
+  "text": "سعره",
+  "startMs": 15000,
+  "endMs": 15200,
+  "timestampMs": 15100,
+  "confidence": 1,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "بـ500",
+  "startMs": 15200,
+  "endMs": 15940,
+  "timestampMs": 15570,
+  "confidence": 1,
+  "emphasis": true
+ },
+ {
+  "text": "ريال",
+  "startMs": 15940,
+  "endMs": 16160,
+  "timestampMs": 16050,
+  "confidence": 1
+ },
+ {
+  "text": "تقريبًا",
+  "startMs": 16160,
+  "endMs": 17040,
+  "timestampMs": 16600,
+  "confidence": 1,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "الحين",
+  "startMs": 17040,
+  "endMs": 17360,
+  "timestampMs": 17200,
+  "confidence": 1
+ },
+ {
+  "text": "مع",
+  "startMs": 17360,
+  "endMs": 17620,
+  "timestampMs": 17490,
+  "confidence": 1
+ },
+ {
+  "text": "كود",
+  "startMs": 17620,
+  "endMs": 17800,
+  "timestampMs": 17710,
+  "confidence": 1
+ },
+ {
+  "text": "الخصم",
+  "startMs": 17800,
+  "endMs": 18280,
+  "timestampMs": 18040,
+  "confidence": 1,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "يخصم",
+  "startMs": 18280,
+  "endMs": 18880,
+  "timestampMs": 18580,
+  "confidence": 1
+ },
+ {
+  "text": "قرابة",
+  "startMs": 18880,
+  "endMs": 19220,
+  "timestampMs": 19050,
+  "confidence": 1
+ },
+ {
+  "text": "75",
+  "startMs": 19220,
+  "endMs": 19780,
+  "timestampMs": 19500,
+  "confidence": 1,
+  "emphasis": true
+ },
+ {
+  "text": "ريال",
+  "startMs": 19780,
+  "endMs": 20080,
+  "timestampMs": 19930,
+  "confidence": 1,
+  "emphasis": true,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "وشحن",
+  "startMs": 20080,
+  "endMs": 20540,
+  "timestampMs": 20310,
+  "confidence": 1,
+  "emphasis": true
+ },
+ {
+  "text": "مجاني",
+  "startMs": 20540,
+  "endMs": 21080,
+  "timestampMs": 20810,
+  "confidence": 1,
+  "emphasis": true,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "فإنك",
+  "startMs": 21100,
+  "endMs": 21820,
+  "timestampMs": 21460,
+  "confidence": 1
+ },
+ {
+  "text": "تاخذه",
+  "startMs": 21820,
+  "endMs": 22260,
+  "timestampMs": 22040,
+  "confidence": 1
+ },
+ {
+  "text": "بـ420",
+  "startMs": 22260,
+  "endMs": 22960,
+  "timestampMs": 22610,
+  "confidence": 1,
+  "emphasis": true,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "هذا",
+  "startMs": 22960,
+  "endMs": 23360,
+  "timestampMs": 23160,
+  "confidence": 1
+ },
+ {
+  "text": "شي",
+  "startMs": 23360,
+  "endMs": 23640,
+  "timestampMs": 23500,
+  "confidence": 1
+ },
+ {
+  "text": "بحد",
+  "startMs": 23640,
+  "endMs": 23860,
+  "timestampMs": 23750,
+  "confidence": 1
+ },
+ {
+  "text": "ذاته",
+  "startMs": 23860,
+  "endMs": 24100,
+  "timestampMs": 23980,
+  "confidence": 1
+ },
+ {
+  "text": "جبّار",
+  "startMs": 24100,
+  "endMs": 24560,
+  "timestampMs": 24330,
+  "confidence": 1,
+  "emphasis": true,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "واللي",
+  "startMs": 24560,
+  "endMs": 25040,
+  "timestampMs": 24800,
+  "confidence": 1
+ },
+ {
+  "text": "يعرفون",
+  "startMs": 25040,
+  "endMs": 25520,
+  "timestampMs": 25280,
+  "confidence": 1
+ },
+ {
+  "text": "العطور",
+  "startMs": 25520,
+  "endMs": 25920,
+  "timestampMs": 25720,
+  "confidence": 1,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "راح",
+  "startMs": 25920,
+  "endMs": 26280,
+  "timestampMs": 26100,
+  "confidence": 1
+ },
+ {
+  "text": "يعرفون",
+  "startMs": 26280,
+  "endMs": 26740,
+  "timestampMs": 26510,
+  "confidence": 1
+ },
+ {
+  "text": "إن",
+  "startMs": 26740,
+  "endMs": 26940,
+  "timestampMs": 26840,
+  "confidence": 1
+ },
+ {
+  "text": "السعر",
+  "startMs": 26940,
+  "endMs": 27380,
+  "timestampMs": 27160,
+  "confidence": 1,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "سعر",
+  "startMs": 27380,
+  "endMs": 27940,
+  "timestampMs": 27660,
+  "confidence": 1
+ },
+ {
+  "text": "منافس",
+  "startMs": 27940,
+  "endMs": 28560,
+  "timestampMs": 28250,
+  "confidence": 1,
+  "emphasis": true
+ },
+ {
+  "text": "جدًا",
+  "startMs": 28560,
+  "endMs": 29160,
+  "timestampMs": 28860,
+  "confidence": 1,
+  "emphasis": true,
+  "pageBreakAfter": true
+ },
+ {
+  "text": "وإذا",
+  "startMs": 29160,
+  "endMs": 29580,
+  "timestampMs": 29370,
+  "confidence": 1
+ },
+ {
+  "text": "ما",
+  "startMs": 29580,
+  "endMs": 29760,
+  "timestampMs": 29670,
+  "confidence": 1
+ },
+ {
+  "text": "كان",
+  "startMs": 29760,
+  "endMs": 29940,
+  "timestampMs": 29850,
+  "confidence": 1
+ },
+ {
+  "text": "الأقل",
+  "startMs": 29940,
+  "endMs": 30360,
+  "timestampMs": 30150,
+  "confidence": 1,
+  "emphasis": true,
+  "pageBreakAfter": true
+ }
+]
