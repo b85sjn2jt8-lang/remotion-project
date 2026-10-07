@@ -174,7 +174,7 @@ const ensureProxy = (src: string) => {
   if (!file.startsWith(PUBLIC) || !fs.existsSync(file))
     return Promise.resolve(null);
   const stat = fs.statSync(file);
-  const name = `${safeName(src.replace(/\.[^.]+$/, ""))}-${stat.size}.webm`;
+  const name = `${safeName(src.replace(/\.[^.]+$/, ""))}-${stat.size}-720.webm`;
   const out = path.join(PROXIES, name);
   const rel = `proxies/${name}`;
   if (fs.existsSync(out)) return Promise.resolve(rel);
@@ -191,7 +191,7 @@ const ensureProxy = (src: string) => {
           "-i",
           file,
           "-vf",
-          "scale=-2:960,fps=30",
+          "scale=-2:1280,fps=30",
           "-c:v",
           "libvpx-vp9",
           "-b:v",
@@ -221,6 +221,54 @@ const ensureProxy = (src: string) => {
     );
   }
   return proxyJobs.get(rel)!;
+};
+
+// ---------- transcription (whisper.cpp via scripts/ingest.mjs) ----------
+type TranscribeJob = {
+  status: "running" | "done" | "error";
+  captions?: string;
+  log: string;
+};
+const transcribes = new Map<string, TranscribeJob>();
+const startTranscribe = (src: string, model: string, language: string) => {
+  const file = path.join(PUBLIC, src);
+  const job: TranscribeJob = { status: "running", log: "" };
+  transcribes.set(src, job);
+  if (!file.startsWith(PUBLIC) || !fs.existsSync(file)) {
+    job.status = "error";
+    job.log = "file not found";
+    return job;
+  }
+  const name = path
+    .basename(file, path.extname(file))
+    .replace(/[^a-zA-Z0-9_-]+/g, "-")
+    .toLowerCase();
+  const child = spawn(
+    "node",
+    [
+      "scripts/ingest.mjs",
+      file,
+      "--no-transcode",
+      "--captions",
+      "--model",
+      model,
+      "--language",
+      language,
+    ],
+    { cwd: ROOT },
+  );
+  const onData = (d: Buffer) =>
+    (job.log = (job.log + d.toString()).slice(-3000));
+  child.stdout.on("data", onData);
+  child.stderr.on("data", onData);
+  child.on("close", (code) => {
+    const out = path.join(PUBLIC, "captions", `${name}.json`);
+    if (code === 0 && fs.existsSync(out)) {
+      job.status = "done";
+      job.captions = `captions/${name}.json`;
+    } else job.status = "error";
+  });
+  return job;
 };
 
 // ---------- render ----------
@@ -462,6 +510,23 @@ const handle = async (req: IncomingMessage, res: ServerResponse) => {
     return proxy
       ? json(res, { proxy })
       : json(res, { error: "cannot create proxy" }, 404);
+  }
+
+  if (p === "/api/transcribe" && m === "POST") {
+    const {
+      src,
+      model = "medium",
+      language = "ar",
+    } = JSON.parse((await readBody(req)).toString("utf8"));
+    const existing = transcribes.get(src);
+    if (existing?.status === "running") return json(res, existing);
+    return json(res, startTranscribe(src, model, language));
+  }
+  if (p === "/api/transcribe" && m === "GET") {
+    return json(
+      res,
+      transcribes.get(url.searchParams.get("src") ?? "") ?? { status: "idle" },
+    );
   }
 
   if (p === "/api/render" && m === "POST") {

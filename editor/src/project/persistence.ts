@@ -78,6 +78,8 @@ export const startAutosave = () => {
     if (!s.project || s.txBase) return;
     const txEnded = Boolean(prev.txBase) && !s.txBase;
     if (s.project === prev.project && !txEnded) return;
+    // Opening / switching a project is not an edit.
+    if (!prev.project || prev.project.id !== s.project.id) return;
     try {
       localStorage.setItem(LS_KEY(s.project.id), JSON.stringify(s.project));
     } catch {

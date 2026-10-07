@@ -79,19 +79,34 @@ export const SelectionOverlay: React.FC<{ scale: number }> = ({ scale }) => {
     const project = useEditor.getState().project;
     if (!project) return {};
     const els = document.elementsFromPoint(clientX, clientY);
-    let word: string | undefined;
-    for (const el of els) {
-      const w = (el as HTMLElement).closest?.("[data-word-id]");
-      if (w && !word) word = w.getAttribute("data-word-id") ?? undefined;
-      const host = (el as HTMLElement).closest?.("[data-item-id]");
-      if (!host) continue;
-      const id = host.getAttribute("data-item-id");
-      const item = project.items.find((i) => i.id === id);
-      const track = project.tracks.find((t) => t.id === item?.trackId);
-      if (item && !track?.locked && !track?.hidden)
-        return { item, wordId: word };
-    }
-    return {};
+    const canvas = ref.current?.getBoundingClientRect();
+    // Elements covering (almost) the whole frame are containers / backgrounds: only pick them
+    // when nothing more specific is under the pointer (so a click on a caption never grabs a
+    // full-frame scene or the video below it).
+    const isFullFrame = (el: Element) => {
+      if (!canvas) return false;
+      const r = el.getBoundingClientRect();
+      return r.width * r.height >= canvas.width * canvas.height * 0.9;
+    };
+    const pick = (allowFull: boolean): { item?: Item; wordId?: string } => {
+      let word: string | undefined;
+      for (const el of els) {
+        if (ref.current?.contains(el)) continue;
+        const w = (el as HTMLElement).closest?.("[data-word-id]");
+        if (w && !word) word = w.getAttribute("data-word-id") ?? undefined;
+        const host = (el as HTMLElement).closest?.("[data-item-id]");
+        if (!host || !host.closest(".canvas-box")) continue;
+        if (!allowFull && isFullFrame(el)) continue;
+        const id = host.getAttribute("data-item-id");
+        const item = project.items.find((i) => i.id === id);
+        const track = project.tracks.find((t) => t.id === item?.trackId);
+        if (item && !track?.locked && !track?.hidden)
+          return { item, wordId: word };
+      }
+      return {};
+    };
+    const specific = pick(false);
+    return specific.item ? specific : pick(true);
   };
 
   const onPointerDown = (e: React.PointerEvent) => {
@@ -116,7 +131,22 @@ export const SelectionOverlay: React.FC<{ scale: number }> = ({ scale }) => {
 
   const onDoubleClick = (e: React.MouseEvent) => {
     const { item, wordId: w } = hitTest(e.clientX, e.clientY);
-    if (item?.type === "caption" && w) select([item.id], w);
+    if (!item) return;
+    if (item.type === "caption" && w) {
+      select([item.id], w);
+      return;
+    }
+    // Double-click text → edit it in the inspector.
+    if (item.type === "text" || item.type === "caption") {
+      select([item.id]);
+      setTimeout(() => {
+        const ta = document.querySelector<HTMLTextAreaElement>(
+          ".inspector textarea",
+        );
+        ta?.focus();
+        ta?.select();
+      }, 50);
+    }
   };
 
   const startMove = (e: React.PointerEvent, ids: string[]) => {

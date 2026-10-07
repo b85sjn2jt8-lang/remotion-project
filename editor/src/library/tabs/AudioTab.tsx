@@ -50,7 +50,17 @@ export const AudioTab: React.FC = () => {
   /** Adds an SFX at the playhead, linked to the selected element so it moves with it. */
   const addSfx = (src: string, durationInFrames: number) => {
     const p = useEditor.getState().project!;
-    const frame = usePlayback.getState().frame;
+    const owner = p.items.find(
+      (i) => i.id === selection[0] && i.type !== "audio",
+    );
+    const playhead = usePlayback.getState().frame;
+    // Linked SFX land on the playhead if it is inside the element, otherwise on its first frame.
+    const frame =
+      link &&
+      owner &&
+      (playhead < owner.from || playhead >= owner.from + owner.durationInFrames)
+        ? owner.from
+        : playhead;
     const it = createAudioItem({
       trackId: trackFor(p, "sfx"),
       role: "sfx",
@@ -58,9 +68,6 @@ export const AudioTab: React.FC = () => {
       from: frame,
       durationInFrames,
     });
-    const owner = p.items.find(
-      (i) => i.id === selection[0] && i.type !== "audio",
-    );
     if (link && owner) {
       it.linkedTo = owner.id;
       it.linkOffset = frame - owner.from;

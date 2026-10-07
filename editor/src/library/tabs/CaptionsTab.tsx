@@ -7,6 +7,7 @@ import {
   applyUserCaptionPreset,
 } from "../../captions/applyPreset";
 import { CaptionThumb } from "../../captions/CaptionThumb";
+import { AutoCaptionsButton } from "../../captions/AutoCaptions";
 import { ImportSrtButton } from "../../captions/ImportSrt";
 import { Segmented } from "../../components/ui";
 import { deletePreset, usePresets } from "../../presets/userPresets";
@@ -48,6 +49,7 @@ export const CaptionsTab: React.FC = () => {
         >
           <Plus size={14} /> Add caption
         </button>
+        <AutoCaptionsButton />
         <ImportSrtButton />
       </div>
       <div style={{ padding: "0 14px 6px" }}>

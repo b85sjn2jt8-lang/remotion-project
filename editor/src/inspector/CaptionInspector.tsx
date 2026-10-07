@@ -117,7 +117,7 @@ export const CaptionInspector: React.FC<{ item: CaptionItem }> = ({ item }) => {
               style={{ color: w.style?.color }}
               onClick={() => {
                 select([item.id], w.id === wordId ? null : w.id);
-                seek(item.from + w.start);
+                seek(item.from + Math.ceil(w.start) + 2);
               }}
               onDoubleClick={() =>
                 updateWord(item.id, w.id, (x) => (x.emphasis = !x.emphasis))

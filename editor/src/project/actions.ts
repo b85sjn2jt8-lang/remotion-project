@@ -153,6 +153,11 @@ export const splitAtPlayhead = () => {
           .slice(0, 40);
       }
       if (right.type === "video") right.transitionIn = undefined;
+      // A split is one continuous element: only the first half animates in, only the second out.
+      if ("animation" in it && "animation" in right) {
+        it.animation.out = "none";
+        right.animation.in = "none";
+      }
       p.items.push(right);
       newIds.push(right.id);
     }
@@ -183,14 +188,12 @@ export const splitCaptionAtWord = (captionId: string, wordId: string) => {
     if (idx <= 0) return;
     const cut = Math.round(c.words[idx].start);
     const right = cloneWithIds(c) as CaptionItem;
-    right.words = c.words
-      .slice(idx)
-      .map((w) => ({
-        ...w,
-        id: uid("w"),
-        start: w.start - cut,
-        end: w.end - cut,
-      }));
+    right.words = c.words.slice(idx).map((w) => ({
+      ...w,
+      id: uid("w"),
+      start: w.start - cut,
+      end: w.end - cut,
+    }));
     right.from = c.from + cut;
     right.durationInFrames = c.durationInFrames - cut;
     c.words = c.words.slice(0, idx);

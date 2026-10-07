@@ -7,6 +7,7 @@ import {
 } from "../../../src/engine/factory";
 import type { CaptionItem } from "../../../src/engine/types";
 import { trackFor } from "../project/actions";
+import { captionsFromWords } from "./autoCaptions";
 import { commit, useEditor } from "../project/store";
 
 const toFrames = (t: string, fps: number) => {
@@ -24,7 +25,17 @@ export const ImportSrtButton: React.FC = () => {
     const fps = project.fps;
     const trackId = trackFor(project, "captions");
     const items: CaptionItem[] = [];
-    if (file.name.endsWith(".json")) {
+    const mainVideo = project.items.find((i) => i.type === "video");
+    if (
+      file.name.endsWith(".json") &&
+      mainVideo &&
+      mainVideo.type === "video"
+    ) {
+      // Word-level JSON is in source time: follow the cut of the main video.
+      items.push(
+        ...captionsFromWords(project, mainVideo.src, JSON.parse(text)),
+      );
+    } else if (file.name.endsWith(".json")) {
       const words = JSON.parse(text) as {
         text: string;
         startMs: number;

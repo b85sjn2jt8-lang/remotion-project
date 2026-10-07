@@ -5,6 +5,13 @@ first edit; the user fine-tunes in Remotion Studio. **Every edit must stay Studi
 Follow the Remotion skills in `.claude/skills/` (especially `remotion-markup`,
 `remotion-interactivity`, `remotion-captions`) — they define the markup rules below.
 
+## Visual editor (preferred for fine-tuning)
+
+`npm run editor` → http://localhost:5173 — a CapCut-style editor (see `editor/README.md`). Its projects live in
+`projects/<id>.json` and render through the generic `EditorProject` composition (`src/engine/`). When the user
+works in the editor, edit project JSON / engine code rather than hand-coding a new composition, and keep
+`src/engine` free of editor-only code (it is bundled into Remotion renders).
+
 ## Editing a user's footage
 
 1. Put raw files in `footage/`, then run `npm run ingest -- footage/<file> [--captions | --srt f.srt]`.

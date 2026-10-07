@@ -297,6 +297,19 @@ export const Timeline: React.FC = () => {
     window.addEventListener("pointerup", up);
   };
 
+  // Stable handler identities so memoized timeline items don't re-render on unrelated changes.
+  const handlers = useRef({ onItemDown, onTrimDown });
+  handlers.current = { onItemDown, onTrimDown };
+  const stableItemDown = useCallback(
+    (e: React.PointerEvent, item: Item) => handlers.current.onItemDown(e, item),
+    [],
+  );
+  const stableTrimDown = useCallback(
+    (e: React.PointerEvent, item: Item, side: "l" | "r") =>
+      handlers.current.onTrimDown(e, item, side),
+    [],
+  );
+
   // ---------- drop from library ----------
   const onDrop = (e: React.DragEvent, track: Track) => {
     e.preventDefault();
@@ -454,8 +467,8 @@ export const Timeline: React.FC = () => {
                       fps={project.fps}
                       pxPerFrame={pxPerFrame}
                       height={TRACK_HEIGHT[t.kind] - 6}
-                      onPointerDown={onItemDown}
-                      onTrimDown={onTrimDown}
+                      onPointerDown={stableItemDown}
+                      onTrimDown={stableTrimDown}
                     />
                   ))}
               </div>
