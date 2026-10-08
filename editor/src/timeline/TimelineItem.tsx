@@ -1,6 +1,7 @@
 import React from "react";
 import type { CaptionItem, Item, Track } from "../../../src/engine/types";
 import { Waveform } from "../audio/Waveform";
+import { Thumbnails } from "./Thumbnails";
 import { openContextMenu } from "../editor/ContextMenu";
 import { allKeyframeFrames } from "../project/keyframes";
 import { seek } from "../project/playback";
@@ -50,21 +51,44 @@ export const TimelineItem: React.FC<{
         }}
         data-tip={undefined}
       >
-        {hasAudio && "src" in item ? (
-          <Waveform
+        {item.type === "video" ? (
+          <Thumbnails
             src={item.src}
-            startFrame={"trimBefore" in item ? item.trimBefore : 0}
+            trimBefore={item.trimBefore}
             frames={item.durationInFrames}
             fps={fps}
             width={width}
             height={height}
-            color={
-              item.type === "audio"
-                ? "rgba(255,255,255,.45)"
-                : "rgba(255,255,255,.22)"
-            }
-            volume={item.volume}
           />
+        ) : null}
+        {hasAudio && "src" in item ? (
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: item.type === "video" ? 20 : height,
+              background:
+                item.type === "video" ? "rgba(10,20,40,.55)" : undefined,
+              pointerEvents: "none",
+            }}
+          >
+            <Waveform
+              src={item.src}
+              startFrame={"trimBefore" in item ? item.trimBefore : 0}
+              frames={item.durationInFrames}
+              fps={fps}
+              width={width}
+              height={item.type === "video" ? 20 : height}
+              color={
+                item.type === "audio"
+                  ? "rgba(255,255,255,.45)"
+                  : "rgba(160,220,255,.8)"
+              }
+              volume={item.volume}
+            />
+          </div>
         ) : null}
         {item.type === "caption" ? (
           <CaptionWords

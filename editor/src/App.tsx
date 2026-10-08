@@ -20,7 +20,7 @@ export const App: React.FC = () => {
   const project = useEditor((s) => s.project);
   const [error, setError] = useState<string | null>(null);
   const [timelineH, setTimelineH] = useState(
-    () => Number(localStorage.getItem("reels-editor:tl-h")) || 320,
+    () => Number(localStorage.getItem("reels-editor:tl-h")) || 400,
   );
 
   useEffect(() => {

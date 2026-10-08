@@ -104,13 +104,62 @@ export const paste = () => {
 };
 
 /** Splits selected items (or all unlocked items under the playhead) at the playhead. */
-export const splitAtPlayhead = () => {
-  const frame = usePlayback.getState().frame;
+/**
+ * Splits `it` (already inside the draft `p`) at timeline `frame`; pushes and returns the right half.
+ * Media keeps its place in the source (trimBefore), caption words and keyframes follow the cut.
+ */
+export const splitItemInDraft = (
+  p: Project,
+  it: Item,
+  frame: number,
+): Item | null => {
+  const cut = Math.round(frame - it.from);
+  if (cut <= 0 || cut >= it.durationInFrames) return null;
+  const right = cloneWithIds(it);
+  right.from = it.from + cut;
+  right.durationInFrames = it.durationInFrames - cut;
+  it.durationInFrames = cut;
+  if ("trimBefore" in right)
+    (right as { trimBefore: number }).trimBefore += cut;
+  if (right.keyframes) {
+    for (const k of Object.values(right.keyframes)) {
+      if (k) for (const kf of k) kf.frame -= cut;
+    }
+  }
+  if (it.type === "caption" && right.type === "caption") {
+    it.words = it.words
+      .filter((w) => w.start < cut)
+      .map((w) => ({ ...w, end: Math.min(w.end, cut) }));
+    right.words = right.words
+      .filter((w) => w.start >= cut)
+      .map((w) => ({ ...w, start: w.start - cut, end: w.end - cut }));
+    it.name = captionName(it);
+    right.name = captionName(right);
+  }
+  if (right.type === "video") right.transitionIn = undefined;
+  // A split is one continuous element: only the first half animates in, only the second out.
+  if ("animation" in it && "animation" in right) {
+    it.animation.out = "none";
+    right.animation.in = "none";
+  }
+  p.items.push(right);
+  return right;
+};
+
+const dropEmptyCaptions = (p: Project) => {
+  p.items = p.items.filter(
+    (i) => !(i.type === "caption" && i.words.length === 0),
+  );
+};
+
+/** Splits selected items (or all unlocked items under the playhead) at `frame` (default: playhead). */
+export const splitAt = (frame: number, ids?: string[]) => {
   const { selection, project } = useEditor.getState();
   if (!project) return;
+  const only = ids ?? (selection.length ? selection : null);
   const targets = project.items.filter(
     (i) =>
-      (selection.length ? selection.includes(i.id) : true) &&
+      (only ? only.includes(i.id) : true) &&
       frame > i.from &&
       frame < i.from + i.durationInFrames &&
       !isLocked(project, i),
@@ -120,52 +169,92 @@ export const splitAtPlayhead = () => {
   commit((p) => {
     for (const t of targets) {
       const it = p.items.find((i) => i.id === t.id)!;
-      const cut = frame - it.from;
-      const right = cloneWithIds(it);
-      right.from = frame;
-      right.durationInFrames = it.durationInFrames - cut;
-      it.durationInFrames = cut;
-      if (
-        (right.type === "video" ||
-          right.type === "brollVideo" ||
-          right.type === "audio") &&
-        "trimBefore" in right
-      ) {
-        right.trimBefore += cut;
-      }
-      if (right.keyframes) {
-        for (const k of Object.values(right.keyframes)) {
-          if (k) for (const kf of k) kf.frame -= cut;
-        }
-      }
-      if (it.type === "caption" && right.type === "caption") {
-        it.words = it.words.filter((w) => w.start < cut);
-        right.words = right.words
-          .filter((w) => w.start >= cut)
-          .map((w) => ({ ...w, start: w.start - cut, end: w.end - cut }));
-        it.name = it.words
-          .map((w) => w.text)
-          .join(" ")
-          .slice(0, 40);
-        right.name = right.words
-          .map((w) => w.text)
-          .join(" ")
-          .slice(0, 40);
-      }
-      if (right.type === "video") right.transitionIn = undefined;
-      // A split is one continuous element: only the first half animates in, only the second out.
-      if ("animation" in it && "animation" in right) {
-        it.animation.out = "none";
-        right.animation.in = "none";
-      }
-      p.items.push(right);
-      newIds.push(right.id);
+      const right = splitItemInDraft(p, it, frame);
+      if (right) newIds.push(right.id);
     }
-    p.items = p.items.filter(
-      (i) => !(i.type === "caption" && i.words.length === 0),
-    );
+    dropEmptyCaptions(p);
   });
   select(newIds);
+};
+
+export const splitAtPlayhead = () => splitAt(usePlayback.getState().frame);
+
+/**
+ * Removes the timeline range [a, b) and closes the gap: everything after moves left so picture,
+ * captions, text and SFX stay in sync. Items crossing the edges are split; music is shortened
+ * instead (no audible jump). `trackIds` limits the ripple to some tracks (default: all).
+ */
+export const rippleRangeInDraft = (
+  p: Project,
+  a: number,
+  b: number,
+  trackIds?: string[],
+) => {
+  const d = Math.round(b - a);
+  if (d <= 0) return;
+  const inScope = (i: Item) =>
+    (!trackIds || trackIds.includes(i.trackId)) && !isLocked(p, i);
+  const isMusic = (i: Item) => i.type === "audio" && i.role === "music";
+  // Music spanning the range: shorten in place.
+  for (const it of p.items.filter((i) => inScope(i) && isMusic(i))) {
+    const s = it.from;
+    const e = s + it.durationInFrames;
+    if (s < a && e > b) it.durationInFrames -= d;
+  }
+  for (const it of [...p.items].filter((i) => inScope(i) && !isMusic(i))) {
+    if (it.from < a && it.from + it.durationInFrames > a)
+      splitItemInDraft(p, it, a);
+  }
+  for (const it of [...p.items].filter((i) => inScope(i) && !isMusic(i))) {
+    if (it.from < b && it.from + it.durationInFrames > b)
+      splitItemInDraft(p, it, b);
+  }
+  p.items = p.items.filter((i) => {
+    if (!inScope(i)) return true;
+    const e = i.from + i.durationInFrames;
+    if (isMusic(i)) return !(i.from >= a && e <= b);
+    return !(i.from >= a && e <= b);
+  });
+  for (const it of p.items) {
+    if (inScope(it) && it.from >= b) it.from -= d;
+  }
+  dropEmptyCaptions(p);
+};
+
+/**
+ * Delete + close the gap. Main video clips ripple the whole timeline (keeps sync);
+ * other items only close the gap on their own track.
+ */
+export const rippleDeleteSelected = () => {
+  const { selection, project } = useEditor.getState();
+  if (!project || !selection.length) return;
+  const items = project.items
+    .filter((i) => selection.includes(i.id) && !isLocked(project, i))
+    .sort((x, y) => y.from - x.from);
+  if (!items.length) return;
+  const videoTrack = project.tracks.find((t) => t.kind === "video")?.id;
+  commit((p) => {
+    for (const it of items) {
+      const a = it.from;
+      const b = it.from + it.durationInFrames;
+      if (it.trackId === videoTrack) rippleRangeInDraft(p, a, b);
+      else {
+        p.items = p.items.filter((i) => i.id !== it.id);
+        rippleRangeInDraft(p, a, b, [it.trackId]);
+      }
+    }
+  });
+  select([]);
+};
+
+/** Removes several timeline ranges (sorted, non-overlapping) in one undo step. */
+export const rippleRanges = (ranges: [number, number][]) => {
+  if (!ranges.length) return;
+  commit((p) => {
+    for (const [a, b] of [...ranges].sort((x, y) => y[0] - x[0]))
+      rippleRangeInDraft(p, a, b);
+  });
+  select([]);
 };
 
 // ---------- captions ----------

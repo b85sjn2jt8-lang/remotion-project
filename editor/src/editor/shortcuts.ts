@@ -1,4 +1,5 @@
 import {
+  rippleDeleteSelected,
   copySelected,
   deleteSelected,
   duplicateSelected,
@@ -63,7 +64,18 @@ export const installShortcuts = () => {
       case "Delete":
       case "Backspace":
         e.preventDefault();
-        deleteSelected();
+        if (e.shiftKey) rippleDeleteSelected();
+        else deleteSelected();
+        break;
+      case "b":
+      case "B":
+        useEditor.setState((st) => ({
+          tool: st.tool === "blade" ? "select" : "blade",
+        }));
+        break;
+      case "v":
+      case "V":
+        useEditor.setState({ tool: "select" });
         break;
       case "ArrowLeft":
         e.preventDefault();
@@ -85,6 +97,7 @@ export const installShortcuts = () => {
         break;
       case "Escape":
         select([]);
+        useEditor.setState({ tool: "select" });
         break;
       case "+":
       case "=":

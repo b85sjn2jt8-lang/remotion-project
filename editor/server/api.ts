@@ -323,6 +323,61 @@ const startTranscribe = (src: string, model: string, language: string) => {
   return job;
 };
 
+// ---------- timeline thumbnails ----------
+// One small JPEG per second of video in public/thumbs/<name>/, generated once.
+const THUMBS = path.join(PUBLIC, "thumbs");
+const thumbJobs = new Map<
+  string,
+  Promise<{ dir: string; count: number } | null>
+>();
+const ensureThumbs = (src: string) => {
+  const file = path.join(PUBLIC, src);
+  if (!file.startsWith(PUBLIC) || !fs.existsSync(file))
+    return Promise.resolve(null);
+  const name = `${safeName(src.replace(/\.[^.]+$/, ""))}-${fs.statSync(file).size}`;
+  const dir = path.join(THUMBS, name);
+  const done = path.join(dir, "done.json");
+  if (fs.existsSync(done))
+    return Promise.resolve(JSON.parse(fs.readFileSync(done, "utf8")));
+  if (!thumbJobs.has(name)) {
+    fs.mkdirSync(dir, { recursive: true });
+    thumbJobs.set(
+      name,
+      new Promise((resolve) => {
+        const child = spawn(
+          bin("ffmpeg"),
+          [
+            "-v",
+            "error",
+            "-y",
+            "-i",
+            file,
+            "-vf",
+            "scale=-2:96",
+            "-r",
+            "1",
+            "-q:v",
+            "6",
+            path.join(dir, "%04d.jpg"),
+          ],
+          { env: binEnv() },
+        );
+        child.on("close", (code) => {
+          thumbJobs.delete(name);
+          if (code !== 0) return resolve(null);
+          const count = fs
+            .readdirSync(dir)
+            .filter((f) => f.endsWith(".jpg")).length;
+          const info = { dir: `thumbs/${name}`, count };
+          fs.writeFileSync(done, JSON.stringify(info));
+          resolve(info);
+        });
+      }),
+    );
+  }
+  return thumbJobs.get(name)!;
+};
+
 // ---------- render ----------
 type RenderJob = {
   id: string;
@@ -581,6 +636,13 @@ const handle = async (req: IncomingMessage, res: ServerResponse) => {
       res,
       transcribes.get(url.searchParams.get("src") ?? "") ?? { status: "idle" },
     );
+  }
+
+  if (p === "/api/thumbs" && m === "GET") {
+    const info = await ensureThumbs(url.searchParams.get("src") ?? "");
+    return info
+      ? json(res, info)
+      : json(res, { error: "cannot create thumbnails" }, 404);
   }
 
   if (p === "/api/render" && m === "POST") {

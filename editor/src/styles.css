@@ -194,3 +194,7 @@ input[type="range"].range::-webkit-slider-thumb { -webkit-appearance: none; widt
 .menu button:hover { background: var(--accent); }
 .menu .k { color: var(--muted); }
 .menu button:hover .k { color: #fff; }
+.tl-sep { width: 1px; height: 18px; background: var(--border-2); margin: 0 4px; }
+.tl-btn { height: 26px; padding: 0 8px; font-size: 11.5px; }
+.tl-blade { position: absolute; top: 0; bottom: 0; width: 1px; background: #ffd23f; pointer-events: none; z-index: 7; box-shadow: 0 0 6px rgba(255,210,63,.7); }
+.tl-item .label bdi { background: rgba(0,0,0,.45); padding: 1px 5px; border-radius: 4px; }

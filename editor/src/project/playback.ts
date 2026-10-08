@@ -27,3 +27,20 @@ export const step = (delta: number) => {
   p?.pause();
   seek(usePlayback.getState().frame + delta);
 };
+
+/** Scrub-friendly seek: coalesces many pointer moves into one seek per animation frame. */
+let pending: number | null = null;
+export const scrubTo = (frame: number) => {
+  const f = Math.max(0, Math.round(frame));
+  usePlayback.setState({ frame: f });
+  if (pending !== null) {
+    pending = f;
+    return;
+  }
+  pending = f;
+  requestAnimationFrame(() => {
+    const target = pending ?? f;
+    pending = null;
+    usePlayback.getState().player?.seekTo(target);
+  });
+};

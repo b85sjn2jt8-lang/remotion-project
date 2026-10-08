@@ -166,6 +166,8 @@ for (const [name, from, file, vol] of sfx) {
   );
 }
 
+// Nothing may run past the end of the base cut (916 frames).
+for (const it of items) it.durationInFrames = Math.min(it.durationInFrames, 916 - it.from);
 p.items = items;
 p.durationInFrames = 916;
 p.media = [

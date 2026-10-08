@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { create } from "zustand";
 import {
+  rippleDeleteSelected,
   copySelected,
   deleteSelected,
   duplicateSelected,
@@ -47,6 +48,9 @@ export const ContextMenu: React.FC = () => {
       </button>
       <button onClick={run(paste)}>
         Paste at playhead<span className="k">Ctrl V</span>
+      </button>
+      <button onClick={run(rippleDeleteSelected)}>
+        Ripple delete<span className="k">Shift Del</span>
       </button>
       <button onClick={run(deleteSelected)}>
         Delete<span className="k">Del</span>

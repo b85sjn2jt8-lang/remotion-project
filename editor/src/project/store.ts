@@ -37,6 +37,8 @@ type EditorState = {
   guides: boolean;
   /** Inspector shows global brand styles instead of the selection. */
   showGlobal: boolean;
+  /** Timeline tool: select/move, or blade (click a clip to cut it). */
+  tool: "select" | "blade";
 };
 
 export const useEditor = create<EditorState>(() => ({
@@ -55,6 +57,7 @@ export const useEditor = create<EditorState>(() => ({
   safeZone: "off",
   guides: true,
   showGlobal: false,
+  tool: "select",
 }));
 
 const HISTORY_LIMIT = 200;

@@ -1,13 +1,16 @@
 import {
   ArrowDown,
   ArrowUp,
+  AudioWaveform,
   Copy,
   Eye,
   EyeOff,
   Lock,
   Magnet,
+  MousePointer2,
   Redo2,
   Scissors,
+  Slice,
   Trash2,
   Undo2,
   Unlock,
@@ -15,6 +18,8 @@ import {
   VolumeX,
   ZoomIn,
   ZoomOut,
+  ScanSearch,
+  ArrowLeftToLine,
 } from "lucide-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import type { Item, Project, Track } from "../../../src/engine/types";
@@ -28,10 +33,14 @@ import {
   deleteSelected,
   duplicateSelected,
   reorderTrack,
+  rippleDeleteSelected,
+  rippleRanges,
+  splitAt,
   splitAtPlayhead,
   TRACK_ACCEPTS,
 } from "../project/actions";
-import { seek, usePlayback } from "../project/playback";
+import { scrubTo, usePlayback } from "../project/playback";
+import { silencesForClips } from "../audio/silence";
 import {
   beginTx,
   commit,
@@ -46,7 +55,7 @@ import { rulerStep, snapTo } from "./timeMath";
 import { TRACK_ICONS } from "./trackIcons";
 
 export const TRACK_HEIGHT: Record<Track["kind"], number> = {
-  video: 58,
+  video: 66,
   broll: 40,
   captions: 54,
   text: 36,
@@ -56,6 +65,13 @@ export const TRACK_HEIGHT: Record<Track["kind"], number> = {
   sfx: 36,
   music: 44,
 };
+
+/** Empty tracks collapse so the main video track is always in view. */
+const EMPTY_TRACK_HEIGHT = 24;
+const trackHeight = (p: Project, t: Track) =>
+  p.items.some((i) => i.trackId === t.id)
+    ? TRACK_HEIGHT[t.kind]
+    : EMPTY_TRACK_HEIGHT;
 
 export const Timeline: React.FC = () => {
   const project = useEditor((s) => s.project)!;
@@ -67,6 +83,13 @@ export const Timeline: React.FC = () => {
   const headsRef = useRef<HTMLDivElement>(null);
   const [snapLine, setSnapLine] = useState<number | null>(null);
   const [dropTrack, setDropTrack] = useState<string | null>(null);
+  const tool = useEditor((s) => s.tool);
+  const selection = useEditor((s) => s.selection);
+  const [bladeX, setBladeX] = useState<number | null>(null);
+  const [busy, setBusy] = useState<string | null>(null);
+  const selectedVideos = project.items.filter(
+    (i) => i.type === "video" && selection.includes(i.id),
+  );
 
   const totalFrames = project.durationInFrames + project.fps * 10;
   const width = totalFrames * pxPerFrame;
@@ -127,8 +150,8 @@ export const Timeline: React.FC = () => {
 
   const onRulerDown = (e: React.PointerEvent) => {
     usePlayback.getState().player?.pause();
-    seek(frameFromClientX(e.clientX));
-    const move = (ev: PointerEvent) => seek(frameFromClientX(ev.clientX));
+    scrubTo(frameFromClientX(e.clientX));
+    const move = (ev: PointerEvent) => scrubTo(frameFromClientX(ev.clientX));
     const up = () => {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerup", up);
@@ -162,6 +185,13 @@ export const Timeline: React.FC = () => {
     if (e.button !== 0) return;
     e.stopPropagation();
     const st = useEditor.getState();
+    if (st.tool === "blade") {
+      // Blade: cut this clip exactly where it was clicked.
+      const f = frameFromClientX(e.clientX);
+      const sn = snapFrame(f, []);
+      splitAt(sn.target !== null ? sn.value : f, [item.id]);
+      return;
+    }
     const track = project.tracks.find((t) => t.id === item.trackId);
     let sel = st.selection;
     if (e.shiftKey || e.metaKey || e.ctrlKey) {
@@ -372,18 +402,84 @@ export const Timeline: React.FC = () => {
           }}
         />
         <IconButton
-          icon={<Scissors size={15} />}
-          tip="Split at playhead (S)"
-          onClick={splitAtPlayhead}
+          icon={<MousePointer2 size={15} />}
+          tip="Select / move · تحديد وتحريك (V)"
+          active={tool === "select"}
+          onClick={() => useEditor.setState({ tool: "select" })}
         />
         <IconButton
+          icon={<Slice size={15} />}
+          tip="Blade · أداة القص: اضغط على المقطع مكان القص (B)"
+          active={tool === "blade"}
+          onClick={() =>
+            useEditor.setState({ tool: tool === "blade" ? "select" : "blade" })
+          }
+        />
+        <div className="tl-sep" />
+        <button
+          className="btn ghost tl-btn"
+          onClick={splitAtPlayhead}
+          data-tip="قص عند الخط الأحمر (S)"
+        >
+          <Scissors size={14} /> Split
+        </button>
+        <button
+          className="btn ghost tl-btn"
+          onClick={rippleDeleteSelected}
+          disabled={!selection.length}
+          data-tip="حذف المحدد وسد الفراغ — كل شيء بعده ينسحب (Shift+Del)"
+        >
+          <ArrowLeftToLine size={14} /> Ripple delete
+        </button>
+        <button
+          className="btn ghost tl-btn"
+          disabled={!selectedVideos.length || busy !== null}
+          data-tip="يشيل الصمت من مقاطع الفيديو المحددة ويسد الفراغات"
+          onClick={async () => {
+            setBusy("silence");
+            try {
+              const p = useEditor.getState().project!;
+              const ranges = await silencesForClips(
+                p,
+                selectedVideos.map((v) => v.id),
+              );
+              if (!ranges.length)
+                alert("ما لقيت صمت يستاهل الحذف في المقاطع المحددة.");
+              else rippleRanges(ranges);
+            } finally {
+              setBusy(null);
+            }
+          }}
+        >
+          <AudioWaveform size={14} />{" "}
+          {busy === "silence" ? "…" : "Remove silence"}
+        </button>
+        <button
+          className="btn ghost tl-btn"
+          disabled={!selectedVideos.length}
+          data-tip="زوم على المقطع المحدد (اضغط مرة ثانية للرجوع)"
+          onClick={() =>
+            commit((p) => {
+              for (const it of p.items) {
+                if (it.type !== "video" || !selection.includes(it.id)) continue;
+                if (it.keyframes) delete it.keyframes.scale;
+                it.transform.scale = it.transform.scale > 1.01 ? 1 : 1.15;
+                it.motionPreset =
+                  it.transform.scale > 1 ? "punchIn" : "punchOut";
+              }
+            })
+          }
+        >
+          <ScanSearch size={14} /> Zoom
+        </button>
+        <IconButton
           icon={<Copy size={15} />}
-          tip="Duplicate (Ctrl+D)"
+          tip="Duplicate · تكرار (Ctrl+D)"
           onClick={duplicateSelected}
         />
         <IconButton
           icon={<Trash2 size={15} />}
-          tip="Delete (Del)"
+          tip="Delete · حذف بدون سد الفراغ (Del)"
           onClick={deleteSelected}
         />
         <div style={{ flex: 1 }} />
@@ -426,6 +522,7 @@ export const Timeline: React.FC = () => {
           {project.tracks.map((t, i) => (
             <TrackHead
               key={t.id}
+              height={trackHeight(project, t)}
               track={t}
               index={i}
               count={project.tracks.length}
@@ -441,9 +538,19 @@ export const Timeline: React.FC = () => {
             if (
               e.target === e.currentTarget ||
               (e.target as HTMLElement).dataset.trackId
-            )
+            ) {
+              // Click on empty timeline: deselect and move the playhead there (drag to scrub).
               select([]);
+              onRulerDown(e);
+            }
           }}
+          onPointerMove={(e) => {
+            if (useEditor.getState().tool !== "blade") return;
+            setBladeX(
+              frameFromClientX(e.clientX) * useEditor.getState().pxPerFrame,
+            );
+          }}
+          onPointerLeave={() => setBladeX(null)}
         >
           <div style={{ width, position: "relative" }}>
             <Ruler
@@ -459,8 +566,9 @@ export const Timeline: React.FC = () => {
                 data-track-id={t.id}
                 className={`tl-track${dropTrack === t.id ? " drop" : ""}`}
                 style={{
-                  height: TRACK_HEIGHT[t.kind],
+                  height: trackHeight(project, t),
                   opacity: t.hidden ? 0.45 : 1,
+                  cursor: tool === "blade" ? "crosshair" : undefined,
                 }}
                 onDragOver={(e) => {
                   if (e.dataTransfer.types.includes(DRAG_MIME)) {
@@ -480,7 +588,7 @@ export const Timeline: React.FC = () => {
                       track={t}
                       fps={project.fps}
                       pxPerFrame={pxPerFrame}
-                      height={TRACK_HEIGHT[t.kind] - 6}
+                      height={trackHeight(project, t) - 6}
                       onPointerDown={stableItemDown}
                       onTrimDown={stableTrimDown}
                     />
@@ -489,6 +597,9 @@ export const Timeline: React.FC = () => {
             ))}
             <div style={{ height: 40 }} />
             <Playhead pxPerFrame={pxPerFrame} />
+            {tool === "blade" && bladeX !== null ? (
+              <div className="tl-blade" style={{ left: bladeX }} />
+            ) : null}
             {snapLine !== null ? (
               <div
                 className="tl-snapline"
@@ -524,11 +635,12 @@ const moveLinkedSfx = (
   }
 };
 
-const TrackHead: React.FC<{ track: Track; index: number; count: number }> = ({
-  track,
-  index,
-  count,
-}) => {
+const TrackHead: React.FC<{
+  track: Track;
+  index: number;
+  count: number;
+  height: number;
+}> = ({ track, index, count, height }) => {
   const Icon = TRACK_ICONS[track.kind];
   const toggle = (key: "hidden" | "muted" | "locked") =>
     commit((p) => {
@@ -542,7 +654,7 @@ const TrackHead: React.FC<{ track: Track; index: number; count: number }> = ({
     track.kind === "video" ||
     track.kind === "broll";
   return (
-    <div className="tl-head" style={{ height: TRACK_HEIGHT[track.kind] }}>
+    <div className="tl-head" style={{ height }}>
       <span className="name">
         <Icon size={13} />
         {track.name}
