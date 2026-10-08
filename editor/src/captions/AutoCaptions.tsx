@@ -2,7 +2,7 @@ import { AudioLines } from "lucide-react";
 import React, { useState } from "react";
 import { assetUrl } from "../../../src/engine/assets";
 import { commit, useEditor } from "../project/store";
-import { captionsFromWords } from "./autoCaptions";
+import { captionsFromWords } from "./wordsToCaptions";
 
 /**
  * Transcribes the main video with whisper.cpp (runs locally; the model downloads on first use)

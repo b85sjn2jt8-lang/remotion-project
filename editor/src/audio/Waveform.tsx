@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useWaveform } from "./waveform";
+import { useWaveform } from "./useWaveform";
 
 /** Draws the waveform of `src` between source frames [startFrame, startFrame + frames). */
 export const Waveform: React.FC<{

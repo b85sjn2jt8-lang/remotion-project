@@ -19,6 +19,49 @@ const FONTS = path.join(PUBLIC, "fonts");
 const CACHE = path.join(ROOT, ".cache");
 const OUT = path.join(ROOT, "out");
 
+// ---------- ffmpeg / remotion binaries (cross-platform: Windows, macOS, Linux) ----------
+// Uses the ffmpeg that ships with Remotion (no system install needed); falls back to PATH.
+const findCompositorDir = () => {
+  const base = path.join(ROOT, "node_modules", "@remotion");
+  if (!fs.existsSync(base)) return null;
+  const exe = process.platform === "win32" ? "ffmpeg.exe" : "ffmpeg";
+  for (const d of fs.readdirSync(base)) {
+    if (d.startsWith("compositor-") && fs.existsSync(path.join(base, d, exe)))
+      return path.join(base, d);
+  }
+  return null;
+};
+const COMPOSITOR = findCompositorDir();
+const binEnv = () => {
+  if (!COMPOSITOR) return process.env;
+  const key =
+    process.platform === "darwin" ? "DYLD_LIBRARY_PATH" : "LD_LIBRARY_PATH";
+  return {
+    ...process.env,
+    [key]: [COMPOSITOR, process.env[key]].filter(Boolean).join(path.delimiter),
+  };
+};
+const bin = (name: "ffmpeg" | "ffprobe") =>
+  COMPOSITOR
+    ? path.join(COMPOSITOR, process.platform === "win32" ? `${name}.exe` : name)
+    : name;
+const run = (
+  name: "ffmpeg" | "ffprobe",
+  args: string[],
+  opts: { maxBuffer?: number } = {},
+) =>
+  spawnSync(bin(name), args, {
+    env: binEnv(),
+    maxBuffer: opts.maxBuffer ?? 1024 * 1024 * 64,
+  });
+const REMOTION_CLI = path.join(
+  ROOT,
+  "node_modules",
+  "@remotion",
+  "cli",
+  "remotion-cli.js",
+);
+
 const json = (res: ServerResponse, data: unknown, status = 200) => {
   res.statusCode = status;
   res.setHeader("Content-Type", "application/json");
@@ -38,7 +81,7 @@ const safeName = (n: string) =>
 const safeId = (n: string) => n.replace(/[^a-zA-Z0-9_-]/g, "");
 
 const ffprobe = (file: string) => {
-  const r = spawnSync(
+  const r = run(
     "ffprobe",
     [
       "-v",
@@ -49,12 +92,10 @@ const ffprobe = (file: string) => {
       "-show_format",
       file,
     ],
-    {
-      encoding: "utf8",
-    },
+    {},
   );
   if (r.status !== 0) return null;
-  return JSON.parse(r.stdout) as {
+  return JSON.parse(r.stdout.toString("utf8")) as {
     streams: {
       codec_type: string;
       codec_name: string;
@@ -120,7 +161,7 @@ const waveform = (src: string) => {
     return JSON.parse(fs.readFileSync(cacheFile, "utf8"));
   const RATE = 8000;
   const PER_SEC = 100;
-  const r = spawnSync(
+  const r = run(
     "ffmpeg",
     [
       "-v",
@@ -132,8 +173,10 @@ const waveform = (src: string) => {
       "1",
       "-ar",
       String(RATE),
+      "-c:a",
+      "pcm_s16le",
       "-f",
-      "s16le",
+      "wav",
       "-",
     ],
     {
@@ -141,10 +184,13 @@ const waveform = (src: string) => {
     },
   );
   if (r.status !== 0) return null;
+  // Piped WAV: skip the header up to the "data" chunk (size fields are unknown when piping).
+  const dataAt = r.stdout.indexOf("data");
+  const body = r.stdout.subarray(dataAt >= 0 ? dataAt + 8 : 44);
   const pcm = new Int16Array(
-    r.stdout.buffer,
-    r.stdout.byteOffset,
-    Math.floor(r.stdout.length / 2),
+    body.buffer,
+    body.byteOffset,
+    Math.floor(body.length / 2),
   );
   const win = RATE / PER_SEC;
   const peaks: number[] = [];
@@ -184,32 +230,38 @@ const ensureProxy = (src: string) => {
       rel,
       new Promise((resolve) => {
         const tmp = `${out}.part.webm`;
-        const child = spawn("ffmpeg", [
-          "-v",
-          "error",
-          "-y",
-          "-i",
-          file,
-          "-vf",
-          "scale=-2:1280,fps=30",
-          "-c:v",
-          "libvpx-vp9",
-          "-b:v",
-          "2.5M",
-          "-deadline",
-          "realtime",
-          "-cpu-used",
-          "8",
-          "-row-mt",
-          "1",
-          "-g",
-          "10",
-          "-c:a",
-          "libopus",
-          "-b:a",
-          "96k",
-          tmp,
-        ]);
+        const child = spawn(
+          bin("ffmpeg"),
+          [
+            "-v",
+            "error",
+            "-y",
+            "-i",
+            file,
+            "-vf",
+            "scale=-2:1280",
+            "-r",
+            "30",
+            "-c:v",
+            "libvpx-vp9",
+            "-b:v",
+            "2.5M",
+            "-deadline",
+            "realtime",
+            "-cpu-used",
+            "8",
+            "-row-mt",
+            "1",
+            "-g",
+            "10",
+            "-c:a",
+            "libopus",
+            "-b:a",
+            "96k",
+            tmp,
+          ],
+          { env: binEnv() },
+        );
         child.on("close", (code) => {
           if (code === 0) {
             fs.renameSync(tmp, out);
@@ -244,7 +296,7 @@ const startTranscribe = (src: string, model: string, language: string) => {
     .replace(/[^a-zA-Z0-9_-]+/g, "-")
     .toLowerCase();
   const child = spawn(
-    "node",
+    process.execPath,
     [
       "scripts/ingest.mjs",
       file,
@@ -311,7 +363,9 @@ const startRender = (projectId: string) => {
     log: "",
   };
   renders.set(projectId, job);
-  const child = spawn("npx", args, { cwd: ROOT });
+  const child = spawn(process.execPath, [REMOTION_CLI, ...args.slice(1)], {
+    cwd: ROOT,
+  });
   const onData = (d: Buffer) => {
     const s = d.toString();
     job.log = (job.log + s).slice(-4000);
@@ -435,7 +489,7 @@ const handle = async (req: IncomingMessage, res: ServerResponse) => {
         ["arib-std-b67", "smpte2084"].includes(v.color_transfer ?? ""))
     ) {
       const out = dest.replace(/\.[^.]+$/, "") + "-edit.mp4";
-      spawnSync("ffmpeg", [
+      run("ffmpeg", [
         "-v",
         "error",
         "-y",

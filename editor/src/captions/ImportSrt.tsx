@@ -7,7 +7,7 @@ import {
 } from "../../../src/engine/factory";
 import type { CaptionItem } from "../../../src/engine/types";
 import { trackFor } from "../project/actions";
-import { captionsFromWords } from "./autoCaptions";
+import { captionsFromWords } from "./wordsToCaptions";
 import { commit, useEditor } from "../project/store";
 
 const toFrames = (t: string, fps: number) => {
