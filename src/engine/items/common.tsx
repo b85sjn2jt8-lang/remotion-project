@@ -46,6 +46,13 @@ export const backgroundCss = (b: Background): React.CSSProperties =>
         padding: `${b.paddingY}px ${b.paddingX}px`,
         boxDecorationBreak: "clone",
         WebkitBoxDecorationBreak: "clone",
+        ...(b.blur
+          ? {
+              backdropFilter: `blur(${b.blur}px) saturate(1.4)`,
+              WebkitBackdropFilter: `blur(${b.blur}px) saturate(1.4)`,
+            }
+          : {}),
+        ...(b.borderColor ? { border: `1.5px solid ${b.borderColor}` } : {}),
       }
     : {};
 

@@ -76,6 +76,44 @@ const anim = (o: Partial<AnimationSet>) => () => defaultAnimationSet(o);
 
 export const CAPTION_PRESETS: CaptionPreset[] = [
   {
+    id: "glass",
+    name: "Glass",
+    description: "Frosted glass pill behind clean white text.",
+    group: "Essentials",
+    style: (g) => ({
+      ...baseCaptionStyle(g),
+      fontSize: 64,
+      fontWeight: 800,
+      strokeWidth: 0,
+      reveal: "word",
+      emphasisOwnLine: false,
+      emphasisScale: 1.15,
+      shadow: {
+        enabled: true,
+        color: "rgba(0,0,0,0.25)",
+        blur: 30,
+        x: 0,
+        y: 10,
+      },
+      background: {
+        enabled: true,
+        color: "#FFFFFF",
+        opacity: 0.16,
+        radius: 28,
+        paddingX: 30,
+        paddingY: 12,
+        blur: 22,
+        borderColor: "rgba(255,255,255,0.35)",
+      },
+    }),
+    animation: anim({
+      in: "wordReveal",
+      inParams: defaultParams({ duration: 4 }),
+      emphasis: "punch",
+      emphasisParams: defaultParams({ duration: 8, intensity: 0.5 }),
+    }),
+  },
+  {
     id: "clean-bold",
     name: "Clean Bold",
     description: "White bold text, crisp outline. Works on anything.",

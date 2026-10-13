@@ -38,8 +38,8 @@ const zoom: Record<number, { s: number; ox: number; oy: number; name: string; kf
   0: { s: 1, ox: 50, oy: 50, name: "Hook", kf: true },
   77: { s: 1, ox: 50, oy: 50, name: "الشتاء = ثقيل؟" },
   152: { s: 1.12, ox: 50, oy: 48, name: "للأسف خطأ" },
-  367: { s: 1.2, ox: 55, oy: 49, name: "Armani · Stronger With You" },
-  538: { s: 1.2, ox: 48, oy: 47, name: "Burberry Hero" },
+  367: { s: 1.1, ox: 55, oy: 52, name: "Armani · Stronger With You" },
+  538: { s: 1.1, ox: 48, oy: 52, name: "Burberry Hero" },
 };
 for (const v of p.items as VideoItem[]) {
   const z = zoom[v.from];
@@ -94,7 +94,7 @@ groups.forEach((g, gi) => {
     trackId: T("captions"),
     from,
     durationInFrames: Math.max(1, endF - from),
-    presetId: "keyword-focus",
+    presetId: "glass",
     words: g.map(([text, s, e, fl]) => ({
       id: uid("w"),
       text,
@@ -104,20 +104,23 @@ groups.forEach((g, gi) => {
       ...(fl?.includes("n") ? { tone: "negative" as const } : {}),
     })),
   });
-  c.style.fontSize = 68;
-  c.style.emphasisOwnLine = false;
-  c.style.emphasisScale = 1.28;
-  c.style.strokeWidth = 10;
+  c.style.fontSize = 62;
+  c.style.emphasisScale = 1.15;
   c.style.maxWidth = 860;
-  c.animation = defaultAnimationSet({
-    in: "wordReveal",
-    inParams: defaultParams({ duration: 4, intensity: 0.8 }),
-    emphasis: "punch",
-    emphasisParams: defaultParams({ duration: 8, intensity: 0.6 }),
-  });
+  c.style.reveal = "phrase";
+  c.animation.in = "fade";
+  c.animation.inParams = defaultParams({ duration: 3 });
   c.transform.y = 1420;
   items.push(c);
 });
+
+// ---------- realistic snowfall while he talks about "winter = heavy perfume" ----------
+const snow = createOverlayItem(p, { trackId: T("broll"), from: f(2.56), shape: "snow" });
+snow.durationInFrames = f(5.06) - f(2.56);
+snow.name = "Snow · الشتاء = عطر ثقيل";
+snow.strokeWidth = 9;
+snow.animation = defaultAnimationSet({ in: "fade", inParams: defaultParams({ duration: 10 }), out: "fadeOut", outParams: defaultParams({ duration: 4 }) });
+items.push(snow);
 
 // ---------- hook ----------
 const hook = createTextItem(p, { trackId: T("text"), from: 0, variant: "question", text: "عطر الشتاء… لازم يكون ثقيل؟" });
@@ -150,34 +153,51 @@ const chip = (text: string, fromS: number, toS: number, x: number, y: number, bg
 items.push(chip("✕ العود", 8.52, 9.55, 690, 430, "#E5484D", "#FFFFFF", "✕ العود"));
 items.push(chip("✕ الأدهان", 8.94, 9.55, 410, 430, "#E5484D", "#FFFFFF", "✕ الأدهان"));
 
-// ---------- perfume cards ----------
-const card = (title: string, sub: string, fromS: number, toS: number, name: string) => {
-  const o = createOverlayItem(p, { trackId: T("graphics"), from: f(fromS), shape: "featureCard" });
+// ---------- product cards: real box (cropped from the footage) + ingredients ----------
+const productCard = (
+  fromS: number,
+  toS: number,
+  name: string,
+  image: string,
+  brand: string,
+  title: string,
+  notes: [string, string, number][],
+) => {
+  const o = createOverlayItem(p, { trackId: T("graphics"), from: f(fromS), shape: "productCard" });
   o.durationInFrames = f(toS) - f(fromS);
-  o.texts = [title, sub];
-  o.fontFamily = "Montserrat";
-  o.color = "#17130F";
-  o.secondaryColor = "#F6E7CF";
-  o.width = 800;
-  o.height = 170;
-  o.radius = 30;
-  o.transform.x = 510;
-  o.transform.y = 330;
-  o.shadow = { enabled: true, color: "rgba(0,0,0,0.4)", blur: 40, x: 0, y: 14 };
-  o.animation = defaultAnimationSet({ in: "slideDown", inParams: defaultParams({ duration: 9, intensity: 0.6 }), out: "fadeOut", outParams: defaultParams({ duration: 5 }) });
   o.name = name;
+  o.width = 840;
+  o.height = 460;
+  o.transform.x = 510;
+  o.transform.y = 432;
+  o.images = [image];
+  o.texts = [brand, title, ...notes.map((n) => n[0])];
+  o.ingredients = notes.map((n) => n[1]);
+  o.timings = notes.map((n) => Math.max(4, f(n[2]) - f(fromS)));
+  o.shadow = { enabled: true, color: "rgba(0,0,0,0.45)", blur: 44, x: 0, y: 18 };
+  o.animation = defaultAnimationSet({
+    in: "slideDown",
+    inParams: defaultParams({ duration: 10, intensity: 0.5 }),
+    out: "fadeOut",
+    outParams: defaultParams({ duration: 5 }),
+  });
   return o;
 };
-items.push(card("EMPORIO ARMANI", "Stronger With You Intensely", 12.25, 17.94, "Card · Armani"));
-items.push(chip("فانيلا", 14.74, 17.94, 800, 480, "#F3E3C3", "#3B2A14", "Note · فانيلا"));
-items.push(chip("توفي", 15.42, 17.94, 600, 480, "#C98A4B", "#FFFFFF", "Note · توفي"));
-items.push(chip("قرفة", 16.28, 17.94, 420, 480, "#8E4A2C", "#FFFFFF", "Note · قرفة"));
-items.push(chip("عنبر", 16.6, 17.94, 245, 480, "#D9A441", "#2B1D08", "Note · عنبر"));
-
-items.push(card("BURBERRY", "Hero · Parfum", 18.18, 21.95, "Card · Burberry Hero"));
-items.push(chip("خشب الأرز", 19.92, 21.95, 795, 480, "#7A5A3C", "#FFFFFF", "Note · خشب الأرز"));
-items.push(chip("أميريس", 20.2, 21.95, 548, 480, "#A27A52", "#FFFFFF", "Note · أميريس"));
-items.push(chip("سيبريول", 20.5, 21.95, 300, 480, "#4E3B2A", "#FFFFFF", "Note · سيبريول"));
+items.push(
+  productCard(12.25, 17.94, "Card · Armani SWY Intensely", "products/armani-stronger-with-you-intensely.png", "EMPORIO ARMANI", "Stronger With You Intensely", [
+    ["فانيلا", "vanilla", 14.74],
+    ["توفي", "toffee", 15.42],
+    ["قرفة", "cinnamon", 16.28],
+    ["عنبر", "amber", 16.6],
+  ]),
+);
+items.push(
+  productCard(18.18, 21.95, "Card · Burberry Hero Parfum", "products/burberry-hero-parfum.png", "BURBERRY", "Hero Parfum", [
+    ["خشب الأرز", "cedar", 19.92],
+    ["أميريس", "amyris", 20.2],
+    ["سيبريول", "cypriol", 20.5],
+  ]),
+);
 
 // ---------- sfx ----------
 const sfx = (name: string, atS: number, file: string, vol: number) =>

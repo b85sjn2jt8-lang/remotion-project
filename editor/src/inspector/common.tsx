@@ -573,6 +573,25 @@ export const BackgroundFields: React.FC<{
             onChange={(v) => onChange((b) => (b.paddingY = v))}
           />
         </div>
+        <div className="grid2">
+          <NumberField
+            prefix="Glass blur"
+            value={value.blur ?? 0}
+            min={0}
+            max={60}
+            onChange={(v) => onChange((b) => (b.blur = v))}
+          />
+          <ColorField
+            value={value.borderColor ?? "transparent"}
+            onChange={(v) =>
+              onChange((b) =>
+                v === "transparent" || !v
+                  ? delete b.borderColor
+                  : (b.borderColor = v),
+              )
+            }
+          />
+        </div>
       </>
     ) : null}
   </>

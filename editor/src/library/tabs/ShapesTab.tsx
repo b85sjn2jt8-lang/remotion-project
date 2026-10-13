@@ -1,4 +1,6 @@
 import {
+  PackageOpen,
+  Snowflake,
   ArrowRight,
   Check,
   Circle,
@@ -30,6 +32,8 @@ const ICONS: Record<Exclude<OverlayShape, "icon">, React.ReactNode> = {
   priceTag: <Tag size={26} />,
   featureCard: <LayoutPanelTop size={26} />,
   comparisonCard: <Rows2 size={26} />,
+  snow: <Snowflake size={26} />,
+  productCard: <PackageOpen size={26} />,
 };
 
 export const ShapesTab: React.FC = () => (

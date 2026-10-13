@@ -302,6 +302,22 @@ const OVERLAY_DEFAULTS: Record<OverlayShape, Partial<OverlayItem>> = {
     secondaryColor: "#111111",
     texts: ["الأصلي", "التقليد"],
   },
+  productCard: {
+    width: 880,
+    height: 400,
+    radius: 34,
+    color: "#1C130C",
+    secondaryColor: "#F0C98A",
+    texts: ["BRAND", "Product Name", "فانيلا", "عنبر"],
+    ingredients: ["vanilla", "amber"],
+  },
+  snow: {
+    width: 1080,
+    height: 1920,
+    color: "#FFFFFF",
+    secondaryColor: "#D6E9FF",
+    strokeWidth: 6,
+  },
   icon: {
     width: 160,
     height: 160,
@@ -327,6 +343,8 @@ export const OVERLAY_LABELS: Record<OverlayShape, string> = {
   featureCard: "Feature Card",
   comparisonCard: "Comparison Card",
   icon: "Icon",
+  snow: "Snow (realistic)",
+  productCard: "Product Card",
 };
 
 export const createOverlayItem = (

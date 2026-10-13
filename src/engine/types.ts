@@ -146,6 +146,10 @@ export type Background = {
   radius: number;
   paddingX: number;
   paddingY: number;
+  /** Frosted-glass backdrop blur in px (0 = none). */
+  blur?: number;
+  /** Optional 1px border color (glass edge). */
+  borderColor?: string;
 };
 
 /** How caption words are revealed while a caption is on screen. */
@@ -333,7 +337,9 @@ export type OverlayShape =
   | "priceTag"
   | "featureCard"
   | "comparisonCard"
-  | "icon";
+  | "icon"
+  | "snow"
+  | "productCard";
 
 export type OverlayItem = ItemBase & {
   type: "overlay";
@@ -350,6 +356,12 @@ export type OverlayItem = ItemBase & {
   animation: AnimationSet;
   radius: number;
   shadow: Shadow;
+  /** productCard: [product image] (paths in public/). */
+  images?: string[];
+  /** productCard: ingredient ids per note (texts[2..] are the labels). */
+  ingredients?: string[];
+  /** productCard: frame (relative) at which each note appears. */
+  timings?: number[];
 };
 
 export type AudioRole = "voice" | "music" | "sfx";

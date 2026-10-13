@@ -12,7 +12,7 @@ import { commit, select, useEditor } from "./store";
 /** Which track kinds accept which item types. */
 export const TRACK_ACCEPTS: Record<TrackKind, Item["type"][]> = {
   video: ["video"],
-  broll: ["brollVideo", "image"],
+  broll: ["brollVideo", "image", "overlay"],
   captions: ["caption"],
   text: ["text"],
   graphics: ["component", "overlay", "image"],
