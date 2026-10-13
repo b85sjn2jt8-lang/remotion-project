@@ -27,8 +27,9 @@ const items: Item[] = [];
 
 // ---------- video: one clip, split for punch-ins ----------
 const SRC_FRAMES = 763;
-const video = createVideoItem(p, { trackId: T("video"), src: "footage/ray41.mp4", from: 0, durationInFrames: SRC_FRAMES, name: "RAY41" });
-video.adjust = { contrast: 1.04, saturation: 1.05, brightness: 1.02 };
+const video = createVideoItem(p, { trackId: T("video"), src: "footage/ray411.mp4", from: 0, durationInFrames: SRC_FRAMES, name: "RAY41" });
+// No color changes: the footage is shown exactly as delivered (user-graded).
+video.adjust = { contrast: 1, saturation: 1, brightness: 1 };
 p.items = [video];
 for (const at of [77, 152, 367, 538]) {
   const piece = p.items.filter((i) => i.type === "video").find((i) => i.from < at && i.from + i.durationInFrames > at)!;
@@ -122,6 +123,7 @@ const snow = createOverlayItem(p, { trackId: T("broll"), from: f(2.56), shape: "
 snow.durationInFrames = f(5.06) - f(2.56);
 snow.name = "Snow · الشتاء = عطر ثقيل";
 snow.strokeWidth = 9;
+snow.secondaryColor = "transparent"; // no frost tint: keep the footage colors untouched
 snow.animation = defaultAnimationSet({ in: "fade", inParams: defaultParams({ duration: 10 }), out: "fadeOut", outParams: defaultParams({ duration: 4 }) });
 items.push(snow);
 
@@ -239,7 +241,7 @@ const endF = f(lastWord);
 p.items = p.items.filter((i) => i.from < endF);
 for (const it of p.items) it.durationInFrames = Math.max(1, Math.min(it.durationInFrames, endF - it.from));
 p.durationInFrames = endF;
-p.media = [{ id: "m_ray41", name: "ray41.mp4", kind: "video", src: "footage/ray41.mp4", durationInFrames: SRC_FRAMES, width: 1080, height: 1920 }];
+p.media = [{ id: "m_ray41", name: "ray411.mp4", kind: "video", src: "footage/ray411.mp4", durationInFrames: SRC_FRAMES, width: 1080, height: 1920 }];
 p.updatedAt = new Date().toISOString();
 fs.writeFileSync("projects/ray41.json", JSON.stringify(p, null, 1));
 const caps = p.items.filter((i): i is CaptionItem => i.type === "caption").length;

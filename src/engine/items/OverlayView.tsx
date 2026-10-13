@@ -444,21 +444,16 @@ const Snow: React.FC<{ item: OverlayItem; frame: number; fps: number }> = ({
   }
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: `radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, ${item.secondaryColor} 130%)`,
-          opacity: 0.55,
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundColor: "rgba(140,185,255,0.08)",
-        }}
-      />
+      {item.secondaryColor === "transparent" ? null : (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: `radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, ${item.secondaryColor} 130%)`,
+            opacity: 0.55,
+          }}
+        />
+      )}
       {flakes}
     </div>
   );

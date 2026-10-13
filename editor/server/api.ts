@@ -407,6 +407,9 @@ const startRender = (projectId: string) => {
     `--props=${propsFile}`,
     "--codec=h264",
     "--crf=18",
+    // Keep source colors exact (BT.709 in/out, lossless-quality frames).
+    "--color-space=bt709",
+    "--jpeg-quality=100",
     "--audio-bitrate=320k",
   ];
   if (fs.existsSync(BROWSER)) args.push(`--browser-executable=${BROWSER}`);
