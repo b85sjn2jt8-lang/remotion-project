@@ -93,6 +93,8 @@ export const CaptionView: React.FC<{
           fontFamily: `"${style.fontFamily}", "Tajawal", sans-serif`,
           letterSpacing: `${style.letterSpacing + containerAnim.tracking}em`,
           textTransform: style.uppercase ? "uppercase" : "none",
+          // Never fake-bold a font that has no heavy weight (e.g. classic Naskh).
+          fontSynthesis: "none",
           textAlign: style.textAlign,
         }}
       >

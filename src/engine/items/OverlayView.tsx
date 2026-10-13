@@ -514,8 +514,43 @@ const ProductCard: React.FC<{
             "radial-gradient(ellipse at 60% 70%, rgba(255,190,110,0.35) 0%, rgba(255,190,110,0) 65%)",
         }}
       />
+      {/* real ingredient photos (if provided) as a soft collage behind the text */}
+      {item.bgImages?.length ? (
+        <div
+          style={{
+            position: "absolute",
+            left: "34%",
+            right: 0,
+            top: 0,
+            bottom: 0,
+            display: "flex",
+            WebkitMaskImage: "linear-gradient(90deg, transparent 0%, #000 22%)",
+            maskImage: "linear-gradient(90deg, transparent 0%, #000 22%)",
+          }}
+        >
+          {item.bgImages.map((src, i) => (
+            <Img
+              key={src}
+              src={assetUrl(src)}
+              style={{
+                flex: 1,
+                minWidth: 0,
+                height: "100%",
+                objectFit: "cover",
+                scale: String(1.06 + Math.sin(frame / 50 + i) * 0.02),
+                opacity: interpolate(
+                  frame,
+                  [i * 3, i * 3 + 12],
+                  [0, 0.9],
+                  clamp,
+                ),
+              }}
+            />
+          ))}
+        </div>
+      ) : null}
       {/* ingredient still-life in the background, drifting slowly */}
-      {bgSlots.map((b, i) => {
+      {(item.bgImages?.length ? [] : bgSlots).map((b, i) => {
         const id = ids[i % Math.max(1, ids.length)];
         if (!id) return null;
         const size = H * b.s * 1.05;
@@ -643,7 +678,8 @@ const ProductCard: React.FC<{
                   border: "1px solid rgba(255,230,190,0.28)",
                   backdropFilter: "blur(6px)",
                   color: "#FFF4E2",
-                  fontWeight: 800,
+                  fontFamily: `"${item.fontFamily}", "Tajawal", sans-serif`,
+                  fontWeight: /naskh|amiri/i.test(item.fontFamily) ? 500 : 800,
                   fontSize: H * 0.07,
                   opacity: p > 0 ? Math.min(1, p * 1.5) : 0,
                   scale: String(0.6 + 0.4 * p),

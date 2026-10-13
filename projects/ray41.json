@@ -74,7 +74,7 @@
  ],
  "items": [
   {
-   "id": "vid_g1fwn8sp9b",
+   "id": "vid_3mpei60iy0",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · Hook",
@@ -127,7 +127,7 @@
    }
   },
   {
-   "id": "vid_vu0cpesp9b",
+   "id": "vid_ziox4r0iy0",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · الشتاء = ثقيل؟",
@@ -166,7 +166,7 @@
    }
   },
   {
-   "id": "vid_irgg5fsp9b",
+   "id": "vid_tfv4oa0iy0",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · للأسف خطأ",
@@ -205,7 +205,7 @@
    }
   },
   {
-   "id": "vid_4q4z5fsp9b",
+   "id": "vid_5zns1j0iy0",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · Armani · Stronger With You",
@@ -244,7 +244,7 @@
    }
   },
   {
-   "id": "vid_oo0e1fsp9b",
+   "id": "vid_j6rt7n0iy0",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · Burberry Hero",
@@ -283,7 +283,7 @@
    }
   },
   {
-   "id": "vid_re76eysp9b",
+   "id": "vid_v5nrnu0iy0",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · العود والأدهان",
@@ -322,7 +322,7 @@
    }
   },
   {
-   "id": "vid_jjq1mssp9b",
+   "id": "vid_tn5j700iy0",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · تقدر تبدّلها",
@@ -361,7 +361,7 @@
    }
   },
   {
-   "id": "vid_w4vjdgsp9b",
+   "id": "vid_urnyh00iy0",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · والأهم",
@@ -400,7 +400,7 @@
    }
   },
   {
-   "id": "cap_vaevy7sp9b",
+   "id": "cap_nr5hzf0iy0",
    "type": "caption",
    "trackId": "track_captions",
    "name": "ليس شرط أبدًا",
@@ -408,35 +408,35 @@
    "durationInFrames": 32,
    "words": [
     {
-     "id": "w_buiowgsp9b",
+     "id": "w_bua2rz0iy0",
      "text": "ليس",
      "start": 0,
      "end": 9.6
     },
     {
-     "id": "w_cfpzmosp9b",
+     "id": "w_9rvtpu0iy0",
      "text": "شرط",
      "start": 9.6,
      "end": 19.8
     },
     {
-     "id": "w_pkz25psp9b",
+     "id": "w_13vnpk0iy0",
      "text": "أبدًا",
      "start": 19.8,
      "end": 32.4
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -510,7 +510,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_w14dh3sp9c",
+   "id": "cap_ff10zr0iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "إنك تشتري عطر ثقيل بالشتاء",
@@ -518,32 +518,32 @@
    "durationInFrames": 45,
    "words": [
     {
-     "id": "w_93k3u3sp9c",
+     "id": "w_h9i8n20iy1",
      "text": "إنك",
      "start": 0.4,
      "end": 4
     },
     {
-     "id": "w_d8kkrnsp9c",
+     "id": "w_br3y670iy1",
      "text": "تشتري",
      "start": 4,
      "end": 14.2
     },
     {
-     "id": "w_xzw5l3sp9c",
+     "id": "w_b851800iy1",
      "text": "عطر",
      "start": 14.2,
      "end": 22.6
     },
     {
-     "id": "w_qwdgigsp9c",
+     "id": "w_hmwz5f0iy1",
      "text": "ثقيل",
      "start": 22.6,
      "end": 31,
      "emphasis": true
     },
     {
-     "id": "w_rgkfj0sp9c",
+     "id": "w_egj8cf0iy1",
      "text": "بالشتاء",
      "start": 31,
      "end": 44.8,
@@ -551,16 +551,16 @@
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -634,7 +634,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_htp6vmsp9c",
+   "id": "cap_b8zvkp0iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "أصلًا الربط إن الشتاء",
@@ -642,41 +642,41 @@
    "durationInFrames": 44,
    "words": [
     {
-     "id": "w_k5d6misp9c",
+     "id": "w_cxjh5o0iy1",
      "text": "أصلًا",
      "start": -0.2,
      "end": 12.4
     },
     {
-     "id": "w_lcammvsp9c",
+     "id": "w_e08zxy0iy1",
      "text": "الربط",
      "start": 12.4,
      "end": 28
     },
     {
-     "id": "w_36gewxsp9c",
+     "id": "w_3r7h9i0iy1",
      "text": "إن",
      "start": 28,
      "end": 33.4
     },
     {
-     "id": "w_3i0sxhsp9c",
+     "id": "w_p98dly0iy1",
      "text": "الشتاء",
      "start": 33.4,
      "end": 44.2
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -750,7 +750,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_hphslgsp9c",
+   "id": "cap_mx4l650iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "لازم عطر ثقيل",
@@ -758,19 +758,19 @@
    "durationInFrames": 31,
    "words": [
     {
-     "id": "w_6exymvsp9c",
+     "id": "w_cnjj0b0iy1",
      "text": "لازم",
      "start": 0.2,
      "end": 12.8
     },
     {
-     "id": "w_ka11gfsp9c",
+     "id": "w_hmvnay0iy1",
      "text": "عطر",
      "start": 12.8,
      "end": 19.4
     },
     {
-     "id": "w_6k4997sp9c",
+     "id": "w_kxryyd0iy1",
      "text": "ثقيل",
      "start": 19.4,
      "end": 30.8,
@@ -778,16 +778,16 @@
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -861,7 +861,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_l54aiusp9c",
+   "id": "cap_tdvodo0iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "للأسف خطأ",
@@ -869,13 +869,13 @@
    "durationInFrames": 36,
    "words": [
     {
-     "id": "w_1yaz1gsp9c",
+     "id": "w_tvr0fj0iy1",
      "text": "للأسف",
      "start": -0.2,
      "end": 20.8
     },
     {
-     "id": "w_9tohfcsp9c",
+     "id": "w_8w84qo0iy1",
      "text": "خطأ",
      "start": 20.8,
      "end": 35.2,
@@ -884,16 +884,16 @@
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -967,7 +967,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_50qiw4sp9c",
+   "id": "cap_uf1fko0iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "عادي ما تحب",
@@ -975,35 +975,35 @@
    "durationInFrames": 24,
    "words": [
     {
-     "id": "w_zxv0ibsp9c",
+     "id": "w_bt8sc60iy1",
      "text": "عادي",
      "start": 0.1,
      "end": 12.4
     },
     {
-     "id": "w_ena6cfsp9c",
+     "id": "w_gm27zt0iy1",
      "text": "ما",
      "start": 12.4,
      "end": 17.2
     },
     {
-     "id": "w_t5zm9osp9c",
+     "id": "w_6uu3to0iy1",
      "text": "تحب",
      "start": 17.2,
      "end": 24.4
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -1077,7 +1077,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_yh1v3ksp9c",
+   "id": "cap_oi5qdr0iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "العطور الثقيلة",
@@ -1085,29 +1085,29 @@
    "durationInFrames": 27,
    "words": [
     {
-     "id": "w_etow7ssp9c",
+     "id": "w_iyqya10iy1",
      "text": "العطور",
      "start": 0.4,
      "end": 14.2
     },
     {
-     "id": "w_jo7fygsp9c",
+     "id": "w_ojeivt0iy1",
      "text": "الثقيلة",
      "start": 14.2,
      "end": 26.8
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -1181,7 +1181,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_5yyzqwsp9c",
+   "id": "cap_2h9ap90iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "مثل العود والأدهان",
@@ -1189,13 +1189,13 @@
    "durationInFrames": 40,
    "words": [
     {
-     "id": "w_ookgepsp9c",
+     "id": "w_xl2ubx0iy1",
      "text": "مثل",
      "start": -0.2,
      "end": 7.6
     },
     {
-     "id": "w_t9hy1bsp9c",
+     "id": "w_urgbbd0iy1",
      "text": "العود",
      "start": 7.6,
      "end": 20.2,
@@ -1203,7 +1203,7 @@
      "tone": "negative"
     },
     {
-     "id": "w_fqsy4jsp9c",
+     "id": "w_xffhuw0iy1",
      "text": "والأدهان",
      "start": 20.2,
      "end": 38.5,
@@ -1212,16 +1212,16 @@
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -1295,7 +1295,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_i3x56xsp9c",
+   "id": "cap_hy3au00iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "تقدر تبدّلها مثلًا",
@@ -1303,35 +1303,35 @@
    "durationInFrames": 34,
    "words": [
     {
-     "id": "w_8rg978sp9c",
+     "id": "w_l9g4cz0iy1",
      "text": "تقدر",
      "start": 0.2,
      "end": 9.8
     },
     {
-     "id": "w_wq6j6fsp9c",
+     "id": "w_t5z1u00iy1",
      "text": "تبدّلها",
      "start": 9.8,
      "end": 24.8
     },
     {
-     "id": "w_5ip3twsp9c",
+     "id": "w_oco7nd0iy1",
      "text": "مثلًا",
      "start": 24.8,
      "end": 33.8
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -1405,7 +1405,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_qvm01gsp9c",
+   "id": "cap_v6rdnq0iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "بعطر الأرماني",
@@ -1413,13 +1413,13 @@
    "durationInFrames": 30,
    "words": [
     {
-     "id": "w_kgwwlzsp9c",
+     "id": "w_z1ujwx0iy1",
      "text": "بعطر",
      "start": -0.2,
      "end": 10
     },
     {
-     "id": "w_eugl4psp9c",
+     "id": "w_bvj8i40iy1",
      "text": "الأرماني",
      "start": 10,
      "end": 29.2,
@@ -1427,16 +1427,16 @@
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -1510,7 +1510,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_r8lpodsp9c",
+   "id": "cap_2cs0na0iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "أرماني هذا Stronger With You",
@@ -1518,26 +1518,26 @@
    "durationInFrames": 36,
    "words": [
     {
-     "id": "w_3alkwtsp9c",
+     "id": "w_ol98190iy1",
      "text": "أرماني",
      "start": -0.5,
      "end": 9.4
     },
     {
-     "id": "w_p6ekxtsp9c",
+     "id": "w_8zj8s20iy1",
      "text": "هذا",
      "start": 9.4,
      "end": 14.8
     },
     {
-     "id": "w_w84s1ssp9c",
+     "id": "w_mkmfh10iy1",
      "text": "Stronger",
      "start": 14.8,
      "end": 29.2,
      "emphasis": true
     },
     {
-     "id": "w_ncz6o1sp9c",
+     "id": "w_6jmjrd0iy1",
      "text": "With You",
      "start": 29.2,
      "end": 35.8,
@@ -1545,16 +1545,16 @@
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -1628,7 +1628,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_y42i1lsp9c",
+   "id": "cap_zluu680iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "ونسخة الـIntensely",
@@ -1636,13 +1636,13 @@
    "durationInFrames": 32,
    "words": [
     {
-     "id": "w_yj74xksp9c",
+     "id": "w_wbbdf90iy1",
      "text": "ونسخة",
      "start": -0.2,
      "end": 12.4
     },
     {
-     "id": "w_pefa52sp9c",
+     "id": "w_54nc2h0iy1",
      "text": "الـIntensely",
      "start": 12.4,
      "end": 31.6,
@@ -1650,16 +1650,16 @@
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -1733,7 +1733,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_qb6mrksp9c",
+   "id": "cap_hzibmv0iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "فيه فانيلا وتوفي",
@@ -1741,20 +1741,20 @@
    "durationInFrames": 43,
    "words": [
     {
-     "id": "w_tvz4wdsp9c",
+     "id": "w_dnjhfz0iy1",
      "text": "فيه",
      "start": -0.4,
      "end": 6.2
     },
     {
-     "id": "w_xx7cu4sp9c",
+     "id": "w_z0e00w0iy1",
      "text": "فانيلا",
      "start": 6.2,
      "end": 26.6,
      "emphasis": true
     },
     {
-     "id": "w_h172srsp9c",
+     "id": "w_9feooy0iy1",
      "text": "وتوفي",
      "start": 26.6,
      "end": 43.4,
@@ -1762,16 +1762,16 @@
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -1845,7 +1845,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_afx2oasp9c",
+   "id": "cap_adoc5x0iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "وفيهم مكونات خشبية حلوة",
@@ -1853,42 +1853,42 @@
    "durationInFrames": 59,
    "words": [
     {
-     "id": "w_mtafkssp9c",
+     "id": "w_r20qy80iy1",
      "text": "وفيهم",
      "start": 0.4,
      "end": 9.4
     },
     {
-     "id": "w_p92wynsp9c",
+     "id": "w_wvz4in0iy1",
      "text": "مكونات",
      "start": 9.4,
      "end": 23.8
     },
     {
-     "id": "w_87gpq0sp9c",
+     "id": "w_fry8gk0iy1",
      "text": "خشبية",
      "start": 23.8,
      "end": 38.8,
      "emphasis": true
     },
     {
-     "id": "w_2t4lxxsp9c",
+     "id": "w_43w7hh0iy1",
      "text": "حلوة",
      "start": 38.8,
      "end": 59.2
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -1962,7 +1962,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_60k5cdsp9c",
+   "id": "cap_vias400iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "أو البربري هيرو بارفيوم",
@@ -1970,27 +1970,27 @@
    "durationInFrames": 46,
    "words": [
     {
-     "id": "w_vng8i5sp9c",
+     "id": "w_lpbv130iy1",
      "text": "أو",
      "start": 0.2,
      "end": 7.4
     },
     {
-     "id": "w_3snu3nsp9c",
+     "id": "w_gjma5v0iy1",
      "text": "البربري",
      "start": 7.4,
      "end": 18.5,
      "emphasis": true
     },
     {
-     "id": "w_v2k8v5sp9c",
+     "id": "w_ygko040iy1",
      "text": "هيرو",
      "start": 18.5,
      "end": 27.8,
      "emphasis": true
     },
     {
-     "id": "w_0i0pw7sp9c",
+     "id": "w_amro280iy1",
      "text": "بارفيوم",
      "start": 27.8,
      "end": 46.4,
@@ -1998,16 +1998,16 @@
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -2081,7 +2081,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_mj39qysp9d",
+   "id": "cap_o3t2p70iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "إذا تحب الروايح الخشبية",
@@ -2089,25 +2089,25 @@
    "durationInFrames": 45,
    "words": [
     {
-     "id": "w_ypo594sp9c",
+     "id": "w_suk1yv0iy1",
      "text": "إذا",
      "start": 0.4,
      "end": 5.2
     },
     {
-     "id": "w_rcbpu9sp9c",
+     "id": "w_saeilu0iy1",
      "text": "تحب",
      "start": 5.2,
      "end": 13.6
     },
     {
-     "id": "w_8dca39sp9c",
+     "id": "w_74g93s0iy1",
      "text": "الروايح",
      "start": 13.6,
      "end": 26.8
     },
     {
-     "id": "w_db1fk1sp9c",
+     "id": "w_lhcvil0iy1",
      "text": "الخشبية",
      "start": 26.8,
      "end": 45.4,
@@ -2115,16 +2115,16 @@
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -2198,7 +2198,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_qz42fcsp9d",
+   "id": "cap_nuzhj70iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "بس بشكل أهدأ",
@@ -2206,19 +2206,19 @@
    "durationInFrames": 30,
    "words": [
     {
-     "id": "w_pazco2sp9d",
+     "id": "w_1qra6n0iy1",
      "text": "بس",
      "start": 0.4,
      "end": 5.2
     },
     {
-     "id": "w_77xhz1sp9d",
+     "id": "w_m4d6il0iy1",
      "text": "بشكل",
      "start": 5.2,
      "end": 16
     },
     {
-     "id": "w_2fb7qmsp9d",
+     "id": "w_kn4en90iy1",
      "text": "أهدأ",
      "start": 16,
      "end": 29.5,
@@ -2226,16 +2226,16 @@
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -2309,7 +2309,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_et0e8jsp9d",
+   "id": "cap_pw9eqj0iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "والأهم إنك تاخذ",
@@ -2317,35 +2317,35 @@
    "durationInFrames": 37,
    "words": [
     {
-     "id": "w_1aacl9sp9d",
+     "id": "w_ldop760iy1",
      "text": "والأهم",
      "start": -0.1,
      "end": 14.6
     },
     {
-     "id": "w_qy22yvsp9d",
+     "id": "w_o2maa50iy1",
      "text": "إنك",
      "start": 14.6,
      "end": 27.2
     },
     {
-     "id": "w_b72ozasp9d",
+     "id": "w_1qvcqz0iy1",
      "text": "تاخذ",
      "start": 27.2,
      "end": 36.8
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -2419,7 +2419,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_9wjacosp9d",
+   "id": "cap_jgpfez0iy1",
    "type": "caption",
    "trackId": "track_captions",
    "name": "من ريحانة مكة وبس",
@@ -2427,43 +2427,43 @@
    "durationInFrames": 44,
    "words": [
     {
-     "id": "w_o1cmf0sp9d",
+     "id": "w_6vlv1d0iy1",
      "text": "من",
      "start": -0.2,
      "end": 4
     },
     {
-     "id": "w_4a715xsp9d",
+     "id": "w_sc6uai0iy1",
      "text": "ريحانة",
      "start": 4,
      "end": 20.2,
      "emphasis": true
     },
     {
-     "id": "w_sxg07csp9d",
+     "id": "w_62ksgq0iy1",
      "text": "مكة",
      "start": 20.2,
      "end": 31.6,
      "emphasis": true
     },
     {
-     "id": "w_g94rmosp9d",
+     "id": "w_hvaog40iy1",
      "text": "وبس",
      "start": 31.6,
      "end": 41.5
     }
    ],
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 62,
-    "fontWeight": 800,
-    "lineHeight": 1.2,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 50,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "textColor": "#FFFFFF",
     "highlightColor": "#F0B65A",
     "emphasisColor": "#F0B65A",
-    "emphasisScale": 1.15,
+    "emphasisScale": 1.1,
     "emphasisOwnLine": false,
     "strokeColor": "#000000",
     "strokeWidth": 0,
@@ -2537,7 +2537,7 @@
    "presetId": "glass"
   },
   {
-   "id": "ovl_r11bphsp9d",
+   "id": "ovl_67bmen0iy1",
    "type": "overlay",
    "trackId": "track_broll",
    "name": "Snow · الشتاء = عطر ثقيل",
@@ -2598,7 +2598,7 @@
    }
   },
   {
-   "id": "txt_bar3q9sp9d",
+   "id": "txt_y6v99f0iy1",
    "type": "text",
    "trackId": "track_text",
    "name": "Hook",
@@ -2607,10 +2607,10 @@
    "variant": "question",
    "text": "عطر الشتاء… لازم يكون ثقيل؟",
    "style": {
-    "fontFamily": "Tajawal",
-    "fontSize": 72,
-    "fontWeight": 900,
-    "lineHeight": 1.15,
+    "fontFamily": "Noto Naskh Arabic",
+    "fontSize": 58,
+    "fontWeight": 500,
+    "lineHeight": 1.45,
     "letterSpacing": 0,
     "textAlign": "center",
     "color": "#111111",
@@ -2672,7 +2672,7 @@
    }
   },
   {
-   "id": "txt_onbu2zsp9d",
+   "id": "txt_6f0kgz0iy2",
    "type": "text",
    "trackId": "track_overlays",
    "name": "✕ العود",
@@ -2746,7 +2746,7 @@
    }
   },
   {
-   "id": "txt_vxq5lysp9d",
+   "id": "txt_nhvrjm0iy2",
    "type": "text",
    "trackId": "track_overlays",
    "name": "✕ الأدهان",
@@ -2820,7 +2820,7 @@
    }
   },
   {
-   "id": "ovl_felchnsp9d",
+   "id": "ovl_0tyzq00iy2",
    "type": "overlay",
    "trackId": "track_graphics",
    "name": "Card · Armani SWY Intensely",
@@ -2840,7 +2840,7 @@
     "قرفة",
     "عنبر"
    ],
-   "fontFamily": "Tajawal",
+   "fontFamily": "Noto Naskh Arabic",
    "transform": {
     "x": 510,
     "y": 432,
@@ -2903,7 +2903,7 @@
    ]
   },
   {
-   "id": "ovl_xwglhcsp9d",
+   "id": "ovl_lq4jwf0iy2",
    "type": "overlay",
    "trackId": "track_graphics",
    "name": "Card · Burberry Hero Parfum",
@@ -2922,7 +2922,7 @@
     "أميريس",
     "سيبريول"
    ],
-   "fontFamily": "Tajawal",
+   "fontFamily": "Noto Naskh Arabic",
    "transform": {
     "x": 510,
     "y": 432,
@@ -2983,7 +2983,7 @@
    ]
   },
   {
-   "id": "aud_wcbytzsp9d",
+   "id": "aud_jlk8yg0iy2",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "hook in",
@@ -2998,7 +2998,7 @@
    "muted": false
   },
   {
-   "id": "aud_a3dzn2sp9d",
+   "id": "aud_03f4ta0iy2",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "خطأ",
@@ -3013,7 +3013,7 @@
    "muted": false
   },
   {
-   "id": "aud_mmrwkysp9d",
+   "id": "aud_bp2k9e0iy2",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "✕ العود",
@@ -3028,7 +3028,7 @@
    "muted": false
   },
   {
-   "id": "aud_4kha6isp9d",
+   "id": "aud_0orsa00iy2",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "✕ الأدهان",
@@ -3043,7 +3043,7 @@
    "muted": false
   },
   {
-   "id": "aud_qoprcpsp9d",
+   "id": "aud_qr3c5u0iy2",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "Armani card",
@@ -3058,7 +3058,7 @@
    "muted": false
   },
   {
-   "id": "aud_i2b97csp9d",
+   "id": "aud_qe1rij0iy2",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "فانيلا",
@@ -3073,7 +3073,7 @@
    "muted": false
   },
   {
-   "id": "aud_899ibpsp9d",
+   "id": "aud_fmmtwg0iy2",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "Hero card",
@@ -3088,7 +3088,7 @@
    "muted": false
   },
   {
-   "id": "aud_4d45sfsp9d",
+   "id": "aud_xxqv390iy2",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "notes Hero",
@@ -3115,5 +3115,5 @@
   }
  ],
  "fonts": [],
- "updatedAt": "2026-10-13T11:34:30.627Z"
+ "updatedAt": "2026-10-13T11:40:35.691Z"
 }

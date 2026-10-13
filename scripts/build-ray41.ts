@@ -104,8 +104,11 @@ groups.forEach((g, gi) => {
       ...(fl?.includes("n") ? { tone: "negative" as const } : {}),
     })),
   });
-  c.style.fontSize = 62;
-  c.style.emphasisScale = 1.15;
+  c.style.fontFamily = "Noto Naskh Arabic";
+  c.style.fontWeight = 500;
+  c.style.fontSize = 50;
+  c.style.lineHeight = 1.45;
+  c.style.emphasisScale = 1.1;
   c.style.maxWidth = 860;
   c.style.reveal = "phrase";
   c.animation.in = "fade";
@@ -126,7 +129,10 @@ items.push(snow);
 const hook = createTextItem(p, { trackId: T("text"), from: 0, variant: "question", text: "عطر الشتاء… لازم يكون ثقيل؟" });
 hook.durationInFrames = f(2.56);
 hook.transform.y = 400;
-hook.style.fontSize = 72;
+hook.style.fontSize = 58;
+hook.style.fontFamily = "Noto Naskh Arabic";
+hook.style.fontWeight = 500;
+hook.style.lineHeight = 1.45;
 hook.animation = defaultAnimationSet({ in: "pop", inParams: defaultParams({ duration: 7 }), emphasis: "underlineReveal", emphasisParams: defaultParams({ duration: 14, delay: 10 }), out: "scaleOut", outParams: defaultParams({ duration: 5 }) });
 hook.name = "Hook";
 items.push(hook);
@@ -174,6 +180,12 @@ const productCard = (
   o.texts = [brand, title, ...notes.map((n) => n[0])];
   o.ingredients = notes.map((n) => n[1]);
   o.timings = notes.map((n) => Math.max(4, f(n[2]) - f(fromS)));
+  o.fontFamily = "Noto Naskh Arabic";
+  // Real photos win when present (public/products/*-official.png, public/ingredients/<id>.jpg).
+  const official = image.replace(".png", "-official.png");
+  if (fs.existsSync(`public/${official}`)) o.images = [official];
+  const photos = notes.map((n) => `ingredients/${n[1]}.jpg`).filter((x) => fs.existsSync(`public/${x}`));
+  if (photos.length) o.bgImages = photos;
   o.shadow = { enabled: true, color: "rgba(0,0,0,0.45)", blur: 44, x: 0, y: 18 };
   o.animation = defaultAnimationSet({
     in: "slideDown",

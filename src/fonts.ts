@@ -25,6 +25,21 @@ const fonts: {
   { family: "Inter", file: "Inter-600.woff2", weight: "600" },
   { family: "Inter", file: "Inter-800.woff2", weight: "800" },
   { family: "Bebas Neue", file: "BebasNeue-400.woff2", weight: "400" },
+  // Classic Naskh (non-bold, book style) for elegant captions.
+  ...(["400", "500"] as const).flatMap((weight) => [
+    {
+      family: "Noto Naskh Arabic",
+      file: `NotoNaskhArabic-Arabic-${weight}.woff2`,
+      weight,
+      unicodeRange: ARABIC_RANGE,
+    },
+    {
+      family: "Noto Naskh Arabic",
+      file: `NotoNaskhArabic-Latin-${weight}.woff2`,
+      weight,
+      unicodeRange: LATIN_RANGE,
+    },
+  ]),
   ...(["500", "800", "900"] as const).flatMap((weight) => [
     {
       family: "Tajawal",
@@ -56,4 +71,5 @@ export const fontFamilies = [
   "Inter",
   "Bebas Neue",
   "Tajawal",
+  "Noto Naskh Arabic",
 ] as const;

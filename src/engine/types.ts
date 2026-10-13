@@ -362,6 +362,8 @@ export type OverlayItem = ItemBase & {
   ingredients?: string[];
   /** productCard: frame (relative) at which each note appears. */
   timings?: number[];
+  /** productCard: real ingredient photos for the card background (paths in public/). */
+  bgImages?: string[];
 };
 
 export type AudioRole = "voice" | "music" | "sfx";
