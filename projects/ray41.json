@@ -74,7 +74,7 @@
  ],
  "items": [
   {
-   "id": "vid_hxn3oy4mbo",
+   "id": "vid_1gl53agi58",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · Hook",
@@ -127,7 +127,7 @@
    }
   },
   {
-   "id": "vid_3txx9p4mbo",
+   "id": "vid_kluawggi58",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · الشتاء = ثقيل؟",
@@ -166,7 +166,7 @@
    }
   },
   {
-   "id": "vid_g3jfy44mbo",
+   "id": "vid_bw48cngi58",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · للأسف خطأ",
@@ -205,7 +205,7 @@
    }
   },
   {
-   "id": "vid_lrj0hu4mbo",
+   "id": "vid_d9uj04gi58",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · Armani · Stronger With You",
@@ -244,7 +244,7 @@
    }
   },
   {
-   "id": "vid_jkiy3q4mbo",
+   "id": "vid_9nkhpogi58",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · Burberry Hero",
@@ -283,7 +283,7 @@
    }
   },
   {
-   "id": "vid_rkmxqe4mbo",
+   "id": "vid_r81xqsgi58",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · العود والأدهان",
@@ -322,7 +322,7 @@
    }
   },
   {
-   "id": "vid_nhww2s4mbo",
+   "id": "vid_5d92t5gi58",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · تقدر تبدّلها",
@@ -361,7 +361,7 @@
    }
   },
   {
-   "id": "vid_wfo4x64mbo",
+   "id": "vid_ih2w8ugi58",
    "type": "video",
    "trackId": "track_video",
    "name": "Clip · والأهم",
@@ -400,7 +400,7 @@
    }
   },
   {
-   "id": "cap_344hdr4mbp",
+   "id": "cap_o8q7ldgi58",
    "type": "caption",
    "trackId": "track_captions",
    "name": "ليس شرط أبدًا",
@@ -408,19 +408,19 @@
    "durationInFrames": 32,
    "words": [
     {
-     "id": "w_c51w2j4mbp",
+     "id": "w_wveevbgi58",
      "text": "ليس",
      "start": 0,
      "end": 9.6
     },
     {
-     "id": "w_6tom814mbp",
+     "id": "w_dw17bigi58",
      "text": "شرط",
      "start": 9.6,
      "end": 19.8
     },
     {
-     "id": "w_a5e5cb4mbp",
+     "id": "w_ax4kllgi58",
      "text": "أبدًا",
      "start": 19.8,
      "end": 32.4
@@ -510,7 +510,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_b8mpus4mbp",
+   "id": "cap_ox6rtigi58",
    "type": "caption",
    "trackId": "track_captions",
    "name": "إنك تشتري عطر ثقيل بالشتاء",
@@ -518,32 +518,32 @@
    "durationInFrames": 45,
    "words": [
     {
-     "id": "w_7w4s7d4mbp",
+     "id": "w_c47kd4gi58",
      "text": "إنك",
      "start": 0.4,
      "end": 4
     },
     {
-     "id": "w_dciuol4mbp",
+     "id": "w_ilqoofgi58",
      "text": "تشتري",
      "start": 4,
      "end": 14.2
     },
     {
-     "id": "w_alib3i4mbp",
+     "id": "w_2mya57gi58",
      "text": "عطر",
      "start": 14.2,
      "end": 22.6
     },
     {
-     "id": "w_998tza4mbp",
+     "id": "w_u9hcdlgi58",
      "text": "ثقيل",
      "start": 22.6,
      "end": 31,
      "emphasis": true
     },
     {
-     "id": "w_ypmvtp4mbp",
+     "id": "w_q2ff0vgi58",
      "text": "بالشتاء",
      "start": 31,
      "end": 44.8,
@@ -634,7 +634,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_nx2jex4mbp",
+   "id": "cap_yppk87gi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "أصلًا الربط إن الشتاء",
@@ -642,25 +642,25 @@
    "durationInFrames": 44,
    "words": [
     {
-     "id": "w_t90aw74mbp",
+     "id": "w_yprxmrgi58",
      "text": "أصلًا",
      "start": -0.2,
      "end": 12.4
     },
     {
-     "id": "w_n3hmgi4mbp",
+     "id": "w_o5rfc8gi59",
      "text": "الربط",
      "start": 12.4,
      "end": 28
     },
     {
-     "id": "w_t4v1wc4mbp",
+     "id": "w_x39v9fgi59",
      "text": "إن",
      "start": 28,
      "end": 33.4
     },
     {
-     "id": "w_peb18q4mbp",
+     "id": "w_eppawvgi59",
      "text": "الشتاء",
      "start": 33.4,
      "end": 44.2
@@ -750,7 +750,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_uxx81f4mbp",
+   "id": "cap_s6vajtgi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "لازم عطر ثقيل",
@@ -758,19 +758,19 @@
    "durationInFrames": 31,
    "words": [
     {
-     "id": "w_1f23nd4mbp",
+     "id": "w_5433fggi59",
      "text": "لازم",
      "start": 0.2,
      "end": 12.8
     },
     {
-     "id": "w_1dpx7k4mbp",
+     "id": "w_64rtpdgi59",
      "text": "عطر",
      "start": 12.8,
      "end": 19.4
     },
     {
-     "id": "w_8bkojh4mbp",
+     "id": "w_jqxkajgi59",
      "text": "ثقيل",
      "start": 19.4,
      "end": 30.8,
@@ -861,7 +861,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_il1aig4mbp",
+   "id": "cap_dluaa3gi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "للأسف خطأ",
@@ -869,13 +869,13 @@
    "durationInFrames": 36,
    "words": [
     {
-     "id": "w_ny6yjw4mbp",
+     "id": "w_9r3b02gi59",
      "text": "للأسف",
      "start": -0.2,
      "end": 20.8
     },
     {
-     "id": "w_zxsx3h4mbp",
+     "id": "w_gmvhl6gi59",
      "text": "خطأ",
      "start": 20.8,
      "end": 35.2,
@@ -967,7 +967,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_dyc9cr4mbp",
+   "id": "cap_1j74cggi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "عادي ما تحب",
@@ -975,19 +975,19 @@
    "durationInFrames": 24,
    "words": [
     {
-     "id": "w_jk08954mbp",
+     "id": "w_z81kbjgi59",
      "text": "عادي",
      "start": 0.1,
      "end": 12.4
     },
     {
-     "id": "w_bghd7l4mbp",
+     "id": "w_7xkgclgi59",
      "text": "ما",
      "start": 12.4,
      "end": 17.2
     },
     {
-     "id": "w_ex0w4e4mbp",
+     "id": "w_hlhbbrgi59",
      "text": "تحب",
      "start": 17.2,
      "end": 24.4
@@ -1077,7 +1077,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_0qucae4mbp",
+   "id": "cap_koc23mgi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "العطور الثقيلة",
@@ -1085,13 +1085,13 @@
    "durationInFrames": 27,
    "words": [
     {
-     "id": "w_cd7onl4mbp",
+     "id": "w_vft1q4gi59",
      "text": "العطور",
      "start": 0.4,
      "end": 14.2
     },
     {
-     "id": "w_2a972a4mbp",
+     "id": "w_4k6yligi59",
      "text": "الثقيلة",
      "start": 14.2,
      "end": 26.8
@@ -1181,7 +1181,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_tkm5i14mbp",
+   "id": "cap_8hrhtdgi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "مثل العود والأدهان",
@@ -1189,13 +1189,13 @@
    "durationInFrames": 40,
    "words": [
     {
-     "id": "w_9f47rk4mbp",
+     "id": "w_axgv55gi59",
      "text": "مثل",
      "start": -0.2,
      "end": 7.6
     },
     {
-     "id": "w_ddewwz4mbp",
+     "id": "w_f4fzkjgi59",
      "text": "العود",
      "start": 7.6,
      "end": 20.2,
@@ -1203,7 +1203,7 @@
      "tone": "negative"
     },
     {
-     "id": "w_2bf6jt4mbp",
+     "id": "w_1kvw6qgi59",
      "text": "والأدهان",
      "start": 20.2,
      "end": 38.5,
@@ -1295,7 +1295,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_xcwoc24mbp",
+   "id": "cap_lh7itbgi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "تقدر تبدّلها مثلًا",
@@ -1303,19 +1303,19 @@
    "durationInFrames": 34,
    "words": [
     {
-     "id": "w_vbqlvc4mbp",
+     "id": "w_to398jgi59",
      "text": "تقدر",
      "start": 0.2,
      "end": 9.8
     },
     {
-     "id": "w_m1nqmk4mbp",
+     "id": "w_3xpfq7gi59",
      "text": "تبدّلها",
      "start": 9.8,
      "end": 24.8
     },
     {
-     "id": "w_uoihm84mbp",
+     "id": "w_gjxetygi59",
      "text": "مثلًا",
      "start": 24.8,
      "end": 33.8
@@ -1405,7 +1405,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_abcl284mbp",
+   "id": "cap_mfq01igi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "بعطر الأرماني",
@@ -1413,13 +1413,13 @@
    "durationInFrames": 30,
    "words": [
     {
-     "id": "w_dxvvaa4mbp",
+     "id": "w_dyelw3gi59",
      "text": "بعطر",
      "start": -0.2,
      "end": 10
     },
     {
-     "id": "w_eyksms4mbp",
+     "id": "w_5j3x7rgi59",
      "text": "الأرماني",
      "start": 10,
      "end": 29.2,
@@ -1510,7 +1510,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_3umo6s4mbp",
+   "id": "cap_44i89pgi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "أرماني هذا Stronger With You",
@@ -1518,26 +1518,26 @@
    "durationInFrames": 36,
    "words": [
     {
-     "id": "w_aboe6a4mbp",
+     "id": "w_xh6jbdgi59",
      "text": "أرماني",
      "start": -0.5,
      "end": 9.4
     },
     {
-     "id": "w_32rtc44mbp",
+     "id": "w_dvsxe4gi59",
      "text": "هذا",
      "start": 9.4,
      "end": 14.8
     },
     {
-     "id": "w_epqidd4mbp",
+     "id": "w_25sdeogi59",
      "text": "Stronger",
      "start": 14.8,
      "end": 29.2,
      "emphasis": true
     },
     {
-     "id": "w_sqg37v4mbp",
+     "id": "w_wam7qigi59",
      "text": "With You",
      "start": 29.2,
      "end": 35.8,
@@ -1628,7 +1628,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_yma7nv4mbp",
+   "id": "cap_gzfp73gi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "ونسخة الـIntensely",
@@ -1636,13 +1636,13 @@
    "durationInFrames": 32,
    "words": [
     {
-     "id": "w_ozwgox4mbp",
+     "id": "w_rqaa2jgi59",
      "text": "ونسخة",
      "start": -0.2,
      "end": 12.4
     },
     {
-     "id": "w_x3zcek4mbp",
+     "id": "w_jg1tcigi59",
      "text": "الـIntensely",
      "start": 12.4,
      "end": 31.6,
@@ -1733,7 +1733,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_29l04y4mbp",
+   "id": "cap_qxpbpzgi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "فيه فانيلا وتوفي",
@@ -1741,20 +1741,20 @@
    "durationInFrames": 43,
    "words": [
     {
-     "id": "w_xg9jp24mbp",
+     "id": "w_s13dv3gi59",
      "text": "فيه",
      "start": -0.4,
      "end": 6.2
     },
     {
-     "id": "w_yalcf54mbp",
+     "id": "w_iww8xhgi59",
      "text": "فانيلا",
      "start": 6.2,
      "end": 26.6,
      "emphasis": true
     },
     {
-     "id": "w_k6xrwe4mbp",
+     "id": "w_d2am2egi59",
      "text": "وتوفي",
      "start": 26.6,
      "end": 43.4,
@@ -1845,7 +1845,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_cby9j24mbp",
+   "id": "cap_mlt4u9gi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "وفيهم مكونات خشبية حلوة",
@@ -1853,26 +1853,26 @@
    "durationInFrames": 59,
    "words": [
     {
-     "id": "w_ujyhw84mbp",
+     "id": "w_6vqjafgi59",
      "text": "وفيهم",
      "start": 0.4,
      "end": 9.4
     },
     {
-     "id": "w_fs7dwm4mbp",
+     "id": "w_pkpmocgi59",
      "text": "مكونات",
      "start": 9.4,
      "end": 23.8
     },
     {
-     "id": "w_d2ow0j4mbp",
+     "id": "w_hsnc1tgi59",
      "text": "خشبية",
      "start": 23.8,
      "end": 38.8,
      "emphasis": true
     },
     {
-     "id": "w_ofda3l4mbp",
+     "id": "w_vwls6igi59",
      "text": "حلوة",
      "start": 38.8,
      "end": 59.2
@@ -1962,7 +1962,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_gomttp4mbp",
+   "id": "cap_g0wp0lgi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "أو البربري هيرو بارفيوم",
@@ -1970,27 +1970,27 @@
    "durationInFrames": 46,
    "words": [
     {
-     "id": "w_rrgga24mbp",
+     "id": "w_zls53agi59",
      "text": "أو",
      "start": 0.2,
      "end": 7.4
     },
     {
-     "id": "w_d44rah4mbp",
+     "id": "w_qzys4kgi59",
      "text": "البربري",
      "start": 7.4,
      "end": 18.5,
      "emphasis": true
     },
     {
-     "id": "w_qa3okl4mbp",
+     "id": "w_gwoeyugi59",
      "text": "هيرو",
      "start": 18.5,
      "end": 27.8,
      "emphasis": true
     },
     {
-     "id": "w_iasvgv4mbp",
+     "id": "w_mwx2aagi59",
      "text": "بارفيوم",
      "start": 27.8,
      "end": 46.4,
@@ -2081,7 +2081,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_ojcwxh4mbp",
+   "id": "cap_4omgt2gi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "إذا تحب الروايح الخشبية",
@@ -2089,25 +2089,25 @@
    "durationInFrames": 45,
    "words": [
     {
-     "id": "w_dxvvc64mbp",
+     "id": "w_65qtbpgi59",
      "text": "إذا",
      "start": 0.4,
      "end": 5.2
     },
     {
-     "id": "w_lhyp194mbp",
+     "id": "w_piecmwgi59",
      "text": "تحب",
      "start": 5.2,
      "end": 13.6
     },
     {
-     "id": "w_ed6aox4mbp",
+     "id": "w_5uibnegi59",
      "text": "الروايح",
      "start": 13.6,
      "end": 26.8
     },
     {
-     "id": "w_puabom4mbp",
+     "id": "w_nr3bcpgi59",
      "text": "الخشبية",
      "start": 26.8,
      "end": 45.4,
@@ -2198,7 +2198,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_7l58qz4mbp",
+   "id": "cap_i5u8brgi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "بس بشكل أهدأ",
@@ -2206,19 +2206,19 @@
    "durationInFrames": 30,
    "words": [
     {
-     "id": "w_v37pqo4mbp",
+     "id": "w_bdcd4agi59",
      "text": "بس",
      "start": 0.4,
      "end": 5.2
     },
     {
-     "id": "w_wg050r4mbp",
+     "id": "w_l60xgegi59",
      "text": "بشكل",
      "start": 5.2,
      "end": 16
     },
     {
-     "id": "w_qx2zft4mbp",
+     "id": "w_w0kdd8gi59",
      "text": "أهدأ",
      "start": 16,
      "end": 29.5,
@@ -2309,7 +2309,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_0b7ahc4mbp",
+   "id": "cap_3af2nggi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "والأهم إنك تاخذ",
@@ -2317,19 +2317,19 @@
    "durationInFrames": 37,
    "words": [
     {
-     "id": "w_i3bk284mbp",
+     "id": "w_jwxkjpgi59",
      "text": "والأهم",
      "start": -0.1,
      "end": 14.6
     },
     {
-     "id": "w_ghvu1p4mbp",
+     "id": "w_lw1c0igi59",
      "text": "إنك",
      "start": 14.6,
      "end": 27.2
     },
     {
-     "id": "w_zrz7hd4mbp",
+     "id": "w_alq18ygi59",
      "text": "تاخذ",
      "start": 27.2,
      "end": 36.8
@@ -2419,7 +2419,7 @@
    "presetId": "glass"
   },
   {
-   "id": "cap_mrnskf4mbp",
+   "id": "cap_b3wihxgi59",
    "type": "caption",
    "trackId": "track_captions",
    "name": "من ريحانة مكة وبس",
@@ -2427,27 +2427,27 @@
    "durationInFrames": 44,
    "words": [
     {
-     "id": "w_wwm9lv4mbp",
+     "id": "w_lq0s23gi59",
      "text": "من",
      "start": -0.2,
      "end": 4
     },
     {
-     "id": "w_pshzab4mbp",
+     "id": "w_uxl4tvgi59",
      "text": "ريحانة",
      "start": 4,
      "end": 20.2,
      "emphasis": true
     },
     {
-     "id": "w_s1yz824mbp",
+     "id": "w_s5dil5gi59",
      "text": "مكة",
      "start": 20.2,
      "end": 31.6,
      "emphasis": true
     },
     {
-     "id": "w_d1qe984mbp",
+     "id": "w_8b939agi59",
      "text": "وبس",
      "start": 31.6,
      "end": 41.5
@@ -2537,7 +2537,7 @@
    "presetId": "glass"
   },
   {
-   "id": "ovl_3ucfsx4mbp",
+   "id": "ovl_g3ykjtgi59",
    "type": "overlay",
    "trackId": "track_broll",
    "name": "Snow · الشتاء = عطر ثقيل",
@@ -2598,7 +2598,7 @@
    }
   },
   {
-   "id": "txt_2rk4uz4mbq",
+   "id": "txt_k7iiywgi59",
    "type": "text",
    "trackId": "track_text",
    "name": "Hook",
@@ -2672,7 +2672,7 @@
    }
   },
   {
-   "id": "txt_sirm7f4mbq",
+   "id": "txt_6vu2ffgi59",
    "type": "text",
    "trackId": "track_overlays",
    "name": "✕ العود",
@@ -2746,7 +2746,7 @@
    }
   },
   {
-   "id": "txt_wbpnvn4mbq",
+   "id": "txt_7h7w8egi59",
    "type": "text",
    "trackId": "track_overlays",
    "name": "✕ الأدهان",
@@ -2820,7 +2820,7 @@
    }
   },
   {
-   "id": "ovl_lwhp3n4mbq",
+   "id": "ovl_br3hx5gi5a",
    "type": "overlay",
    "trackId": "track_graphics",
    "name": "Card · Armani SWY Intensely",
@@ -2893,7 +2893,7 @@
     "amber"
    ],
    "images": [
-    "products/armani-stronger-with-you-intensely.png"
+    "products/armani-stronger-with-you-intensely-official.png"
    ],
    "timings": [
     74,
@@ -2903,7 +2903,7 @@
    ]
   },
   {
-   "id": "ovl_3wktyt4mbq",
+   "id": "ovl_24t45mgi5a",
    "type": "overlay",
    "trackId": "track_graphics",
    "name": "Card · Burberry Hero Parfum",
@@ -2974,7 +2974,7 @@
     "cypriol"
    ],
    "images": [
-    "products/burberry-hero-parfum.png"
+    "products/burberry-hero-parfum-official.png"
    ],
    "timings": [
     53,
@@ -2983,7 +2983,7 @@
    ]
   },
   {
-   "id": "aud_58vmm94mbq",
+   "id": "aud_oj61xwgi5a",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "hook in",
@@ -2998,7 +2998,7 @@
    "muted": false
   },
   {
-   "id": "aud_y6y4o74mbq",
+   "id": "aud_jmjalhgi5a",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "خطأ",
@@ -3013,7 +3013,7 @@
    "muted": false
   },
   {
-   "id": "aud_jpw0xp4mbq",
+   "id": "aud_9gacvzgi5a",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "✕ العود",
@@ -3028,7 +3028,7 @@
    "muted": false
   },
   {
-   "id": "aud_a4jwpx4mbq",
+   "id": "aud_t1s8nogi5a",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "✕ الأدهان",
@@ -3043,7 +3043,7 @@
    "muted": false
   },
   {
-   "id": "aud_6g93h14mbq",
+   "id": "aud_4petkhgi5a",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "Armani card",
@@ -3058,7 +3058,7 @@
    "muted": false
   },
   {
-   "id": "aud_p0ru1u4mbq",
+   "id": "aud_6yl227gi5a",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "فانيلا",
@@ -3073,7 +3073,7 @@
    "muted": false
   },
   {
-   "id": "aud_24mfim4mbq",
+   "id": "aud_0pxqxhgi5a",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "Hero card",
@@ -3088,7 +3088,7 @@
    "muted": false
   },
   {
-   "id": "aud_a8btl64mbq",
+   "id": "aud_e6z0rlgi5a",
    "type": "audio",
    "trackId": "track_sfx",
    "name": "notes Hero",
@@ -3115,5 +3115,5 @@
   }
  ],
  "fonts": [],
- "updatedAt": "2026-10-13T11:43:46.695Z"
+ "updatedAt": "2026-10-13T11:53:01.151Z"
 }

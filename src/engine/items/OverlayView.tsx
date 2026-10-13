@@ -584,9 +584,13 @@ const ProductCard: React.FC<{
             left: W * 0.045,
             top: (H - imgH) / 2,
             height: imgH,
-            borderRadius: 10,
-            boxShadow:
-              "0 24px 50px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.08)",
+            borderRadius: item.images[0].endsWith(".png") ? 0 : 10,
+            boxShadow: item.images[0].endsWith("-official.png")
+              ? undefined
+              : "0 24px 50px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.08)",
+            filter: item.images[0].endsWith("-official.png")
+              ? "drop-shadow(0 22px 28px rgba(0,0,0,0.6))"
+              : undefined,
             rotate: `${interpolate(frame, [0, 14], [-8, -3], { ...clamp, easing: Easing.bezier(0.16, 1, 0.3, 1) })}deg`,
             scale: String(
               interpolate(frame, [0, 14], [0.82, 1], {
