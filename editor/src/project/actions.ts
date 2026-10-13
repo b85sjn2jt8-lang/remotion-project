@@ -138,7 +138,7 @@ export const splitItemInDraft = (
   }
   if (right.type === "video") right.transitionIn = undefined;
   // A split is one continuous element: only the first half animates in, only the second out.
-  if ("animation" in it && "animation" in right) {
+  if ("animation" in it && "animation" in right && it.animation && right.animation) {
     it.animation.out = "none";
     right.animation.in = "none";
   }
