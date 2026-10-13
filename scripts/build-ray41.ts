@@ -105,18 +105,19 @@ groups.forEach((g, gi) => {
       ...(fl?.includes("n") ? { tone: "negative" as const } : {}),
     })),
   });
-  // Tajawal regular (not bold), white with a black outline, on a lightly blurred glass pill.
+  // Reference look: bold white Tajawal on a dark translucent pill, key words in gold, no outline.
   c.style.fontFamily = "Tajawal";
-  c.style.fontWeight = 500;
+  c.style.fontWeight = 800;
   c.style.fontSize = 54;
   c.style.lineHeight = 1.3;
-  c.style.emphasisScale = 1.1;
+  c.style.emphasisScale = 1;
   c.style.textColor = "#FFFFFF";
-  c.style.strokeColor = "#000000";
-  c.style.strokeWidth = 6;
-  c.style.background = { ...c.style.background, enabled: true, color: "#FFFFFF", opacity: 0.1, blur: 14 };
+  c.style.emphasisColor = "#F5B83D";
+  c.style.strokeWidth = 0;
+  c.style.shadow = { enabled: false, color: "rgba(0,0,0,0.4)", blur: 20, x: 0, y: 6 };
+  c.style.background = { enabled: true, color: "#000000", opacity: 0.62, radius: 18, paddingX: 24, paddingY: 6 };
   c.style.maxWidth = 860;
-  c.style.reveal = "phrase";
+  c.style.reveal = "phrase"; // whole phrase at once so the pill hugs the text
   c.animation.in = "fade";
   c.animation.inParams = defaultParams({ duration: 3 });
   c.transform.y = 1420;
