@@ -77,7 +77,11 @@ const Shape: React.FC<{
     case "snow":
       return <Snow item={item} frame={frame} fps={fps} />;
     case "productCard":
-      return <ProductCard item={item} frame={frame} radius={radius} />;
+      return item.variant === "pyramid" ? (
+        <PyramidCard item={item} frame={frame} radius={radius} />
+      ) : (
+        <ProductCard item={item} frame={frame} radius={radius} />
+      );
     case "arrow": {
       const len = w + 40;
       return (
@@ -692,6 +696,250 @@ const ProductCard: React.FC<{
                   />
                 ) : null}
                 <span>{n}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/**
+ * Notes-pyramid card (glass): brand, name, accords, then البداية / القلب / القاعدة rows.
+ * Background: real ingredient photos as diagonal strips when provided, otherwise ingredient art.
+ */
+const PyramidCard: React.FC<{
+  item: OverlayItem;
+  frame: number;
+  radius: number;
+}> = ({ item, frame, radius }) => {
+  const { width: W, height: H } = item;
+  const [brand, name, accords, top, heart, base] = item.texts;
+  const rows: [string, string][] = [
+    ["البداية", top],
+    ["القلب", heart],
+    ["القاعدة", base],
+  ];
+  const ids = (item.ingredients ?? []) as IngredientId[];
+  const clamp = {
+    extrapolateLeft: "clamp" as const,
+    extrapolateRight: "clamp" as const,
+  };
+  const ease = Easing.bezier(0.16, 1, 0.3, 1);
+  const hasBottle = Boolean(item.images?.[0]);
+  const textLeft = hasBottle ? W * 0.3 : W * 0.06;
+  const font = `"${item.fontFamily}", "Tajawal", sans-serif`;
+  const photos = item.bgImages ?? [];
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: W,
+        height: H,
+        borderRadius: radius,
+        overflow: "hidden",
+        background: "rgba(28,22,16,0.52)",
+        backdropFilter: "blur(14px) saturate(1.2)",
+        WebkitBackdropFilter: "blur(14px) saturate(1.2)",
+        border: "1.5px solid rgba(240,201,138,0.45)",
+      }}
+    >
+      {/* background: diagonal strips of real ingredient photos, or ingredient art */}
+      <div style={{ position: "absolute", inset: 0, opacity: 0.55 }}>
+        {photos.length
+          ? photos.map((src, i) => {
+              const sw = W / photos.length + 60;
+              return (
+                <div
+                  key={src}
+                  style={{
+                    position: "absolute",
+                    top: -40,
+                    bottom: -40,
+                    left: i * (W / photos.length) - 30,
+                    width: sw,
+                    overflow: "hidden",
+                    clipPath: "polygon(18% 0, 100% 0, 82% 100%, 0 100%)",
+                    opacity: interpolate(
+                      frame,
+                      [i * 3, i * 3 + 14],
+                      [0, 1],
+                      clamp,
+                    ),
+                  }}
+                >
+                  <Img
+                    src={assetUrl(src)}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      scale: String(1.08 + Math.sin(frame / 60 + i) * 0.02),
+                    }}
+                  />
+                </div>
+              );
+            })
+          : ids.slice(0, 4).map((id, i) => (
+              <div
+                key={id + i}
+                style={{
+                  position: "absolute",
+                  left: W * (0.22 + i * 0.2) - H * 0.35,
+                  top: H * (i % 2 ? 0.38 : 0.05) + Math.sin(frame / 45 + i) * 5,
+                  opacity:
+                    0.55 *
+                    interpolate(frame, [i * 3, i * 3 + 14], [0, 1], clamp),
+                  rotate: `${(i % 2 ? 1 : -1) * 12}deg`,
+                }}
+              >
+                <IngredientArt
+                  id={id}
+                  uid={`${item.id}-p${i}`}
+                  size={H * 0.7}
+                />
+              </div>
+            ))}
+      </div>
+      {/* tint for legibility */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(180deg, rgba(22,16,11,0.35) 0%, rgba(22,16,11,0.62) 100%)",
+        }}
+      />
+      {hasBottle ? (
+        <Img
+          src={assetUrl(item.images![0])}
+          style={{
+            position: "absolute",
+            left: W * 0.03,
+            top: H * 0.08,
+            height: H * 0.84,
+            width: W * 0.25,
+            objectFit: "contain",
+            filter: "drop-shadow(0 18px 22px rgba(0,0,0,0.55))",
+            scale: String(
+              interpolate(frame, [0, 14], [0.85, 1], {
+                ...clamp,
+                easing: ease,
+              }),
+            ),
+            translate: `0px ${Math.sin(frame / 30) * 3}px`,
+          }}
+        />
+      ) : null}
+      <div
+        style={{
+          position: "absolute",
+          left: textLeft,
+          right: W * 0.05,
+          top: H * 0.07,
+          bottom: H * 0.06,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "Montserrat",
+            fontWeight: 600,
+            fontSize: H * 0.058,
+            letterSpacing: "0.22em",
+            color: item.secondaryColor,
+          }}
+        >
+          {brand}
+        </div>
+        <div
+          style={{
+            fontFamily: "Montserrat",
+            fontWeight: 800,
+            fontSize: H * 0.1,
+            color: "#FFFFFF",
+            lineHeight: 1.1,
+            textAlign: "center",
+          }}
+        >
+          {name}
+        </div>
+        {accords ? (
+          <div
+            dir="rtl"
+            style={{
+              fontFamily: font,
+              fontWeight: 500,
+              fontSize: H * 0.06,
+              color: "rgba(255,244,226,0.75)",
+              marginTop: H * 0.01,
+            }}
+          >
+            {accords}
+          </div>
+        ) : null}
+        <div
+          style={{
+            width: "100%",
+            marginTop: H * 0.04,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          {rows.map(([label, notes], i) => {
+            const at = item.timings?.[i] ?? 8 + i * 5;
+            const p = interpolate(frame, [at, at + 10], [0, 1], {
+              ...clamp,
+              easing: ease,
+            });
+            const hl = item.highlights?.[i] ?? -1;
+            const glow =
+              hl >= 0
+                ? interpolate(frame, [hl, hl + 5, hl + 22], [0, 1, 0.35], clamp)
+                : 0;
+            return (
+              <div
+                key={label}
+                dir="rtl"
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  gap: H * 0.04,
+                  padding: `${H * 0.022}px ${H * 0.02}px`,
+                  borderTop:
+                    i === 0
+                      ? "1px solid rgba(240,201,138,0.25)"
+                      : "1px solid rgba(240,201,138,0.18)",
+                  opacity: p,
+                  translate: `${(1 - p) * -24}px 0px`,
+                  background: `rgba(240,201,138,${0.14 * glow})`,
+                  borderRadius: 8,
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: font,
+                    fontWeight: 500,
+                    fontSize: H * 0.055,
+                    color: item.secondaryColor,
+                    minWidth: H * 0.2,
+                  }}
+                >
+                  {label}
+                </span>
+                <span
+                  style={{
+                    fontFamily: font,
+                    fontWeight: 500,
+                    fontSize: H * 0.072,
+                    color: "#FFFFFF",
+                  }}
+                >
+                  {notes}
+                </span>
               </div>
             );
           })}

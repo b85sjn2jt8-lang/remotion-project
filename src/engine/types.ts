@@ -364,6 +364,12 @@ export type OverlayItem = ItemBase & {
   timings?: number[];
   /** productCard: real ingredient photos for the card background (paths in public/). */
   bgImages?: string[];
+  /**
+   * productCard layout. "pyramid": texts = [brand, name, accords, top, heart, base];
+   * timings = frames at which the 3 rows appear; highlights = frame each row lights up (or -1).
+   */
+  variant?: "chips" | "pyramid";
+  highlights?: number[];
 };
 
 export type AudioRole = "voice" | "music" | "sfx";

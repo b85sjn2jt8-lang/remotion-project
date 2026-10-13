@@ -105,11 +105,16 @@ groups.forEach((g, gi) => {
       ...(fl?.includes("n") ? { tone: "negative" as const } : {}),
     })),
   });
-  c.style.fontFamily = "Noto Naskh Arabic";
+  // Tajawal regular (not bold), white with a black outline, on a lightly blurred glass pill.
+  c.style.fontFamily = "Tajawal";
   c.style.fontWeight = 500;
-  c.style.fontSize = 50;
-  c.style.lineHeight = 1.45;
+  c.style.fontSize = 54;
+  c.style.lineHeight = 1.3;
   c.style.emphasisScale = 1.1;
+  c.style.textColor = "#FFFFFF";
+  c.style.strokeColor = "#000000";
+  c.style.strokeWidth = 6;
+  c.style.background = { ...c.style.background, enabled: true, color: "#FFFFFF", opacity: 0.1, blur: 14 };
   c.style.maxWidth = 860;
   c.style.reveal = "phrase";
   c.animation.in = "fade";
@@ -132,7 +137,7 @@ const hook = createTextItem(p, { trackId: T("text"), from: 0, variant: "question
 hook.durationInFrames = f(2.56);
 hook.transform.y = 400;
 hook.style.fontSize = 58;
-hook.style.fontFamily = "Noto Naskh Arabic";
+hook.style.fontFamily = "Tajawal";
 hook.style.fontWeight = 500;
 hook.style.lineHeight = 1.45;
 hook.animation = defaultAnimationSet({ in: "pop", inParams: defaultParams({ duration: 7 }), emphasis: "underlineReveal", emphasisParams: defaultParams({ duration: 14, delay: 10 }), out: "scaleOut", outParams: defaultParams({ duration: 5 }) });
@@ -161,34 +166,37 @@ const chip = (text: string, fromS: number, toS: number, x: number, y: number, bg
 items.push(chip("✕ العود", 8.52, 9.55, 690, 430, "#E5484D", "#FFFFFF", "✕ العود"));
 items.push(chip("✕ الأدهان", 8.94, 9.55, 410, 430, "#E5484D", "#FFFFFF", "✕ الأدهان"));
 
-// ---------- product cards: real box (cropped from the footage) + ingredients ----------
-const productCard = (
+// ---------- product cards: glass notes-pyramid (البداية / القلب / القاعدة) + bottle ----------
+const pyramidCard = (
   fromS: number,
   toS: number,
   name: string,
   image: string,
-  brand: string,
-  title: string,
-  notes: [string, string, number][],
+  texts: [string, string, string, string, string, string],
+  ingredients: string[],
+  rowAtS: [number, number, number],
+  highlightAtS: [number, number, number],
 ) => {
   const o = createOverlayItem(p, { trackId: T("graphics"), from: f(fromS), shape: "productCard" });
+  o.variant = "pyramid";
   o.durationInFrames = f(toS) - f(fromS);
   o.name = name;
-  o.width = 840;
-  o.height = 460;
+  o.width = 860;
+  o.height = 400;
+  o.radius = 30;
   o.transform.x = 510;
-  o.transform.y = 432;
-  o.images = [image];
-  o.texts = [brand, title, ...notes.map((n) => n[0])];
-  o.ingredients = notes.map((n) => n[1]);
-  o.timings = notes.map((n) => Math.max(4, f(n[2]) - f(fromS)));
-  o.fontFamily = "Noto Naskh Arabic";
-  // Real photos win when present (public/products/*-official.png, public/ingredients/<id>.jpg).
+  o.transform.y = 420;
+  o.fontFamily = "Tajawal";
+  o.secondaryColor = "#F0C98A";
+  o.texts = texts;
+  o.ingredients = ingredients;
+  o.timings = rowAtS.map((t) => Math.max(4, f(t) - f(fromS)));
+  o.highlights = highlightAtS.map((t) => (t < 0 ? -1 : f(t) - f(fromS)));
   const official = image.replace(".png", "-official.png");
-  if (fs.existsSync(`public/${official}`)) o.images = [official];
-  const photos = notes.map((n) => `ingredients/${n[1]}.jpg`).filter((x) => fs.existsSync(`public/${x}`));
+  o.images = [fs.existsSync(`public/${official}`) ? official : image];
+  const photos = ingredients.map((id) => `ingredients/${id}.jpg`).filter((x) => fs.existsSync(`public/${x}`));
   if (photos.length) o.bgImages = photos;
-  o.shadow = { enabled: true, color: "rgba(0,0,0,0.45)", blur: 44, x: 0, y: 18 };
+  o.shadow = { enabled: true, color: "rgba(0,0,0,0.4)", blur: 40, x: 0, y: 16 };
   o.animation = defaultAnimationSet({
     in: "slideDown",
     inParams: defaultParams({ duration: 10, intensity: 0.5 }),
@@ -198,19 +206,28 @@ const productCard = (
   return o;
 };
 items.push(
-  productCard(12.25, 17.94, "Card · Armani SWY Intensely", "products/armani-stronger-with-you-intensely.png", "EMPORIO ARMANI", "Stronger With You Intensely", [
-    ["فانيلا", "vanilla", 14.74],
-    ["توفي", "toffee", 15.42],
-    ["قرفة", "cinnamon", 16.28],
-    ["عنبر", "amber", 16.6],
-  ]),
+  pyramidCard(
+    12.25,
+    17.94,
+    "Card · Armani SWY Intensely",
+    "products/armani-stronger-with-you-intensely.png",
+    ["EMPORIO ARMANI", "Stronger With You Intensely", "عنبري · حلو · خشبي", "فلفل وردي · عرعر · بنفسج", "توفي · قرفة · لافندر", "فانيلا · تونكا · عنبر"],
+    ["vanilla", "toffee", "cinnamon", "amber"],
+    [12.9, 13.2, 13.5],
+    [-1, 15.42, 14.74],
+  ),
 );
 items.push(
-  productCard(18.18, 21.95, "Card · Burberry Hero Parfum", "products/burberry-hero-parfum.png", "BURBERRY", "Hero Parfum", [
-    ["خشب الأرز", "cedar", 19.92],
-    ["أميريس", "amyris", 20.2],
-    ["سيبريول", "cypriol", 20.5],
-  ]),
+  pyramidCard(
+    18.18,
+    21.95,
+    "Card · Burberry Hero Parfum",
+    "products/burberry-hero-parfum.png",
+    ["BURBERRY", "Hero Parfum", "خشبي · ترابي", "زيت السيبريول", "أميريس", "ثلاثي خشب الأرز"],
+    ["cedar", "amyris", "cypriol"],
+    [18.7, 19.0, 19.3],
+    [-1, -1, 20.36],
+  ),
 );
 
 // ---------- sfx ----------

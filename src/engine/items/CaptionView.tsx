@@ -205,7 +205,9 @@ export const CaptionView: React.FC<{
                     fontWeight:
                       ws.weight ??
                       (emph
-                        ? Math.max(style.fontWeight, 900)
+                        ? style.fontWeight >= 700
+                          ? 900
+                          : style.fontWeight // keep regular styles regular
                         : style.fontWeight),
                     lineHeight:
                       emph && style.emphasisOwnLine ? 1.05 : style.lineHeight,
