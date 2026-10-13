@@ -1,0 +1,57 @@
+{
+  "source": "footage/ray41.mp4",
+  "footage": "footage/ray41.mp4",
+  "captions": "captions/ray41.json",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "hdr": false,
+  "durationInSeconds": 25.449002,
+  "durationInFrames": 763,
+  "loudness": {
+    "integrated": -27.38,
+    "threshold": -37.59
+  },
+  "silenceSettings": {
+    "minSilence": 0.35,
+    "pad": 0.08
+  },
+  "silences": [
+    {
+      "start": 11.875556,
+      "end": 12.324399
+    },
+    {
+      "start": 21.88449,
+      "end": 22.406485
+    },
+    {
+      "start": 25.038685,
+      "end": 25.449116
+    }
+  ],
+  "clips": [
+    {
+      "name": "Clip 1",
+      "startSec": 0,
+      "endSec": 11.956,
+      "trimBefore": 0,
+      "durationInFrames": 359
+    },
+    {
+      "name": "Clip 2",
+      "startSec": 12.244,
+      "endSec": 21.964,
+      "trimBefore": 367,
+      "durationInFrames": 292
+    },
+    {
+      "name": "Clip 3",
+      "startSec": 22.326,
+      "endSec": 25.119,
+      "trimBefore": 670,
+      "durationInFrames": 84
+    }
+  ],
+  "keptFrames": 735
+}
