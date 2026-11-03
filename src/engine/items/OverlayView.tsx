@@ -76,6 +76,25 @@ const Shape: React.FC<{
   switch (item.shape) {
     case "snow":
       return <Snow item={item} frame={frame} fps={fps} />;
+    case "blur":
+      // Privacy / teaser blur over whatever is underneath (feathered edges). strokeWidth = blur px.
+      return (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            borderRadius: radius,
+            backdropFilter: `blur(${item.strokeWidth}px)`,
+            WebkitBackdropFilter: `blur(${item.strokeWidth}px)`,
+            WebkitMaskImage:
+              "radial-gradient(ellipse at center, #000 58%, transparent 74%)",
+            maskImage:
+              "radial-gradient(ellipse at center, #000 58%, transparent 74%)",
+          }}
+        />
+      );
+    case "compareCard":
+      return <CompareCard item={item} frame={frame} radius={radius} />;
     case "productCard":
       return item.variant === "pyramid" ? (
         <PyramidCard item={item} frame={frame} radius={radius} />
@@ -948,3 +967,260 @@ const PyramidCard: React.FC<{
     </div>
   );
 };
+
+/** Side-by-side comparison: two bottles, names, prices, shared notes and a similarity bar. */
+const CompareCard: React.FC<{
+  item: OverlayItem;
+  frame: number;
+  radius: number;
+}> = ({ item, frame, radius }) => {
+  const c = item.compare;
+  if (!c) return null;
+  const { width: W, height: H } = item;
+  const clamp = {
+    extrapolateLeft: "clamp" as const,
+    extrapolateRight: "clamp" as const,
+  };
+  const ease = Easing.bezier(0.16, 1, 0.3, 1);
+  const t = item.timings ?? [0, 14, 26];
+  const font = `"${item.fontFamily}", "Tajawal", sans-serif`;
+  const side = (s: CompareSideT, i: number) => {
+    const p = interpolate(frame, [t[0] + i * 4, t[0] + i * 4 + 12], [0, 1], {
+      ...clamp,
+      easing: ease,
+    });
+    return (
+      <div
+        style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          opacity: p,
+          translate: `0px ${(1 - p) * 24}px`,
+        }}
+      >
+        <div
+          style={{
+            height: H * 0.4,
+            width: "100%",
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "center",
+          }}
+        >
+          {s.image ? (
+            <Img
+              src={assetUrl(s.image)}
+              style={{
+                maxHeight: "100%",
+                maxWidth: "88%",
+                objectFit: "contain",
+                filter: "drop-shadow(0 16px 20px rgba(0,0,0,0.55))",
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                width: H * 0.24,
+                height: H * 0.34,
+                borderRadius: 14,
+                border: "2px dashed rgba(255,255,255,0.35)",
+                color: "rgba(255,255,255,0.6)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                fontFamily: font,
+                fontSize: H * 0.03,
+              }}
+            >
+              صورة العطر
+            </div>
+          )}
+        </div>
+        <div
+          style={{
+            fontFamily: "Montserrat",
+            fontWeight: 600,
+            fontSize: H * 0.03,
+            letterSpacing: "0.18em",
+            color: item.secondaryColor,
+            marginTop: H * 0.025,
+          }}
+        >
+          {s.brand}
+        </div>
+        <div
+          style={{
+            fontFamily: "Montserrat",
+            fontWeight: 800,
+            fontSize: H * 0.05,
+            color: "#fff",
+            lineHeight: 1.1,
+            textAlign: "center",
+          }}
+        >
+          {s.name}
+        </div>
+        <div
+          dir="rtl"
+          style={{
+            fontFamily: font,
+            fontWeight: 800,
+            fontSize: H * 0.055,
+            color: s.priceColor ?? "#fff",
+            marginTop: H * 0.01,
+          }}
+        >
+          {s.price}
+        </div>
+      </div>
+    );
+  };
+  const notesP = (i: number) =>
+    interpolate(frame, [t[1] + i * 3, t[1] + i * 3 + 8], [0, 1], {
+      ...clamp,
+      easing: Easing.bezier(0.34, 1.56, 0.64, 1),
+    });
+  const bar = interpolate(frame, [t[2], t[2] + 24], [0, c.similarity], {
+    ...clamp,
+    easing: ease,
+  });
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: W,
+        height: H,
+        borderRadius: radius,
+        overflow: "hidden",
+        background: "rgba(24,18,12,0.62)",
+        backdropFilter: "blur(16px) saturate(1.2)",
+        WebkitBackdropFilter: "blur(16px) saturate(1.2)",
+        border: "1.5px solid rgba(240,201,138,0.45)",
+        display: "flex",
+        flexDirection: "column",
+        padding: `${H * 0.04}px ${W * 0.04}px`,
+        boxSizing: "border-box",
+      }}
+    >
+      <div
+        dir="rtl"
+        style={{
+          textAlign: "center",
+          fontFamily: font,
+          fontWeight: 700,
+          fontSize: H * 0.04,
+          color: item.secondaryColor,
+        }}
+      >
+        {c.title}
+      </div>
+      <div
+        dir="rtl"
+        style={{ display: "flex", alignItems: "center", marginTop: H * 0.02 }}
+      >
+        {side(c.right, 0)}
+        <div
+          style={{
+            width: H * 0.1,
+            height: H * 0.1,
+            borderRadius: 999,
+            background: item.secondaryColor,
+            color: "#1a120b",
+            fontFamily: "Montserrat",
+            fontWeight: 900,
+            fontSize: H * 0.04,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flex: "none",
+            scale: String(
+              interpolate(frame, [t[0] + 6, t[0] + 14], [0, 1], {
+                ...clamp,
+                easing: Easing.bezier(0.34, 1.56, 0.64, 1),
+              }),
+            ),
+          }}
+        >
+          VS
+        </div>
+        {side(c.left, 1)}
+      </div>
+      <div
+        dir="rtl"
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: H * 0.015,
+          marginTop: H * 0.035,
+        }}
+      >
+        {c.shared.map((n, i) => (
+          <div
+            key={n}
+            style={{
+              fontFamily: font,
+              fontWeight: 700,
+              fontSize: H * 0.036,
+              color: "#FFF4E2",
+              background: "rgba(255,240,220,0.12)",
+              border: "1px solid rgba(240,201,138,0.4)",
+              borderRadius: 999,
+              padding: `${H * 0.008}px ${H * 0.025}px`,
+              opacity: notesP(i),
+              scale: String(0.7 + 0.3 * notesP(i)),
+            }}
+          >
+            <span style={{ color: "#7BE08F" }}>✓ </span>
+            {n}
+          </div>
+        ))}
+      </div>
+      <div
+        dir="rtl"
+        style={{
+          marginTop: "auto",
+          display: "flex",
+          alignItems: "center",
+          gap: W * 0.03,
+        }}
+      >
+        <span
+          style={{
+            fontFamily: font,
+            fontWeight: 700,
+            fontSize: H * 0.04,
+            color: "#fff",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {c.similarityLabel}
+        </span>
+        <div
+          style={{
+            flex: 1,
+            height: H * 0.025,
+            borderRadius: 99,
+            background: "rgba(255,255,255,0.15)",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              width: `${bar * 100}%`,
+              height: "100%",
+              borderRadius: 99,
+              background: `linear-gradient(90deg, ${item.secondaryColor}, #7BE08F)`,
+              marginInlineStart: "auto",
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+type CompareSideT = NonNullable<OverlayItem["compare"]>["left"];

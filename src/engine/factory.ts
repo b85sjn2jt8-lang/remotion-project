@@ -311,6 +311,15 @@ const OVERLAY_DEFAULTS: Record<OverlayShape, Partial<OverlayItem>> = {
     texts: ["BRAND", "Product Name", "فانيلا", "عنبر"],
     ingredients: ["vanilla", "amber"],
   },
+  blur: { width: 560, height: 560, strokeWidth: 28, radius: 40 },
+  compareCard: {
+    width: 880,
+    height: 640,
+    radius: 32,
+    color: "#18120C",
+    secondaryColor: "#F0C98A",
+    fontFamily: "Tajawal",
+  },
   snow: {
     width: 1080,
     height: 1920,
@@ -344,6 +353,8 @@ export const OVERLAY_LABELS: Record<OverlayShape, string> = {
   comparisonCard: "Comparison Card",
   icon: "Icon",
   snow: "Snow (realistic)",
+  blur: "Blur area",
+  compareCard: "Comparison Card",
   productCard: "Product Card",
 };
 

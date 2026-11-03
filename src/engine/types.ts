@@ -339,7 +339,9 @@ export type OverlayShape =
   | "comparisonCard"
   | "icon"
   | "snow"
-  | "productCard";
+  | "productCard"
+  | "blur"
+  | "compareCard";
 
 export type OverlayItem = ItemBase & {
   type: "overlay";
@@ -369,7 +371,27 @@ export type OverlayItem = ItemBase & {
    * timings = frames at which the 3 rows appear; highlights = frame each row lights up (or -1).
    */
   variant?: "chips" | "pyramid";
+  /** compareCard: two products side by side + their shared notes. */
+  compare?: {
+    title: string;
+    right: CompareSide;
+    left: CompareSide;
+    /** Notes both share (shown with ✓). */
+    shared: string[];
+    /** Label of the similarity bar (e.g. "تشابه كبير"); bar fill 0..1. */
+    similarityLabel: string;
+    similarity: number;
+  };
   highlights?: number[];
+};
+
+export type CompareSide = {
+  brand: string;
+  name: string;
+  price: string;
+  image?: string;
+  /** Highlight color for the price (e.g. red for the expensive one). */
+  priceColor?: string;
 };
 
 export type AudioRole = "voice" | "music" | "sfx";
