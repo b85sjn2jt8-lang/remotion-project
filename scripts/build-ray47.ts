@@ -123,7 +123,9 @@ cmp.compare = {
   title: "مقارنة المكونات",
   right: { brand: "KILIAN PARIS", name: "Angels' Share", price: "1200 ريال", image: kilianImg, priceColor: "#FF8A80" },
   left: { brand: "BEVERLY HILLS AVENUE", name: "Laytani", price: "150 ريال", image: img("products/laytani-beverly-hills-avenue.png"), priceColor: "#7BE08F" },
-  shared: ["كونياك", "قرفة", "تونكا", "فانيلا", "برالين", "خشبي"],
+  // Real overlap from the published notes: vanilla + sandalwood in both bases, warm spices
+  // (Kilian: cinnamon · Laytani: cardamom, pepper) and woods (Kilian: oak · Laytani: guaiac, sandalwood).
+  shared: ["فانيلا", "صندل", "توابل دافئة", "أخشاب"],
   similarityLabel: "تشابه كبير",
   similarity: 0.88,
 };
