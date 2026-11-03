@@ -54,6 +54,41 @@ items.push(blur);
 // reveal whoosh
 items.push(createAudioItem({ trackId: T("sfx"), role: "sfx", src: "sfx/card-slide-3.mp3", from: 304, durationInFrames: 20, volume: 0.35, name: "Reveal whoosh" }));
 
+// ---------- product name (option 4): gold arrow to the bottle + name ----------
+{
+  const FROM = 337;
+  const DUR = f(13.06) - FROM + 10;
+  const arrow = createOverlayItem(p, { trackId: T("overlays"), from: FROM + 4, shape: "arrow" });
+  arrow.name = "Arrow · Laytani";
+  arrow.durationInFrames = DUR - 4;
+  arrow.width = 260;
+  arrow.height = 120;
+  arrow.strokeWidth = 12;
+  arrow.color = "#F5B83D";
+  arrow.transform.x = 760;
+  arrow.transform.y = 640;
+  arrow.transform.rotation = 120;
+  items.push(arrow);
+  const name = (text: string, y: number, size: number, weight: number, color: string, label: string) => {
+    const t = createTextItem(p, { trackId: T("overlays"), from: FROM, variant: "label", text });
+    t.name = label;
+    t.durationInFrames = DUR;
+    t.transform.x = 790;
+    t.transform.y = y;
+    t.style.fontFamily = "Montserrat";
+    t.style.fontSize = size;
+    t.style.fontWeight = weight;
+    t.style.color = color;
+    t.style.letterSpacing = 0.02;
+    t.style.background.enabled = false;
+    t.style.shadow = { enabled: true, color: "rgba(0,0,0,0.6)", blur: 18, x: 0, y: 4 };
+    t.animation = defaultAnimationSet({ in: "pop", inParams: defaultParams({ duration: 8 }), out: "fadeOut", outParams: defaultParams({ duration: 5 }) });
+    items.push(t);
+  };
+  name("LAYTANI", 470, 64, 800, "#FFFFFF", "Name · LAYTANI");
+  name("Beverly Hills Avenue", 530, 30, 600, "#F5B83D", "Name · Beverly Hills Avenue");
+}
+
 // ---------- Kilian card when he names it (notes pyramid) ----------
 const kilian = createOverlayItem(p, { trackId: T("graphics"), from: f(2.26), shape: "productCard" });
 kilian.variant = "pyramid";
