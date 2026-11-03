@@ -4,7 +4,7 @@
  */
 import fs from "node:fs";
 import { defaultAnimationSet, defaultParams } from "../src/engine/animation/presets";
-import { createCaptionItem, createOverlayItem, createTextItem, createVideoItem, emptyProject, uid } from "../src/engine/factory";
+import { createAudioItem, createCaptionItem, createOverlayItem, createTextItem, createVideoItem, emptyProject, uid } from "../src/engine/factory";
 import type { Item, Project } from "../src/engine/types";
 
 const FPS = 30;
@@ -17,6 +17,18 @@ const img = (path: string) => (fs.existsSync(`public/${path}`) ? path : undefine
 
 // ---------- video: full clip, untouched colors ----------
 const v = createVideoItem(p, { trackId: T("video"), src: "footage/ray47.mp4", from: 0, durationInFrames: SRC_FRAMES, name: "RAY47" });
+// Colors exactly as delivered: no picture adjustment at all.
+v.adjust = { contrast: 1, saturation: 1, brightness: 1 };
+// Reveal (option 2): quick punch-in on the product at 00:10:08, back to wide when the comparison starts.
+v.origin = { x: 48, y: 46 };
+v.keyframes = {
+  scale: [
+    { frame: 307, value: 1, easing: "linear" },
+    { frame: 313, value: 1.14, easing: "easeOut" },
+    { frame: f(14.3) - 1, value: 1.14, easing: "linear" },
+    { frame: f(14.3), value: 1, easing: "linear" },
+  ],
+};
 items.push(v);
 
 // ---------- blur the product until 00:10:08 (frame 308), tracking the slow camera drift ----------
@@ -36,8 +48,11 @@ blur.keyframes = {
     { frame: 307, value: 960, easing: "easeInOut" },
   ],
 };
-blur.animation = defaultAnimationSet({ in: "none", out: "fadeOut", outParams: defaultParams({ duration: 8 }) });
+blur.animation = defaultAnimationSet({ in: "none", out: "quickDisappear", outParams: defaultParams({ duration: 3 }) });
 items.push(blur);
+
+// reveal whoosh
+items.push(createAudioItem({ trackId: T("sfx"), role: "sfx", src: "sfx/card-slide-3.mp3", from: 304, durationInFrames: 20, volume: 0.35, name: "Reveal whoosh" }));
 
 // ---------- Kilian card when he names it (notes pyramid) ----------
 const kilian = createOverlayItem(p, { trackId: T("graphics"), from: f(2.26), shape: "productCard" });
