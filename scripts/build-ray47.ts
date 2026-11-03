@@ -23,9 +23,9 @@ items.push(v);
 const blur = createOverlayItem(p, { trackId: T("broll"), from: 0, shape: "blur" });
 blur.name = "Blur · المنتج حتى 10:08";
 blur.durationInFrames = 308;
-blur.width = 600;
-blur.height = 820;
-blur.strokeWidth = 34;
+blur.width = 680;
+blur.height = 900;
+blur.strokeWidth = 60; // option 2: strong blur (user choice)
 blur.transform.x = 520;
 blur.transform.y = 1110;
 blur.keyframes = {

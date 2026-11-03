@@ -74,7 +74,7 @@
  ],
  "items": [
   {
-   "id": "vid_obbzkaxa97",
+   "id": "vid_g8kqbtyxnf",
    "type": "video",
    "trackId": "track_video",
    "name": "RAY47",
@@ -113,18 +113,18 @@
    }
   },
   {
-   "id": "ovl_9jz67gxa98",
+   "id": "ovl_5fqb8wyxnf",
    "type": "overlay",
    "trackId": "track_broll",
    "name": "Blur · المنتج حتى 10:08",
    "from": 0,
    "durationInFrames": 308,
    "shape": "blur",
-   "width": 600,
-   "height": 820,
+   "width": 680,
+   "height": 900,
    "color": "#F2B33D",
    "secondaryColor": "#FFFFFF",
-   "strokeWidth": 34,
+   "strokeWidth": 60,
    "texts": [],
    "fontFamily": "Tajawal",
    "transform": {
@@ -198,7 +198,7 @@
    }
   },
   {
-   "id": "ovl_zmt5j8xa98",
+   "id": "ovl_qg2u29yxnf",
    "type": "overlay",
    "trackId": "track_graphics",
    "name": "Card · Kilian Angels' Share",
@@ -283,7 +283,7 @@
    ]
   },
   {
-   "id": "ovl_9aoceixa98",
+   "id": "ovl_96tqqzyxnf",
    "type": "overlay",
    "trackId": "track_graphics",
    "name": "Compare · Kilian vs Laytani",
@@ -375,7 +375,7 @@
    ]
   },
   {
-   "id": "txt_wkjqtexa98",
+   "id": "txt_ay63i8yxng",
    "type": "text",
    "trackId": "track_overlays",
    "name": "Price · Laytani 150",
@@ -449,7 +449,7 @@
    }
   },
   {
-   "id": "txt_00186gxa98",
+   "id": "txt_cui2pyyxng",
    "type": "text",
    "trackId": "track_overlays",
    "name": "Price · Kilian 1200",
@@ -523,7 +523,7 @@
    }
   },
   {
-   "id": "txt_w5zyokxa98",
+   "id": "txt_sreunuyxng",
    "type": "text",
    "trackId": "track_overlays",
    "name": "Label",
@@ -597,7 +597,7 @@
    }
   },
   {
-   "id": "cap_oohsl2xa99",
+   "id": "cap_rqmmsgyxnh",
    "type": "caption",
    "trackId": "track_captions",
    "name": "تحدّي أجيب لك عطر",
@@ -605,26 +605,26 @@
    "durationInFrames": 36,
    "words": [
     {
-     "id": "w_46e587xa98",
+     "id": "w_jvvi8hyxng",
      "text": "تحدّي",
      "start": 0,
      "end": 12,
      "emphasis": true
     },
     {
-     "id": "w_05w60bxa98",
+     "id": "w_ata8u6yxng",
      "text": "أجيب",
      "start": 12,
      "end": 22.8
     },
     {
-     "id": "w_z1blafxa98",
+     "id": "w_v75drfyxng",
      "text": "لك",
      "start": 22.8,
      "end": 27.6
     },
     {
-     "id": "w_f5k5rxxa98",
+     "id": "w_awr9vlyxng",
      "text": "عطر",
      "start": 27.6,
      "end": 36
@@ -712,7 +712,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_homf5sxa99",
+   "id": "cap_n0z02byxnh",
    "type": "caption",
    "trackId": "track_captions",
    "name": "ريحته قريبة من Kilian Angels' Share",
@@ -720,32 +720,32 @@
    "durationInFrames": 60,
    "words": [
     {
-     "id": "w_cxx1kbxa99",
+     "id": "w_xw75p0yxnh",
      "text": "ريحته",
      "start": 0,
      "end": 7.8
     },
     {
-     "id": "w_mhdmz5xa99",
+     "id": "w_y1yy6wyxnh",
      "text": "قريبة",
      "start": 7.8,
      "end": 26.4
     },
     {
-     "id": "w_vh3mphxa99",
+     "id": "w_pgkuj5yxnh",
      "text": "من",
      "start": 26.4,
      "end": 31.8
     },
     {
-     "id": "w_aqbsikxa99",
+     "id": "w_nc3x6syxnh",
      "text": "Kilian",
      "start": 31.8,
      "end": 41.4,
      "emphasis": true
     },
     {
-     "id": "w_ruc8m6xa99",
+     "id": "w_omeqftyxnh",
      "text": "Angels' Share",
      "start": 41.4,
      "end": 58.2,
@@ -834,7 +834,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_m7qpu2xa99",
+   "id": "cap_x6w6tkyxnh",
    "type": "caption",
    "trackId": "track_captions",
    "name": "وبديل بسعر أقل بكثير",
@@ -842,26 +842,26 @@
    "durationInFrames": 61,
    "words": [
     {
-     "id": "w_6uu1ifxa99",
+     "id": "w_p8oolnyxnh",
      "text": "وبديل",
      "start": 0,
      "end": 21
     },
     {
-     "id": "w_9tcsx0xa99",
+     "id": "w_y7b40lyxnh",
      "text": "بسعر",
      "start": 21,
      "end": 33.6
     },
     {
-     "id": "w_4eyc8axa99",
+     "id": "w_pjh1t9yxnh",
      "text": "أقل",
      "start": 33.6,
      "end": 44.4,
      "emphasis": true
     },
     {
-     "id": "w_nle9zgxa99",
+     "id": "w_buo8amyxnh",
      "text": "بكثير",
      "start": 44.4,
      "end": 60.6,
@@ -950,7 +950,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_bm8y81xa99",
+   "id": "cap_1b075uyxnh",
    "type": "caption",
    "trackId": "track_captions",
    "name": "بدل ما تدفع الألف والألفين",
@@ -958,32 +958,32 @@
    "durationInFrames": 64,
    "words": [
     {
-     "id": "w_pmhgj5xa99",
+     "id": "w_j1sehiyxnh",
      "text": "بدل",
      "start": -0.4,
      "end": 7.4
     },
     {
-     "id": "w_revkbtxa99",
+     "id": "w_6zl9feyxnh",
      "text": "ما",
      "start": 7.4,
      "end": 11
     },
     {
-     "id": "w_38jpfsxa99",
+     "id": "w_utl602yxnh",
      "text": "تدفع",
      "start": 11,
      "end": 21.2
     },
     {
-     "id": "w_3v2815xa99",
+     "id": "w_461bwmyxnh",
      "text": "الألف",
      "start": 21.2,
      "end": 40.4,
      "emphasis": true
     },
     {
-     "id": "w_00al8mxa99",
+     "id": "w_c9if30yxnh",
      "text": "والألفين",
      "start": 40.4,
      "end": 63.8,
@@ -1072,7 +1072,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_vawvcwxa99",
+   "id": "cap_fc9z21yxnh",
    "type": "caption",
    "trackId": "track_captions",
    "name": "وكمان الزيوت الأخرى",
@@ -1080,19 +1080,19 @@
    "durationInFrames": 64,
    "words": [
     {
-     "id": "w_uo1gwxxa99",
+     "id": "w_i07ohhyxnh",
      "text": "وكمان",
      "start": -0.2,
      "end": 23.2
     },
     {
-     "id": "w_7c1hwkxa99",
+     "id": "w_lrev5hyxnh",
      "text": "الزيوت",
      "start": 23.2,
      "end": 38.2
     },
     {
-     "id": "w_hk8624xa99",
+     "id": "w_2tfdo5yxnh",
      "text": "الأخرى",
      "start": 38.2,
      "end": 52
@@ -1180,7 +1180,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_i54as0xa99",
+   "id": "cap_qu1qptyxni",
    "type": "caption",
    "trackId": "track_captions",
    "name": "هذا عطر Laytani",
@@ -1188,19 +1188,19 @@
    "durationInFrames": 46,
    "words": [
     {
-     "id": "w_ykccrdxa99",
+     "id": "w_z62hjuyxni",
      "text": "هذا",
      "start": 0,
      "end": 11.4
     },
     {
-     "id": "w_nun404xa99",
+     "id": "w_w16s50yxni",
      "text": "عطر",
      "start": 11.4,
      "end": 28.2
     },
     {
-     "id": "w_bhm8eoxa99",
+     "id": "w_a7vde3yxni",
      "text": "Laytani",
      "start": 28.2,
      "end": 46.2,
@@ -1289,7 +1289,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_1qpkkqxa99",
+   "id": "cap_07vuz0yxni",
    "type": "caption",
    "trackId": "track_captions",
    "name": "من بيفرلي هيلز",
@@ -1297,20 +1297,20 @@
    "durationInFrames": 37,
    "words": [
     {
-     "id": "w_l3i6ugxa99",
+     "id": "w_vtwc7hyxni",
      "text": "من",
      "start": 0.2,
      "end": 12.8
     },
     {
-     "id": "w_haxqulxa99",
+     "id": "w_a2zumeyxni",
      "text": "بيفرلي",
      "start": 12.8,
      "end": 23.6,
      "emphasis": true
     },
     {
-     "id": "w_z5tw49xa99",
+     "id": "w_hp39meyxni",
      "text": "هيلز",
      "start": 23.6,
      "end": 36.8,
@@ -1399,7 +1399,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_k0k8bsxa99",
+   "id": "cap_sdu864yxni",
    "type": "caption",
    "trackId": "track_captions",
    "name": "أول ما شمّيته",
@@ -1407,19 +1407,19 @@
    "durationInFrames": 37,
    "words": [
     {
-     "id": "w_ca76wgxa99",
+     "id": "w_fw2pmnyxni",
      "text": "أول",
      "start": -0.2,
      "end": 13
     },
     {
-     "id": "w_dpsbmlxa99",
+     "id": "w_co516oyxni",
      "text": "ما",
      "start": 13,
      "end": 19.6
     },
     {
-     "id": "w_mmo9jsxa99",
+     "id": "w_0prianyxni",
      "text": "شمّيته",
      "start": 19.6,
      "end": 37
@@ -1507,7 +1507,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_v1pkqmxa99",
+   "id": "cap_2w4c4eyxni",
    "type": "caption",
    "trackId": "track_captions",
    "name": "ذكّرني مباشرة بـAngels' Share",
@@ -1515,19 +1515,19 @@
    "durationInFrames": 70,
    "words": [
     {
-     "id": "w_3trv12xa99",
+     "id": "w_t394svyxni",
      "text": "ذكّرني",
      "start": 0,
      "end": 23.4
     },
     {
-     "id": "w_0ueqrkxa99",
+     "id": "w_dgvs1ayxni",
      "text": "مباشرة",
      "start": 23.4,
      "end": 42.6
     },
     {
-     "id": "w_3qm5rzxa99",
+     "id": "w_wtnhckyxni",
      "text": "بـAngels' Share",
      "start": 42.6,
      "end": 70.2,
@@ -1616,7 +1616,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_mgs9nixa99",
+   "id": "cap_b4ivmtyxni",
    "type": "caption",
    "trackId": "track_captions",
    "name": "حتى لما بحثت على مكونات العطرين",
@@ -1624,37 +1624,37 @@
    "durationInFrames": 62,
    "words": [
     {
-     "id": "w_n1od8pxa99",
+     "id": "w_sqj58ryxni",
      "text": "حتى",
      "start": 0.2,
      "end": 10.4
     },
     {
-     "id": "w_rozh2gxa99",
+     "id": "w_c2y5hjyxni",
      "text": "لما",
      "start": 10.4,
      "end": 15.8
     },
     {
-     "id": "w_ndsr15xa99",
+     "id": "w_hmlcs5yxni",
      "text": "بحثت",
      "start": 15.8,
      "end": 26
     },
     {
-     "id": "w_dl158exa99",
+     "id": "w_amkphyyxni",
      "text": "على",
      "start": 26,
      "end": 29.6
     },
     {
-     "id": "w_jf0s1fxa99",
+     "id": "w_da4c5wyxni",
      "text": "مكونات",
      "start": 29.6,
      "end": 45.8
     },
     {
-     "id": "w_6yhgb9xa99",
+     "id": "w_xsx8e1yxni",
      "text": "العطرين",
      "start": 45.8,
      "end": 62
@@ -1742,7 +1742,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_lx3xe8xa99",
+   "id": "cap_qd7o6zyxni",
    "type": "caption",
    "trackId": "track_captions",
    "name": "فيها تشابه كبير",
@@ -1750,20 +1750,20 @@
    "durationInFrames": 45,
    "words": [
     {
-     "id": "w_4x0fnixa99",
+     "id": "w_aytap7yxni",
      "text": "فيها",
      "start": 0,
      "end": 11.4
     },
     {
-     "id": "w_lyekkzxa99",
+     "id": "w_k94qb1yxni",
      "text": "تشابه",
      "start": 11.4,
      "end": 28.8,
      "emphasis": true
     },
     {
-     "id": "w_oih3y9xa99",
+     "id": "w_nmyw6eyxni",
      "text": "كبير",
      "start": 28.8,
      "end": 40.8,
@@ -1852,7 +1852,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_sqqquzxa99",
+   "id": "cap_qmzgwxyxni",
    "type": "caption",
    "trackId": "track_captions",
    "name": "فأي شي أفضل؟",
@@ -1860,19 +1860,19 @@
    "durationInFrames": 38,
    "words": [
     {
-     "id": "w_vqbwxyxa99",
+     "id": "w_opoc7nyxni",
      "text": "فأي",
      "start": 0,
      "end": 15.6
     },
     {
-     "id": "w_6x865sxa99",
+     "id": "w_kreclkyxni",
      "text": "شي",
      "start": 15.6,
      "end": 18.6
     },
     {
-     "id": "w_95vwinxa99",
+     "id": "w_mddwkzyxni",
      "text": "أفضل؟",
      "start": 18.6,
      "end": 36
@@ -1960,7 +1960,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_gcaiysxa99",
+   "id": "cap_sry7ifyxni",
    "type": "caption",
    "trackId": "track_captions",
    "name": "150 ريال ولا 1200؟",
@@ -1968,26 +1968,26 @@
    "durationInFrames": 64,
    "words": [
     {
-     "id": "w_9xaojexa99",
+     "id": "w_63smdkyxni",
      "text": "150",
      "start": 0.4,
      "end": 12.4,
      "emphasis": true
     },
     {
-     "id": "w_8ohhpcxa99",
+     "id": "w_9fplugyxni",
      "text": "ريال",
      "start": 12.4,
      "end": 32.2
     },
     {
-     "id": "w_r2wbkyxa99",
+     "id": "w_p0ylqayxni",
      "text": "ولا",
      "start": 32.2,
      "end": 41.8
     },
     {
-     "id": "w_id6brbxa99",
+     "id": "w_c3i040yxni",
      "text": "1200؟",
      "start": 41.8,
      "end": 52,
@@ -2076,7 +2076,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_iwdx2mxa99",
+   "id": "cap_8rlr82yxni",
    "type": "caption",
    "trackId": "track_captions",
    "name": "احكم بعقلك",
@@ -2084,13 +2084,13 @@
    "durationInFrames": 34,
    "words": [
     {
-     "id": "w_1qbs3nxa99",
+     "id": "w_059rfcyxni",
      "text": "احكم",
      "start": 0,
      "end": 18.6
     },
     {
-     "id": "w_4y85e1xa99",
+     "id": "w_9o96k7yxni",
      "text": "بعقلك",
      "start": 18.6,
      "end": 33.6,
@@ -2179,7 +2179,7 @@
    "presetId": "phrase-by-phrase"
   },
   {
-   "id": "cap_u6l4h5xa99",
+   "id": "cap_ayl8c2yxni",
    "type": "caption",
    "trackId": "track_captions",
    "name": "وتعال زورنا بالموقع",
@@ -2187,19 +2187,19 @@
    "durationInFrames": 46,
    "words": [
     {
-     "id": "w_fcpl2ixa99",
+     "id": "w_u69x69yxni",
      "text": "وتعال",
      "start": -0.4,
      "end": 19.4
     },
     {
-     "id": "w_zeb0i3xa99",
+     "id": "w_5gc8k1yxni",
      "text": "زورنا",
      "start": 19.4,
      "end": 30.8
     },
     {
-     "id": "w_rshyitxa99",
+     "id": "w_nviefwyxni",
      "text": "بالموقع",
      "start": 30.8,
      "end": 42.8,
@@ -2300,5 +2300,5 @@
   }
  ],
  "fonts": [],
- "updatedAt": "2026-11-03T11:31:09.741Z"
+ "updatedAt": "2026-11-03T11:32:26.718Z"
 }
