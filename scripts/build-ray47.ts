@@ -178,6 +178,16 @@ items.push(cmp);
   items.push(duel);
 }
 
+// ---------- SFX (placeholders until the Saoud SFX Pack arrives) ----------
+const sfx = (name: string, atS: number, file: string, vol: number) =>
+  items.push(createAudioItem({ trackId: T("sfx"), role: "sfx", src: `sfx/${file}`, from: f(atS), durationInFrames: 20, volume: vol, name }));
+sfx("Kilian banner in", 2.2, "card-slide-3.mp3", 0.25);
+sfx("Name pop", 11.23, "notification-pop.mp3", 0.25);
+sfx("Compare in", 14.3, "card-slide-3.mp3", 0.28);
+sfx("Shared notes", 17.62, "tick-001.mp3", 0.35);
+sfx("تشابه كبير", 19.08, "impact-generic-light-002.mp3", 0.3);
+sfx("Prices", 21.3, "notification-pop.mp3", 0.28);
+
 // ---------- captions (source = timeline, nothing cut) ----------
 type W = [string, number, number, "e"?];
 const groups: W[][] = [
