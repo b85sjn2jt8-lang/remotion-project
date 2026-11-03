@@ -4,7 +4,7 @@
  */
 import fs from "node:fs";
 import { defaultAnimationSet, defaultParams } from "../src/engine/animation/presets";
-import { createAudioItem, createCaptionItem, createOverlayItem, createTextItem, createVideoItem, emptyProject, uid } from "../src/engine/factory";
+import { createAudioItem, createCaptionItem, createImageItem, createOverlayItem, createTextItem, createVideoItem, emptyProject, uid } from "../src/engine/factory";
 import type { Item, Project } from "../src/engine/types";
 
 const FPS = 30;
@@ -89,27 +89,53 @@ items.push(createAudioItem({ trackId: T("sfx"), role: "sfx", src: "sfx/card-slid
   name("Beverly Hills Avenue", 530, 30, 600, "#F5B83D", "Name · Beverly Hills Avenue");
 }
 
-// ---------- Kilian card when he names it (notes pyramid) ----------
-const kilian = createOverlayItem(p, { trackId: T("graphics"), from: f(2.26), shape: "productCard" });
-kilian.variant = "pyramid";
-kilian.name = "Card · Kilian Angels' Share";
-kilian.durationInFrames = f(8.6) - f(2.26);
-kilian.width = 860;
-kilian.height = 400;
-kilian.radius = 30;
-kilian.transform.x = 510;
-kilian.transform.y = 420;
-kilian.fontFamily = "Tajawal";
-kilian.secondaryColor = "#F0C98A";
-kilian.texts = ["KILIAN PARIS", "Angels' Share", "كونياك · خشبي · حلو", "كونياك", "قرفة · تونكا · خشب البلوط", "برالين · فانيلا · صندل"];
-kilian.ingredients = ["amber", "cinnamon", "vanilla", "cedar"];
-kilian.timings = [10, 14, 18];
-kilian.highlights = [-1, -1, -1];
+// ---------- Kilian (option 6): dark banner, real bottle, name, key notes ----------
 const kilianImg = img("products/kilian-angels-share-official.png");
-if (kilianImg) kilian.images = [kilianImg];
-kilian.shadow = { enabled: true, color: "rgba(0,0,0,0.4)", blur: 40, x: 0, y: 16 };
-kilian.animation = defaultAnimationSet({ in: "slideDown", inParams: defaultParams({ duration: 10, intensity: 0.5 }), out: "fadeOut", outParams: defaultParams({ duration: 6 }) });
-items.push(kilian);
+{
+  const FROM = f(2.26);
+  const END = f(8.6);
+  const anim = () =>
+    defaultAnimationSet({ in: "fade", inParams: defaultParams({ duration: 8 }), out: "fadeOut", outParams: defaultParams({ duration: 6 }) });
+  const panel = createTextItem(p, { trackId: T("text"), from: FROM, variant: "label", text: " " });
+  panel.name = "Kilian · panel";
+  panel.durationInFrames = END - FROM;
+  panel.transform.x = 510;
+  panel.transform.y = 450;
+  panel.style.background = { enabled: true, color: "#0E0B08", opacity: 0.78, radius: 30, paddingX: 420, paddingY: 150 };
+  panel.style.shadow.enabled = false;
+  panel.animation = anim();
+  items.push(panel);
+  if (kilianImg) {
+    const b = createImageItem(p, { trackId: T("graphics"), src: kilianImg, from: FROM, durationInFrames: END - FROM, width: Math.round((260 * 696) / 858), height: 260 });
+    b.name = "Kilian · bottle";
+    b.transform.x = 280;
+    b.transform.y = 450;
+    b.radius = 0;
+    b.shadow.enabled = false;
+    b.fit = "contain";
+    b.animation = defaultAnimationSet({ in: "pop", inParams: defaultParams({ duration: 9 }), out: "fadeOut", outParams: defaultParams({ duration: 6 }) });
+    items.push(b);
+  }
+  const line = (text: string, y: number, set: (t: ReturnType<typeof createTextItem>) => void, name: string) => {
+    const t = createTextItem(p, { trackId: T("overlays"), from: FROM + 4, variant: "label", text });
+    t.name = name;
+    t.durationInFrames = END - FROM - 4;
+    t.transform.x = 650;
+    t.transform.y = y;
+    t.style.fontFamily = "Montserrat";
+    t.style.fontWeight = 800;
+    t.style.letterSpacing = 0.02;
+    t.style.color = "#FFFFFF";
+    t.style.background.enabled = false;
+    t.style.shadow = { enabled: true, color: "rgba(0,0,0,0.65)", blur: 18, x: 0, y: 4 };
+    t.animation = anim();
+    set(t);
+    items.push(t);
+  };
+  line("KILIAN PARIS", 390, (t) => { t.style.fontSize = 28; t.style.letterSpacing = 0.3; t.style.color = "#F5B83D"; t.style.fontWeight = 600; }, "Kilian · brand");
+  line("Angels' Share", 450, (t) => { t.style.fontSize = 58; }, "Kilian · name");
+  line("كونياك · قرفة · فانيلا", 520, (t) => { t.style.fontFamily = "Tajawal"; t.style.fontSize = 36; t.style.fontWeight = 500; t.style.color = "#F6E7CF"; }, "Kilian · notes");
+}
 
 // ---------- comparison while he says "ذكّرني بـ Angels' Share… تشابه كبير" ----------
 const cmp = createOverlayItem(p, { trackId: T("graphics"), from: f(14.3), shape: "compareCard" });
