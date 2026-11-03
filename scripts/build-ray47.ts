@@ -134,30 +134,23 @@ cmp.shadow = { enabled: true, color: "rgba(0,0,0,0.4)", blur: 40, x: 0, y: 16 };
 cmp.animation = defaultAnimationSet({ in: "scale", inParams: defaultParams({ duration: 9, intensity: 0.6 }), out: "fadeOut", outParams: defaultParams({ duration: 5 }) });
 items.push(cmp);
 
-// ---------- price duel: "150 ريال ولا 1200؟" ----------
-const tag = (text: string, atS: number, x: number, bg: string, fg: string, name: string) => {
-  const t = createTextItem(p, { trackId: T("overlays"), from: f(atS), variant: "price", text });
-  t.durationInFrames = f(23.75) - f(atS);
-  t.name = name;
-  t.transform.x = x;
-  t.transform.y = 560;
-  t.style.fontFamily = "Tajawal";
-  t.style.fontSize = 74;
-  t.style.fontWeight = 800;
-  t.style.color = fg;
-  t.style.strokeWidth = 0;
-  t.style.background = { enabled: true, color: bg, opacity: 1, radius: 26, paddingX: 34, paddingY: 10 };
-  t.animation = defaultAnimationSet({ in: "pop", inParams: defaultParams({ duration: 8 }), emphasis: "punch", emphasisParams: defaultParams({ duration: 9, intensity: 0.6 }), out: "fadeOut", outParams: defaultParams({ duration: 5 }) });
-  return t;
-};
-items.push(tag("150 ريال", 21.48, 790, "#1F7A44", "#FFFFFF", "Price · Laytani 150"));
-items.push(tag("1200 ريال", 22.86, 250, "#8E1F1F", "#FFFFFF", "Price · Kilian 1200"));
-const vs = createTextItem(p, { trackId: T("overlays"), from: f(22.86), variant: "label", text: "ولا" });
-vs.durationInFrames = f(23.75) - f(22.86);
-vs.transform.y = 560;
-vs.style.fontSize = 46;
-vs.transform.x = 525;
-items.push(vs);
+// ---------- price duel (option 6, smaller): ✓ 150 ريال vs ✕ 1200 ريال ----------
+{
+  const from = f(21.48) - 6;
+  const duel = createOverlayItem(p, { trackId: T("graphics"), from, shape: "comparisonCard" });
+  duel.name = "Price · 150 vs 1200";
+  duel.durationInFrames = f(23.75) - from;
+  duel.texts = ["150 ريال", "1200 ريال"];
+  duel.color = "#1F7A44";
+  duel.secondaryColor = "#FFFFFF";
+  duel.fontFamily = "Tajawal";
+  duel.width = 600;
+  duel.height = 170;
+  duel.radius = 22;
+  duel.transform.x = 510;
+  duel.transform.y = 560;
+  items.push(duel);
+}
 
 // ---------- captions (source = timeline, nothing cut) ----------
 type W = [string, number, number, "e"?];
