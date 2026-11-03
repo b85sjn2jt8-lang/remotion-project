@@ -590,13 +590,201 @@ const TEXT_SLOTS: Partial<Record<OverlayItem["shape"], string[]>> = {
   icon: ["Icon name"],
 };
 
+/** Picks an image from the project's media library (or type a path in public/). */
+const ImagePicker: React.FC<{
+  value: string | undefined;
+  onChange: (v: string | undefined) => void;
+}> = ({ value, onChange }) => {
+  const media = useEditor((s) => s.project!.media);
+  const images = media.filter((m) => m.kind === "image");
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+      <Select
+        value={value ?? ""}
+        options={[
+          { id: "", label: "— No image —" },
+          ...images.map((m) => ({ id: m.src, label: m.name })),
+          ...(value && !images.some((m) => m.src === value)
+            ? [{ id: value, label: value }]
+            : []),
+        ]}
+        onChange={(v) => onChange(v || undefined)}
+      />
+      <TextInput
+        value={value ?? ""}
+        placeholder="products/…png"
+        onChange={(v) => onChange(v.trim() || undefined)}
+      />
+    </div>
+  );
+};
+
+const productCardSlots = (item: OverlayItem) =>
+  item.variant === "pyramid"
+    ? ["Brand", "Name", "Accords", "البداية", "القلب", "القاعدة"]
+    : ["Brand", "Name", ...item.texts.slice(2).map((_, i) => `Note ${i + 1}`)];
+
+/** Every field of the comparison card: both products, prices, images, shared notes, similarity. */
+const CompareFields: React.FC<{ item: OverlayItem }> = ({ item }) => {
+  const c = item.compare!;
+  const upd = (fn: (x: NonNullable<OverlayItem["compare"]>) => void) =>
+    updateItem<OverlayItem>(item.id, (x) => x.compare && fn(x.compare));
+  const side = (key: "right" | "left", title: string) => (
+    <Section title={title}>
+      <Row label="Brand">
+        <TextInput
+          value={c[key].brand}
+          onChange={(v) => upd((x) => (x[key].brand = v))}
+        />
+      </Row>
+      <Row label="Name">
+        <TextInput
+          value={c[key].name}
+          onChange={(v) => upd((x) => (x[key].name = v))}
+        />
+      </Row>
+      <Row label="Price">
+        <TextInput
+          value={c[key].price}
+          onChange={(v) => upd((x) => (x[key].price = v))}
+        />
+      </Row>
+      <Row label="Price color">
+        <ColorField
+          value={c[key].priceColor ?? "#FFFFFF"}
+          onChange={(v) => upd((x) => (x[key].priceColor = v))}
+        />
+      </Row>
+      <Row label="Image">
+        <ImagePicker
+          value={c[key].image}
+          onChange={(v) => upd((x) => (x[key].image = v))}
+        />
+      </Row>
+    </Section>
+  );
+  return (
+    <>
+      <Section title="Comparison">
+        <Row label="Title">
+          <TextInput
+            value={c.title}
+            onChange={(v) => upd((x) => (x.title = v))}
+          />
+        </Row>
+        <Row label="Shared notes">
+          <TextInput
+            value={c.shared.join("، ")}
+            onChange={(v) =>
+              upd(
+                (x) =>
+                  (x.shared = v
+                    .split(/[،,]/)
+                    .map((n) => n.trim())
+                    .filter(Boolean)),
+              )
+            }
+          />
+        </Row>
+        <div className="hint">Separate notes with a comma (،).</div>
+        <Row label="Bar label">
+          <TextInput
+            value={c.similarityLabel}
+            onChange={(v) => upd((x) => (x.similarityLabel = v))}
+          />
+        </Row>
+        <Row label="Bar fill">
+          <SliderField
+            value={c.similarity}
+            min={0}
+            max={1}
+            step={0.01}
+            display={100}
+            suffix="%"
+            onChange={(v) => upd((x) => (x.similarity = v))}
+          />
+        </Row>
+        <div className="grid3">
+          <NumberField
+            prefix="In"
+            suffix="f"
+            value={item.timings?.[0] ?? 0}
+            min={0}
+            onChange={(v) =>
+              updateItem<OverlayItem>(item.id, (x) => {
+                x.timings = [...(x.timings ?? [0, 14, 26])];
+                x.timings[0] = Math.round(v);
+              })
+            }
+          />
+          <NumberField
+            prefix="Notes"
+            suffix="f"
+            value={item.timings?.[1] ?? 14}
+            min={0}
+            onChange={(v) =>
+              updateItem<OverlayItem>(item.id, (x) => {
+                x.timings = [...(x.timings ?? [0, 14, 26])];
+                x.timings[1] = Math.round(v);
+              })
+            }
+          />
+          <NumberField
+            prefix="Bar"
+            suffix="f"
+            value={item.timings?.[2] ?? 26}
+            min={0}
+            onChange={(v) =>
+              updateItem<OverlayItem>(item.id, (x) => {
+                x.timings = [...(x.timings ?? [0, 14, 26])];
+                x.timings[2] = Math.round(v);
+              })
+            }
+          />
+        </div>
+        <div className="hint">
+          Frames from the start of the card when each part appears.
+        </div>
+      </Section>
+      {side("right", "Right product")}
+      {side("left", "Left product")}
+    </>
+  );
+};
+
 export const OverlayInspector: React.FC<{ item: OverlayItem }> = ({ item }) => {
   const upd = (fn: (x: OverlayItem) => void) =>
     updateItem<OverlayItem>(item.id, fn);
-  const slots = TEXT_SLOTS[item.shape];
+  const slots =
+    item.shape === "productCard"
+      ? productCardSlots(item)
+      : TEXT_SLOTS[item.shape];
   return (
     <>
+      {item.shape === "compareCard" && item.compare ? (
+        <CompareFields item={item} />
+      ) : null}
       <Section title={item.name}>
+        {item.shape === "productCard" ? (
+          <Row label="Product image">
+            <ImagePicker
+              value={item.images?.[0]}
+              onChange={(v) => upd((x) => (x.images = v ? [v] : undefined))}
+            />
+          </Row>
+        ) : null}
+        {item.shape === "blur" ? (
+          <Row label="Style">
+            <Segmented
+              value={item.variant === "frosted" ? "frosted" : "soft"}
+              onChange={(v) => upd((x) => (x.variant = v))}
+              options={[
+                { id: "soft", label: "Soft" },
+                { id: "frosted", label: "Frosted panel" },
+              ]}
+            />
+          </Row>
+        ) : null}
         {slots?.map((label, i) => (
           <Row key={label} label={label}>
             <TextInput
@@ -643,7 +831,13 @@ export const OverlayInspector: React.FC<{ item: OverlayItem }> = ({ item }) => {
         </div>
         <div className="grid2">
           <NumberField
-            prefix="Stroke"
+            prefix={
+              item.shape === "blur"
+                ? "Blur"
+                : item.shape === "snow"
+                  ? "Density"
+                  : "Stroke"
+            }
             value={item.strokeWidth}
             min={1}
             max={60}
