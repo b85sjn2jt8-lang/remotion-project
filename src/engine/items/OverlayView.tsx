@@ -86,10 +86,19 @@ const Shape: React.FC<{
             borderRadius: radius,
             backdropFilter: `blur(${item.strokeWidth}px)`,
             WebkitBackdropFilter: `blur(${item.strokeWidth}px)`,
-            WebkitMaskImage:
-              "radial-gradient(ellipse at center, #000 58%, transparent 74%)",
-            maskImage:
-              "radial-gradient(ellipse at center, #000 58%, transparent 74%)",
+            // "frosted": crisp glass panel with tint + edge; default: soft feathered blur.
+            ...(item.variant === "frosted"
+              ? {
+                  backgroundColor: item.secondaryColor,
+                  border: "1.5px solid rgba(255,255,255,0.45)",
+                  boxShadow: "0 18px 40px rgba(0,0,0,0.25)",
+                }
+              : {
+                  WebkitMaskImage:
+                    "radial-gradient(ellipse at center, #000 58%, transparent 74%)",
+                  maskImage:
+                    "radial-gradient(ellipse at center, #000 58%, transparent 74%)",
+                }),
           }}
         />
       );

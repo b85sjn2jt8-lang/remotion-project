@@ -24,16 +24,16 @@ const blur = createOverlayItem(p, { trackId: T("broll"), from: 0, shape: "blur" 
 blur.name = "Blur · المنتج حتى 10:08";
 blur.durationInFrames = 308;
 blur.width = 600;
-blur.height = 600;
+blur.height = 820;
 blur.strokeWidth = 34;
 blur.transform.x = 520;
-blur.transform.y = 1030;
+blur.transform.y = 1110;
 blur.keyframes = {
   y: [
-    { frame: 0, value: 1030, easing: "linear" },
-    { frame: 150, value: 1020, easing: "easeInOut" },
-    { frame: 297, value: 915, easing: "easeInOut" },
-    { frame: 307, value: 880, easing: "easeInOut" },
+    { frame: 0, value: 1110, easing: "linear" },
+    { frame: 150, value: 1100, easing: "easeInOut" },
+    { frame: 297, value: 995, easing: "easeInOut" },
+    { frame: 307, value: 960, easing: "easeInOut" },
   ],
 };
 blur.animation = defaultAnimationSet({ in: "none", out: "fadeOut", outParams: defaultParams({ duration: 8 }) });

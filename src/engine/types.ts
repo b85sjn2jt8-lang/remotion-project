@@ -370,7 +370,7 @@ export type OverlayItem = ItemBase & {
    * productCard layout. "pyramid": texts = [brand, name, accords, top, heart, base];
    * timings = frames at which the 3 rows appear; highlights = frame each row lights up (or -1).
    */
-  variant?: "chips" | "pyramid";
+  variant?: "chips" | "pyramid" | "soft" | "frosted";
   /** compareCard: two products side by side + their shared notes. */
   compare?: {
     title: string;
